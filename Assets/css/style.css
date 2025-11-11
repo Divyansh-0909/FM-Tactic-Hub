@@ -1,0 +1,80 @@
+:root {
+    --bg-grad-1: #09101d;
+    --bg-grad-2: #1c273c;
+    --text-main: #ffffff;
+    --text-secondary: #9ca3af;
+    --header-bg: rgba(17, 24, 39, 0.65);
+    --header-border: rgba(176, 120, 255, 0.2);
+    --header-text: #ffffff;
+    --card-bg-grad-1: #343541;
+    --card-bg-grad-2: #0e1020;
+    --card-border: #4b5563;
+    --gradient-text-1: #e9d5ff;
+    --gradient-text-2: #b078ff;
+    --button-primary-bg: #b078ff;
+    --button-primary-hover: #996ae6;
+}
+@keyframes gradientAnimation { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+html {
+    overflow-x: hidden;
+    color-scheme: light;
+}
+body { 
+    font-family: 'Inter', sans-serif; 
+    background: linear-gradient(-45deg, var(--bg-grad-1), var(--bg-grad-2)) !important; 
+    background-size: 400% 400%; 
+    animation: gradientAnimation 15s ease infinite; 
+    color: var(--text-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Added .top-threads-carousel to the transition list for smooth loading */
+header, .main-text-anim, .carousel-section, .top-threads-carousel { transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+body:not(.loaded) header { transform: translateY(-50px); opacity: 0; }
+body:not(.loaded) .main-text-anim, body:not(.loaded) .carousel-section, body:not(.loaded) .top-threads-carousel { transform: translateY(30px); opacity: 0; }
+#particle-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+.gradient-text { background: linear-gradient(90deg, #e9d5ff, #b078ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; }
+.tactic-card { transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease, opacity 0.4s ease; overflow: hidden; width: 100%; flex-shrink: 0; display: flex; flex-direction: column; height: 100%; filter: blur(2px); opacity: 0.7; }
+
+.swiper-container { 
+    width: 90%; 
+    padding-top: 20px; 
+    padding-bottom: 40px; 
+    position: relative;
+}
+.swiper-slide { width: 100%; display: flex; justify-content: center; height: auto; }
+.swiper-slide-active .tactic-card { filter: blur(0); opacity: 1; }
+
+.swiper-button-next, .swiper-button-prev { 
+    color: #b078ff !important; 
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)); 
+    top: 50%;
+    transform: translateY(-50%);
+    height: 44px;
+    width: 44px;
+}
+.swiper-button-next::after, .swiper-button-prev::after { font-weight: 900; font-size: 24px; }
+.swiper-pagination {
+    bottom: 10px !important;
+}
+.swiper-pagination-bullet-active { background: #b078ff !important; }
+
+.glass-gradient-panel {
+    background: linear-gradient(to bottom right, rgba(52, 53, 65, 0.4), rgba(14, 16, 32, 0.6));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 768px) {
+    .swiper-container { width: 100%; padding-top: 50px; padding-bottom: 50px; }
+    .swiper-slide { width: 320px; }
+    .tactic-card.is-active-slide { transform: scale(1.05) translateY(-5px); box-shadow: 0 10px 20px -5px rgba(176, 120, 255, 0.3); }
+    .swiper-slide-shadow-left, .swiper-slide-shadow-right { background-image: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%); }
+    .swiper-slide-shadow-right { background-image: linear-gradient(to left, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%); }
+    
+    .swiper-button-next::after, .swiper-button-prev::after {
+        font-size: inherit;
+    }
+}

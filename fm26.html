@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>FM26 Tactic Hub</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <link rel="stylesheet" href="Assets\css\fm26.css">
+</head>
+<body class="text-white">
+
+    <canvas id="particle-canvas"></canvas>
+
+    <header class="sticky top-0 z-50 bg-gray-900/50 backdrop-blur-md border-b border-gray-700/50 shadow-lg">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-36 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2 md:space-x-4">
+                 <a href="index.html" class="text-lg sm:text-xl md:text-2xl font-bold text-white whitespace-nowrap hover:text-gray-300 transition-colors duration-300">FM Tactic Hub</a>
+                 <a href="fm24.html" class="text-white hover:text-gray-300 p-2 rounded-lg text-sm md:text-base transition-colors duration-300">FM24</a>
+		         <a href="fm26.html" class="text-white hover:text-gray-300 p-2 rounded-lg text-sm md:text-base transition-colors duration-300">FM26</a>
+            </div>
+            <div class="flex items-center">
+                <a href="index.html" class="text-white hover:text-gray-200 px-2 md:px-3 py-2 rounded-md text-xs sm:text-sm font-medium">theSlashMethod</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        
+        <div class="text-center mb-12 main-text-anim" style="transition-delay: 150ms;">
+            <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold gradient-text pb-4">FM26 Tactical Archive</h2>
+            <p class="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">
+                A refined collection of standout tactical systems, reimagined to capture FM26’s evolved attacking structures and defensive organization.
+            </p>
+        </div>
+
+	
+        <section class="carousel-section mt-16" style="transition-delay: 450ms;">
+            <h3 class="text-3xl font-bold mb-4 text-center gradient-text">System Analysis</h3>
+            <div class="swiper-container system-analysis-carousel">
+                <div class="swiper-wrapper"></div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-transparent mt-12">
+        <div class="container mx-auto px-6 py-4 text-center text-white">
+            <p>&copy; 2025 theSlashMethod. All Rights Reserved.</p>
+            <p class="mt-2">Follow me on <a href="https://x.com/theSlashMethod" target="_blank" class="text-white font-bold hover:underline">X (Twitter)</a></p>
+        </div>
+    </footer>
+
+    <script src="Assets\js\fm26.js"></script>
+</body>
+</html>
