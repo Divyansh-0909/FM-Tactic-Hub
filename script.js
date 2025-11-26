@@ -4,5 +4,5 @@ window.addEventListener("scroll", () => {
 
     let move = scrollPercent * (window.innerWidth); // how far to slide
 
-    document.querySelector(".main").style.transform = `translateX(${-move}px)`;
+    document.querySelector(".hero").style.transform = `translateX(${-move}px)`;
 });
