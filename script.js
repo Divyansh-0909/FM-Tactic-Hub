@@ -1,8 +1,9 @@
+const hero = document.querySelector('.hero');
+
 window.addEventListener("scroll", () => {
-    let scrollMax = document.body.scrollHeight - window.innerHeight;
-    let scrollPercent = window.scrollY / scrollMax;  
+    const scrollRange = document.querySelector('.hero-scroll-area').offsetHeight - window.innerHeight;
+    const percent = Math.min(window.scrollY / scrollRange, 1); // stops exactly at end
 
-    let move = scrollPercent * (window.innerWidth); // how far to slide
-
-    document.querySelector(".hero").style.transform = `translateX(${-move}px)`;
+    const move = percent * (hero.scrollWidth - window.innerWidth); // full image travel
+    hero.style.transform = `translateX(${-move}px)`;
 });
