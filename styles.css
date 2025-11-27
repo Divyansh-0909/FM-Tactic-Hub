@@ -24,19 +24,14 @@ body{
     display: flex;
     justify-content:space-between;
     align-items: center;
-    margin-left: 150px;
-    margin-right: 150px;
     padding: 20px;
     color: white;
-    height: 100%;
+    height: 100%;   
     h1,a{
+        margin-left: 40px;
+        margin-right: 70px;
         font-size: 35px;
         transform: scaleX(1.3);
-    }
-    .left{
-        display: flex;
-        gap: 30px;
-        align-items: center;
     }
     img{
         width: 65px;    
@@ -91,8 +86,11 @@ a:hover{
 
 .floating{
     position: fixed;
-    top: auto;
+    z-index: 9999999; /*to make it stay over everything*/
+    /*to fix it at its position*/
+    top: auto; 
     bottom: 5px;
+    /*-------------------------*/
     transform: translateX(-50%);
     padding-left: 60px;
     padding-right: 60px;
@@ -108,56 +106,100 @@ a:hover{
     .versionButton,.featuredButton{
         transform: scaleX(1.3);
         background-color: rgba(129, 61, 223, 0.829);
-        padding: 12px;
-        padding-left: 30px;
-        padding-right: 30px;
-        border-radius: 30px;
-        box-shadow: inset 0px 0px 20px 8px rgb(181, 138, 243);
+        padding: 10px;
+        padding-left: 25px;
+        padding-right: 25px;
+        border-radius: 32px;
+        box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.158), inset 0px 0px 20px 8px rgb(181, 138, 243);
         a:hover{
             color: white;
         }
     }
-    border-radius: 50px;
-    box-shadow: 0px 20px 20px 3px rgba(0, 0, 0, 0.103),inset 0px 0px 20px 8px rgb(255, 255, 255);
+
+    .indexButton{
+        display: flex;
+        justify-content: center;
+        align-items:start;
+        transform: scaleX(1.3);
+        background-color: rgba(129, 61, 223, 0.829);
+        padding-top: 10px;
+        padding-left: 12px;
+        padding-right: 12px;
+        border-radius: 31px;
+        margin-left: -10px;
+        margin-right: -15px;
+        box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.158), inset 0px 0px 20px 8px rgb(181, 138, 243);
+        a:hover{
+            color: white;
+        }
+    }
+
+    img{
+        height: 50px;
+        width: 48px;
+    }
+    border-radius: 52px;
+    box-shadow: 0px 10px 20px 3px rgba(0, 0, 0, 0.144),inset 0px 0px 20px 8px rgb(255, 255, 255);
 }
 
 .featured{
+    margin-top: 20px;
     width: 100%;
     display: flex;
     flex-direction: column; 
     color: rgb(176 120 255);
-    font-size: 50px;
-    padding-left: 150px;
     align-items: center;
     justify-content: center;
     font-weight: 700;
     view-timeline-name: --sectionTimeline;
     view-timeline-axis: block;
-
+    padding-top: 50px;
     animation: color-change 1s linear both;
     animation-timeline: --sectionTimeline;
     animation-range: entry 40% entry 100%;
     p{
         
         transform: scaleX(1.3);
-        margin-top: -50px;
-        font-size: 70px;
+        margin-top: 20px;
+        font-size: 150px;
     }
     
 }
 
 @keyframes color-change {
   from { background-color: transparent; }
-  to   { background-color: rgb(237, 227, 248); }
+  to   { background-color: #F6EDFF; }
 }
 
 #card-container {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: left;
     position: relative;
-    align-items: flex-start;
-    gap: 100px;
+    display: flex;
+    justify-content: center;
+    margin-left: 70px;
+    .recent,.standout,.topRated{
+        display: flex;
+        flex-direction: column;
+        margin-left: -70px;
+        margin-top: -100px;
+        height: auto;
+        width: 630px;
+        filter: drop-shadow(-20px 15px 30px rgba(0, 0, 0, 0.322));
+    }
+    .recent img:first-child,
+    .standout img:first-child,
+    .topRated img:first-child {
+        position: relative;
+        z-index: 2; /* card stays on top */
+    }
+    .thumbnail{
+        z-index: 1;
+        display: flex;
+        margin-left: 35px;
+        margin-top: -520px;
+        height: auto;
+        width: 560px;
+    }
+    
 }
 
 .horizontal-section {
@@ -168,71 +210,9 @@ a:hover{
 .horizontal-inner {
     position: sticky;
     top: 0;
-    height: 100vh;
+    height: 55vh;
     display: flex;
     align-items: center;
 }
 
-.card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.103);
-    /* background-image: linear-gradient(to bottom right, #1c273c, #09101d); */
-    width: 400px;
-    padding-bottom: 30px;
-    padding-top: 30px;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-    box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.13),inset 0px 0px 20px 5px rgba(255, 255, 255, 0.637);
-    border: solid 1px rgba(255, 255, 255, 0.692);
-    position: relative;
-    transition: transform 0.4s ease;
-}
-
-.tactic{
-    margin-top: 30px;
-    width: 400px;
-    height: 420px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;    
-    img{
-        width: 350px;
-        height: auto;
-    }
-    a{
-        margin-left: 25px;
-        margin-right: 25px;
-        color: rgba(0, 0, 0, 0.658);
-        font-size: 23px;
-    }
-    p{  
-        margin-left: 25px;
-        margin-right: 25px;
-        margin-top: -1px;
-        color: rgba(0, 0, 0, 0.521);
-        font-size: 20px;
-        font-weight: normal;
-    }
-}
-
-.download{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -80px;
-    flex-direction: column;
-    width: 400px;
-    height: 60px;
-    background-color: rgb(176 120 255);
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    a{
-        font-size: 25px;
-    }
-    a:hover{
-        color: white;
-    }
-}
 
