@@ -250,15 +250,15 @@ a:hover{
     border-radius: 50px;
     border: solid 2px rgba(255, 255, 255, 0.856);
     box-shadow: 0px 10px 20px 4px rgba(0, 0, 0, 0.082),inset 0px 0px 20px 10px rgba(255, 255, 255, 0.74);
-
 }
 
 .version{
+    position: relative;
     background-color: #F6EDFF;
     font-family: 'BrotherhoodScriptFont',sans-serif;
-    padding: 450px 0; 
+    padding: 350px 0; 
     width: 100vw;       /* ensures full background */
-    overflow: visible;  /* prevents text pushing outside */
+    overflow: hidden;  /* prevents text pushing outside */
 }
 
 
@@ -341,7 +341,7 @@ a:hover{
             color: white;
             position: absolute;
             bottom: 43%;
-            left: 57%;
+            left: 58.3%;
             font-size: 30px;
         }
         .cardThumbnail{
@@ -363,3 +363,31 @@ a:hover{
     }
 }
 
+.version-slider{
+    display:flex;
+    width:200vw; /* because 2 slides */
+    transition:transform .6s ease;
+}
+
+.slide{
+    width:100vw;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.nav{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:160px;
+    font-weight:900;
+    background:none;
+    border:none;
+    color:#0008;
+    cursor:pointer;
+    z-index:9999;
+}
+.nav:hover{color:#000;}
+.prev{left:40px;}
+.next{right:40px;}
