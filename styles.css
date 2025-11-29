@@ -2,7 +2,6 @@ html {
     scroll-behavior: smooth;
 }
 
-
 @font-face {
   font-family: "SohneBreitExtrafettKursiv";
   src: url("Assets/Fonts/TestSohneSchmal-Fett-BF663d89cadad5a.otf") format("opentype");
@@ -15,56 +14,51 @@ html {
   font-weight: 900;
 }
 
-
-body{
+body {
     font-family: 'SohneBreitExtrafettKursiv', sans-serif;
-    height: 100%;
     background-color: #151E2E;
-    background-attachment: fixed;
     margin: 0;
-    height: 200vh; /* allows scrolling */
     overflow-x: hidden;
 }
 
-
-.wrapper{
-    margin: -10px;
+/* --- HEADER --- */
+.wrapper {
+    width: 100%;
 }
 
-.header{
+.header {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
     padding: 20px;
     color: white;
-    height: 100%;   
-    h1,a{
-        margin-left: 40px;
-        margin-right: 70px;
-        font-size: 35px;
-        transform: scaleX(1.3);
-    }
-    img{
-        width: 80px;    
-        height: auto;
-    }
 }
 
+.header h1, .header a {
+    margin: 0 40px;
+    font-size: 35px;
+    transform: scaleX(1.3);
+}
 
-a{
+.header img {
+    width: 80px;    
+    height: auto;
+}
+
+a {
     text-decoration: none;
     color: white;
     font-weight: 600;
+    transition: color 0.3s ease;
 }
 
-a:hover{
+a:hover {
     color: rgb(176 120 255);
-    font-weight: 700;
 }
 
-/*  Move Sideways */
+/* --- HERO SECTION --- */
 .hero-scroll-area {
-    height: 370vh; /* full background visible before feature appears */
+    height: 370vh; 
 }
 
 .hero {
@@ -73,111 +67,92 @@ a:hover{
     width: 200vw;
     height: 100vh;
     background-image: url(Assets/Images/Intro.png);
-    opacity: 85%;
+    opacity: 0.85;
     background-size: cover;
     background-position: left center;
     display: flex;
+    justify-content:center;
     align-items: center;
-    padding-left: 250px;
 }
 
-/* Text style */
 .overlay h1 {
-    display: flex;
-    padding-left: 340px;
-    font-size: 220px;
+    font-size: 12vw; /* Responsive font size */
     font-weight: 900;
-    white-space: nowrap; /* keeps text in one line & forces overflow */
     letter-spacing: -1px;
     transform: scaleX(1.3);
-    background: linear-gradient(to left, #DDCAF8, rgb(128,61,223)) text;
+    background: linear-gradient(to left, #DDCAF8, rgb(128,61,223));
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
 }
 
-.floating{
-    display: flex;
-    justify-content: space-evenly;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    letter-spacing: -1.3px;
+/* --- FLOATING NAV --- */
+.floating {
     position: fixed;
-    z-index: 9999999; /*to make it stay over everything*/
-    /*to fix it at its position*/
-    top: auto; 
-    bottom: 5px;
-    /*-------------------------*/
-    transform: translateX(-50%);
-    padding-left: 35px;
-    padding-right: 35px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background-color: #F6EDFF;
-    display: flex;
+    z-index: 9999;
+    bottom: 30px;
     left: 50%;
-    transform: translate(-50%, -50%);
-    gap: 20px;
-    font-size: 35px;
-    margin-top: -180px;
-    .versionButton,.featuredButton{
-        background-color: rgba(129, 61, 223, 0.829);
-        padding: 12px;
-        padding-left: 25px;
-        padding-right: 25px;
-        border-radius: 32px;
-        box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.158), inset 0px 0px 20px 8px rgb(181, 138, 243);
-        a:hover{
-            color: white;
-        }
-    }
-
-    .indexButton{
-        display: flex;
-        justify-content: center;
-        align-items:start;
-        transform: scaleX(1.2);
-        background-color: rgba(129, 61, 223, 0.829);
-        padding-top: 10px;
-        padding-left: 12px;
-        padding-right: 12px;
-        border-radius: 28px;
-        margin-left: 10px;
-        box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.158), inset 0px 0px 20px 8px rgb(181, 138, 243);
-        a:hover{
-            color: white;
-        }
-    }
-
-    img{
-        height: 50px;
-        width: 48px;
-    }
+    transform: translateX(-50%);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    
+    padding: 15px 25px;
+    background-color: #F6EDFF;
     border-radius: 52px;
-    box-shadow: 0px 10px 20px 3px rgba(0, 0, 0, 0.144),inset 0px 0px 20px 8px rgb(255, 255, 255);
+    box-shadow: 0px 10px 20px 3px rgba(0, 0, 0, 0.144), inset 0px 0px 20px 8px rgb(255, 255, 255);
+    
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    letter-spacing: -1.3px;
+    font-size: 20px;
+    a:hover{
+        color: rgb(223, 223, 223);
+    }
 }
 
-.featured{
-    margin-top: -10px;
-    overflow: visible;
-    height: auto;
-    width: 100;
+.floating .versionButton, 
+.floating .featuredButton {
+    font-size: 28px;
+    background-color: rgba(129, 61, 223, 0.83);
+    padding: 12px 25px;
+    border-radius: 32px;
+    box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.16), inset 0px 0px 20px 8px rgb(181, 138, 243);
+}
+
+.floating .indexButton {
+    background-color: rgba(129, 61, 223, 0.83);
+    padding: 8px 10px;
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.16), inset 0px 0px 20px 8px rgb(181, 138, 243);
+}
+
+.floating img {
+    margin-bottom: -5px;
+    height: 40px;
+    width: auto;
+}
+
+/* --- FEATURED SECTION --- */
+.featured {
+    /* Flexbox Layout: Stacks items vertically and centers them */
     display: flex;
     flex-direction: column; 
-    color: rgb(176 120 255);
     align-items: center;
     justify-content: center;
-    font-weight: 700;
+    
+    width: 100%;
+    padding: 100px 20px;
+    background-color: #F6EDFF; /* Ensures smooth transition from hero */
+    
     view-timeline-name: --sectionTimeline;
     view-timeline-axis: block;
-    padding-top: 50px;
     animation: color-change 1s linear both;
     animation-timeline: --sectionTimeline;
-    animation-range: entry 30% entry 100%;
-    p{
-        
-        transform: scaleX(1.3);
-        margin-top: 10px;
-        font-size: 150px;
-    }    
+    animation-range: entry 10% entry 100%;
 }
 
 @keyframes color-change {
@@ -185,209 +160,282 @@ a:hover{
   to   { background-color: #F6EDFF; }
 }
 
-#card-container {
-    position: relative;
-    overflow: visible;
-    display: flex;
-    justify-content: center;   /* centers group horizontally */
-    align-items: flex-start;                 
-    width: 100%;
-    margin-left: 30px;
-    margin-top: -100px;
+.featured p {
+    color: rgb(176 120 255);
+    font-weight: 700;
+    transform: scaleX(1.3);
+    font-size: clamp(60px, 10vw, 150px); /* Responsive font size */
+    margin: 0 0 50px 0; /* Space below title */
+    text-align: center;
 }
 
-/* Each individual card column */
+/* The Container for Cards */
+#card-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
+    gap: 40px;       /* Consistent spacing between cards */
+    width: 100%;
+    max-width: 1600px;
+}
+
+/* Individual Card Column */
 .card-column {
-    position: relative;        
-    width: 620px;              
-    height: auto;
+    position: relative; /* ANCHOR POINT: Important for the thumbnail */
+    flex: 1;            /* Allows column to grow/shrink */
+    min-width: 350px;   /* Minimum size before wrapping */
+    max-width: 500px;   /* Maximum size */
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 30px;
-    margin-left: -50px;
+    transition: transform 0.3s ease;
 }
 
-/* Clickable colored frame */
-.cardLink {
-    display: block;
-    width: 100%;
+.card-column:hover {
+    transform: translateY(-10px); /* Clean hover lift */
 }
 
+/* Frame Image */
 .cardImg {
-    opacity: 90%;
-    display: block;
-    width: 100%;           
+    width: 100%;
     height: auto;
     position: relative;
-    z-index: 2;            
-    filter: drop-shadow(-20px 15px 12px rgba(0, 0, 0, 0.267));
+    z-index: 2; /* Frame sits on top */
+    filter: drop-shadow(-20px 15px 12px rgba(0, 0, 0, 0.27));
 }
 
-/* Inner tactic image that sits “inside” frame */
+/* The Tactic Image Inside the Frame */
 .thumbnail {
     position: absolute;
-    top: 90px;                 /* adjust this to move image up/down inside frame */
+    z-index: 1; /* Sits behind frame */
+    
+    /* Position relative to .card-column */
+    top: 14%;   
     left: 50%;
     transform: translateX(-50%);
-    width: 550px;              
+    
+    width: 88%; /* Fits nicely inside the frame */
     height: auto;
-    z-index: 1;                /* under the frame */
+    border-radius: 10px;
 }
 
-.download{
-    background-color: rgba(180, 180, 180, 0.384);
-    padding: 20px;
-    padding-left: 50px;
-    padding-right: 50px;
-    margin-top: 25px;
-    a{
-        color: #151E2E;
-    }
-    font-size: 35px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    letter-spacing: -1px;
+.download {
+    background-color: rgba(180, 180, 180, 0.38);
+    padding: 15px 40px;
+    margin-top: 20px;
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', Arial, sans-serif;
     border-radius: 50px;
-    border: solid 2px rgba(255, 255, 255, 0.856);
-    box-shadow: 0px 10px 20px 4px rgba(0, 0, 0, 0.082),inset 0px 0px 20px 10px rgba(255, 255, 255, 0.74);
+    border: solid 2px rgba(255, 255, 255, 0.85);
+    box-shadow: 0px 10px 20px 4px rgba(0, 0, 0, 0.08), inset 0px 0px 20px 10px rgba(255, 255, 255, 0.74);
 }
 
-.version{
+.download a {
+    color: #151E2E;
+}
+
+
+/* --- VERSIONS SECTION --- */
+.version {
     position: relative;
     background-color: #F6EDFF;
-    font-family: 'BrotherhoodScriptFont',sans-serif;
-    padding: 350px 0; 
-    width: 100vw;       /* ensures full background */
-    overflow: hidden;  /* prevents text pushing outside */
+    font-family: 'BrotherhoodScriptFont', sans-serif;
+    padding: 100px 0;
+    width: 100%;
+    overflow: hidden; /* Essential to crop anything that flies too far */
 }
 
-
-.FM26{
+/* Slider Track */
+.version-slider {
     display: flex;
-    flex-direction: column;
+    width: 200%; /* 2 slides = 200% width */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Individual Slide */
+.slide {
+    width: 50%; /* Each slide is half of the 200% container */
+    position: relative;
+    display: flex;
     justify-content: center;
     align-items: center;
-    .tactic-container{
-        display: flex;
-        justify-content: center;
-        position: relative;
-        z-index: 9999;
-        transform: rotateX(18deg) rotateY(12deg) rotateZ(0deg);
-        transition: transform 0.4s ease;
-        img{
-            height: auto;
-            width: 1000px;
-        }
-        .card1{
-            position: relative;
-            z-index: 2;
-            transform: translateX(980px) translateY(0px);
-            filter: drop-shadow(20px -10px 17px rgba(0, 0, 0, 0.301));
-        }
+    height: 800px; /* Fixed height to keep layout stable */
+}
 
-        .card1:hover{
-            position: relative;
-            z-index: 2;
-            transform: translateX(980px) translateY(-150px);
-            filter: drop-shadow(20px -10px 17px rgba(0, 0, 0, 0.301));
-        }
+/* The Wrapper that holds the 3 cards */
+.tactic-container {
+    position: relative;
+    width: 870px; /* Set a base size for the center card */
+    height: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    transform-style: preserve-3d;
+    transform: rotateX(18deg) rotateY(12deg) rotateZ(0deg); 
+    transition: transform 0.4s ease;
+}
 
-        .card2{
-            z-index: 1;
-            transform: translateX(25px) translateY(-35px);
-            filter: drop-shadow(20px -10px 17px rgba(0, 0, 0, 0.301));
-        }
-        .card2:hover{
-            z-index: 1;
-            transform: translateX(25px) translateY(-185px);
-            filter: drop-shadow(20px -10px 17px rgba(0, 0, 0, 0.301));
-        }
+/* --- YOUR ORIGINAL CARD STYLES (CLEANED) --- */
 
-        .card3{
-            z-index: 0;
-            transform: translateX(-930px) translateY(-65px);
-            filter: drop-shadow(20px -10px 17px rgba(0, 0, 0, 0.301));
-        }
+/* Generic Card Base */
+.version-card {
+    position: absolute;
+    top: 0;
+    width: 100%; 
+    height: auto;
+    pointer-events: none;
+    transition: 
+        transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
+        filter 0.4s ease,
+        z-index 0s;
+}
 
-        .card3:hover{
-            z-index: 0;
-            transform: translateX(-930px) translateY(-215px);
-            filter: drop-shadow(20px -10px 17px rgba(0, 0, 0, 0.301));
-        }
+/* 1. Right Card (Originally .card1) */
+.card1 {
+    z-index: 3;
+    /* Replaced 980px with 120% to stay responsive */
+    transform: translateX(0%) translateY(0px);
+    filter: drop-shadow(20px -10px 17px rgba(0, 0, 0, 0.3));
+}
 
-        .download-tactic{
-            position: absolute;
-            bottom: 19%;
-            left: 57.5%;
-            color: black;
-            font-size: 38px;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            background-color: #ffffff;
-            border-radius: 40px;
-            padding: 25px;
-            padding-left: 30px;
-            padding-right: 30px;
-        }
-        h1{
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            position: absolute;
-            color: white;
-            bottom: 84%;
-            left: 10%;
-            font-size: 30px;
-        }
-        p{
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            color: white;
-            position: absolute;
-            bottom: 43%;
-            left: 58.3%;
-            font-size: 30px;
-        }
-        .cardThumbnail{
-            z-index: -1;
-            position:absolute;
-            left: 7%;
-            bottom: 14%;
-            img{
-                height: auto;
-                width: 480px;
-            }
-        }
+/* 2. Center Card (Originally .card2) */
+.card2 {
+    z-index: 2;
+    transform: translateX(5%) translateY(-8%); /* Small offset for style */
+    filter: drop-shadow(20px -10px 17px rgba(0, 0, 0, 0.3));
+}
+
+/* 3. Left Card (Originally .card3) */
+.card3 {
+    z-index: 1;
+    transform: translateX(10%) translateY(-16%);
+    filter: drop-shadow(20px -10px 17px rgba(0, 0, 0, 0.3));
+}
+
+.tactic-container .version-card:hover {
+    filter: brightness(1.1) blur(0px);
+    translate: 0px -20px;
+    filter: drop-shadow(20px -10px 17px rgba(0, 0, 0, 0.3));
+}
+
+.tactic-container .version-card.active {
+    filter: brightness(1.1) blur(0px); /* clear */
+    z-index: 100;
+    transition: transform 0.4s ease;
+    width: 130%;
+    transform: translateX(20px) translateY(-80px);
+    filter: drop-shadow(20px -10px 17px rgba(0, 0, 0, 0.3));
+    .download-tactic, a{
+        font-size: 45px;
+        right: 7%;
+        bottom: 20%;
     }
-    .digit{
-        position: relative;
-        z-index: 0;
-        margin-top: -540px;  
-        margin-left: -20px;
+    p{
+        font-size: 34px;
+        left: 58%;
     }
+    h1{
+        font-size: 34.5px;
+        left: 9.8%;
+    }
+    .tactic-container .version-card:hover {
+        filter: brightness(1.1) blur(0px);
+        translate: 0px 0px;
+        filter: drop-shadow(20px -10px 17px rgba(0, 0, 0, 0.3));
+    }
+    pointer-events: auto;
 }
 
-.version-slider{
-    display:flex;
-    width:200vw; /* because 2 slides */
-    transition:transform .6s ease;
+/* --- INTERNAL CARD ELEMENTS (Images/Text) --- */
+
+/* Background Card Image */
+.version-card .bg-card {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-.slide{
-    width:100vw;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+/* The Tactic Screenshot */
+.version-card .cardThumbnail {
+    position: absolute;
+    top: 19%;
+    left: 31%;
+    transform: translateX(-50%);
+    width: 48%;
+    z-index: -1; 
+}
+.version-card .cardThumbnail img {
+    width: 100%;
+    border-radius: 6px;
 }
 
-.nav{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    font-size:160px;
-    font-weight:900;
-    background:none;
-    border:none;
-    color:#0008;
-    cursor:pointer;
-    z-index:9999;
+/* Text Positioning */
+.version-card h1 {
+    font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+    color: white;
+    font-size: 25px;
+    position: absolute;
+    top: 7%;
+    left: 10.3%;
+    margin: 0;
+    text-shadow: 1px 1px 2px black;
+    pointer-events: auto;
 }
-.nav:hover{color:#000;}
-.prev{left:40px;}
-.next{right:40px;}
+
+.version-card p {
+    font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+    color: white;
+    font-size: 27px;
+    position: absolute;
+    top: 13%;
+    left: 59%;
+    width: 35%; /* Restrict width so it wraps */
+    line-height: 1.2;
+    text-shadow: 1px 1px 2px black;
+    pointer-events: auto;
+}
+
+/* Download Button */
+.download-tactic {
+    position: absolute;
+    bottom: 18%;
+    right: 7%;
+    background-color: white;
+    color: black;
+    font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+    font-size: 33px;
+    padding: 20px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+
+/* Background Number (24/26) */
+.digit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+/* Slider Navigation */
+.nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 100px;
+    background: none;
+    border: none;
+    color: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 999;
+    transition: color 0.3s;
+}
+
+.nav:hover { color: rgba(0, 0, 0, 0.8); }
+.prev { left: 40px; }
+.next { right: 40px; }
