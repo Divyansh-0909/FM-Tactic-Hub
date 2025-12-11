@@ -13,7 +13,7 @@ window.addEventListener("scroll", () => {
     }
 });
 
-/* 🔥 Version Carousel Controller */
+/* Version Carousel Controller */
 const slider = document.querySelector('.version-slider');
 let index = 0;
 
@@ -27,7 +27,7 @@ document.querySelector('.prev').onclick = () => {
     slider.style.transform = `translateX(-${index*100}vw)`;
 };
 
-/* 🔥 Version Card Toggle Handler */
+/* Version Card Toggle Handler */
 const cards = document.querySelectorAll('.version-card');
 
 cards.forEach(card => {
