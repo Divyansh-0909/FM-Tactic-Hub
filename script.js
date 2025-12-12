@@ -57,6 +57,24 @@ const tacticsData = [
             img: 'https://pbs.twimg.com/media/GwTYSFqW4AAo6Vr?format=jpg&name=medium', 
             download: 'https://drive.google.com/drive/folders/1RN4MYs4otbJwL8N0xuZUKDt_XQwMq62n?usp=drive_link', 
             threadId: '1946918932557816163'
+        },
+        {   title: "Simeone's 24/25", 
+            desc: "A tactical deep dive into Diego Simeone's 2024-25 Atletico Madrid setup", 
+            img: 'https://pbs.twimg.com/media/GuXgMkyXYAAepsG?format=jpg&name=medium', 
+            download: 'https://drive.google.com/drive/folders/1pBkAFpjFREI9ocYy01BgviZGsg0cEAl7?usp=drive_link', 
+            threadId: '1938201780695011836'
+        }, 
+        {   title: "Alonso's Madrid", 
+            desc: "A tactical thread analyzing the possible systems Xabi Alonso could deploy at Real Madrid.", 
+            img: 'https://pbs.twimg.com/media/GsmI13LXIAA0yCy?format=jpg&name=medium', 
+            download: 'https://drive.google.com/drive/folders/1KHFyzwyBWE6pzv79U8t4aWfYnSETKIQJ?usp=drive_link', 
+            threadId: '1930224448084328488'
+        },
+        {   title: "Uruguay 1950", 
+            desc: "A historical thread analyzing Uruguay’s shocking 1950 World Cup triumph over Brazil.", 
+            img: 'https://pbs.twimg.com/media/Gtj7g4LXsAANixz?format=jpg&name=medium',
+            download: 'https://drive.google.com/drive/folders/1zTxsLXBfji4wPqhv4x9swIn967-YEehL?usp=drive_link', 
+            threadId: '1934572652225511464'
         }
     ],
     [ // FM26 Tactics (Index 1)
@@ -106,8 +124,8 @@ function renderCards(containerIndex, dataArray) {
 
     // 2. Dynamic Tactic Cards
     dataArray.forEach((tactic, i) => {
-        xMove = i * 5; 
-        yMove = i * -8;
+        xMove = i * 4; 
+        yMove = i * -6;
         // z-layer decreases as we go out (3, 2, 1...)
         const zLayer = totalCount - i; 
 
@@ -117,7 +135,7 @@ function renderCards(containerIndex, dataArray) {
                  
                 <img src="Assets/Images/longer_card.png" class="bg-card">
                 <a href="#" class="cardThumbnail"><img src="${tactic.img}"></a>
-                <h1 style="left: 11%;">${tactic.title}</h1>
+                <h1 style="left: 10.5%;">${tactic.title}</h1>
                 <p>${tactic.desc}</p>
                 <a href="https://x.com/theSlashMethod/status/${tactic.threadId}" target="_blank" class="thread">See Full Thread</a>
                 <a href="${tactic.download}" target="_blank" class="download-tactic">Download Tactic</a>
