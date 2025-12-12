@@ -36,7 +36,7 @@ body {
 
 .header h1, .header a {
     margin: 0 40px;
-    font-size: 35px;
+    font-size: 45px;
     transform: scaleX(1.3);
 }
 
@@ -133,15 +133,14 @@ a:hover {
 
 /* --- FEATURED SECTION --- */
 .featured {
-    /* Flexbox Layout: Stacks items vertically and centers them */
     display: flex;
     flex-direction: column; 
     align-items: center;
     justify-content: center;
-    
     width: 100%;
-    padding: 60px 20px;
-    background-color: #F6EDFF; /* Ensures smooth transition from hero */
+    padding: 100px 20px;
+    padding-top: 150px;
+    background-color: #F6EDFF;
     
     view-timeline-name: --sectionTimeline;
     view-timeline-axis: block;
@@ -153,91 +152,156 @@ a:hover {
 @keyframes color-change {
   from { background-color: transparent; }
   to   { background-color: #F6EDFF; }
-}
-
-.featured p {
-    color: rgb(176 120 255);
-    font-weight: 700;
-    transform: scaleX(1.3);
-    font-size: clamp(60px, 10vw, 150px); /* Responsive font size */
-    margin: 0 0 50px 0; /* Space below title */
-    text-align: center;
-}
+}   
 
 /* The Container for Cards */
 #card-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
-    gap: 40px;       /* Consistent spacing between cards */
+    align-items: center;
     width: 100%;
-    max-width: 1600px;
+    gap: 20px;
 }
 
-/* Individual Card Column */
 .card-column {
-    position: relative; /* ANCHOR POINT: Important for the thumbnail */
-    flex: 1;            /* Allows column to grow/shrink */
-    min-width: 350px;   /* Minimum size before wrapping */
-    max-width: 500px;   /* Maximum size */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; /* Pushes Text to Left, Image to Right */
+    width: 90%; 
+    max-width: 1400px;
+    height: auto;
+    min-height: 450px;
+    padding: 0 80px;
+    border-radius: 60px; 
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* --- TEXT SIDE (Left) --- */
+.heading {
+    flex: 1; /* Takes up left half */
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.3s ease;
-}
-
-.card-column:hover {
-    transform: translateY(-10px); /* Clean hover lift */
-}
-
-/* Frame Image */
-.cardImg {
-    width: 100%;
+    justify-content: center;
+    z-index: 2;
+    text-align: center;
+    margin-top: 0; /* Resetting your negative margins */
+    position: static; /* Resetting position */
+    width: auto;
     height: auto;
-    position: relative;
-    transform: translateY(5px);
-    z-index: 2; /* Frame sits on top */
-    filter: drop-shadow(0px 20px 15px rgba(0, 0, 0, 0.27));
 }
 
-/* The Tactic Image Inside the Frame */
-.thumbnail {
-    position: absolute;
-    z-index: 1; /* Sits behind frame */
-    
-    /* Position relative to .card-column */
-    top: 14%;   
-    left: 50%;
-    transform: translateX(-50%);
-    
-    width: 88%; /* Fits nicely inside the frame */
+.heading h1 {
+    font-size: clamp(60px, 8vw, 130px); /* Responsive big text */
+    color: white;
+    font-size: 150px;
+    margin: 0 0 30px 0;
+    line-height: 0.9;
+    text-transform: uppercase;
+}
+
+/* The Download Button */
+.heading a {
+    background-color: white;
+    color: #151E2E;
+    padding: 18px 60px;
+    font-size: 24px;
+    font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+    font-weight: 900;
+    border-radius: 50px;
+    border: none;
+    text-transform: capitalize;
+    margin-top: 0;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.heading p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    margin-top: 25px;
+    font-family: 'Franklin Gothic Medium', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    transform: none;
+}
+
+/* --- IMAGE SIDE (Right) --- */
+.cardLink {
+    flex: 1; /* Takes up right half */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 300px; /* Defined height for the image area */
+}
+
+/* The Tactical Screenshot */
+.cardImg {
+    width: 420px;
     height: auto;
     border-radius: 10px;
+    position: relative;
+    z-index: 1;
 }
 
-.download {
-    background-color: rgba(180, 180, 180, 0.38);
-    padding: 15px 40px;
-    margin-top: 20px;
-    font-size: 30px;
-    font-family: 'Franklin Gothic Medium', Arial, sans-serif;
-    border-radius: 50px;
-    border: solid 2px rgba(255, 255, 255, 0.85);
-    box-shadow: 0px 10px 20px 4px rgba(0, 0, 0, 0.08), inset 0px 0px 20px 10px rgba(255, 255, 255, 0.74);
+/* The Plastic CD Case Overlay */
+.plastic-cover {
+    position: absolute;
+    width: 480px; /* Slightly larger than image */
+    height: auto;
+    z-index: 5;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.download a {
-    color: #151E2E;
+/* --- COLORS --- */
+.top {
+    background-color: #bd8cff; /* Light Purple */
 }
 
+.standout {
+    background-color: #2b213a; /* Dark Navy/Purple */
+}
 
+.recent {
+    background-color: #000000; /* Black */
+}
+
+/* --- RESPONSIVE (Mobile) --- */
+@media (max-width: 1000px) {
+    .card-column {
+        flex-direction: column-reverse; /* Stack vertically on phones */
+        padding: 60px 20px;
+        height: auto;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .heading h1 {
+        font-size: 80px;
+    }
+    
+    .cardImg {
+        width: 300px;
+    }
+    
+    .plastic-cover {
+        width: 350px;
+    }
+}
 /* --- VERSIONS SECTION --- */
 .version {
     position: relative;
     background-color: #F6EDFF;
     font-family: 'BrotherhoodScriptFont', sans-serif;
     padding: 100px 0;
+    padding-bottom: 200px;
     width: 100%;
     overflow: hidden; /* Essential to crop anything that flies too far */
 }
@@ -281,18 +345,23 @@ a:hover {
     width: 100%; 
     height: auto;
     pointer-events: none;
+    padding-bottom: 70px;
     transition: 
         transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
         filter 0.4s ease,
-        z-index 0s;
+        z-index 0s,
+        transform 0.2s ease;
 }
 
-.card0{
-    width: 840px;
+.card0 {
+    width: 100%; 
     height: auto;
-    z-index: 500;
-    transform: translateX(-25px) translateY(55px);
-    .sticky-note{
+    z-index: 1000;
+    
+    /* VITAL: This line was missing. It tells the class to use the JS variables */
+    transform: translateX(var(--x-move, 0px)) translateY(var(--y-move, 0px)); 
+    
+    .sticky-note {
         width: 650px;
         height: auto;
         transform: translateX(85px) translateY(-410px);
@@ -303,10 +372,10 @@ a:hover {
 
 /* This single class handles ANY number of cards */
 .dynamic-card {
-    /* Use the variables injected by JS, or default to 0 if missing */
-    z-index: var(--z-layer, 1); 
-    
-    transform: translateX(var(--x-move, 0%)) translateY(var(--y-move, 0%));
+    position: absolute; /* Ensure this is set */
+    z-index: var(--z-layer, 1);
+    /* This connects the JS variables to the actual movement */
+    transform: translateX(var(--x-move, 0px)) translateY(var(--y-move, 0px));
     
     filter: drop-shadow(1px -1px 0px rgba(255, 255, 255, 0.295));
     transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
@@ -315,19 +384,19 @@ a:hover {
 
 
 .tactic-container .version-card.active {
-    margin-top: -50px;
+    margin-top: -90px;
     z-index: 100 !important; /* Force on top of everything */
-    width: 135%;
+    width: 145%;
     filter: brightness(1.1);
         
     .download-tactic, a {
-        font-size: 45px;
-        right: 7.3%;
+        font-size: 47px;
+        left: 58%;
         bottom: 15%;
     }
     .thread, a {
-        font-size: 45px;
-        right: 7.3%;
+        font-size: 47px;
+        left: 58%;
         bottom: 32%;
     }
     p {
@@ -335,7 +404,7 @@ a:hover {
         left: 58%;
     }
     h1 {
-        font-size: 34.5px;
+        font-size: 36.5px;
     } 
     
     pointer-events: auto;
@@ -345,8 +414,12 @@ a:hover {
 
 
 .cardEnd {
-    width: 840px;
+    width: 100%;
     height: auto;
+    
+    /* VITAL: Add the transform logic here too */
+    transform: translateX(var(--x-move, 0px)) translateY(var(--y-move, 0px));
+    
     filter: drop-shadow(20px -10px 20px rgba(0, 0, 0, 0.192));
 }
 
@@ -358,12 +431,13 @@ a:hover {
 
 .tactic-container .version-card:hover{
     filter: brightness(1.1) blur(0px);
-    translate: 0px -20px;
+    translate: 0px -25px;
     filter: drop-shadow(1px -1px 0px rgba(255, 255, 255, 0.295));
 }
 
 /* Background Card Image */
 .version-card .bg-card {
+    margin-bottom: -40px;
     width: 100%;
     height: auto;
     display: block;
@@ -413,7 +487,7 @@ a:hover {
 .download-tactic {
     position: absolute;
     bottom: 18%;
-    right: 7%;
+    left: 58%;
     background-color: white;
     color: black;
     font-family: 'Franklin Gothic Medium', Arial, sans-serif;
@@ -426,7 +500,7 @@ a:hover {
 .thread{
     position: absolute;
     bottom: 35%;
-    right: 7%;
+    left: 58%;
     background-color: white;
     color: black;
     font-family: 'Franklin Gothic Medium', Arial, sans-serif;
@@ -442,7 +516,7 @@ a:hover {
 .digit {
     position: absolute;
     top: 50%;
-    left: 51%;
+    left: 50%;
     transform: translate(-50%, -50%);
     z-index: 0;
 }
@@ -464,3 +538,173 @@ a:hover {
 .nav:hover { color: rgba(0, 0, 0, 0.8); }
 .prev { left: 40px; }
 .next { right: 40px; }
+
+.end{
+    margin-top: -30px;
+    margin-bottom: -30px;
+    padding: 40px;
+    padding-top: 60px;
+    background-color: rgb(176 120 255);
+    img{
+        width: 104%;
+        height: auto;
+        position: relative;
+        right: 1.8%;
+    }
+}
+
+/* --- FOOTER REDESIGN --- */
+.end {
+    position: relative;
+    background-color: rgb(176, 120, 255);
+    color: #151E2E; /* Dark blue/black for text to contrast purple */
+    padding: 80px 60px 180px 60px; /* Large bottom padding for Floating Nav */
+    margin-top: -5px; /* Removes any gap from previous section */
+    overflow: hidden;
+    view-timeline-name: --sectionTimeline;
+    view-timeline-axis: block;
+    animation: color-change2 1s linear both;
+    animation-timeline: --sectionTimeline;
+    animation-range: entry 25% entry 100%;
+    
+}
+
+@keyframes color-change2 {
+  from { background-color: #F6EDFF; }
+  to   { background-color: rgb(176, 120, 255); }
+} 
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr; /* Left side slightly wider */
+    gap: 80px;
+    max-width: 1600px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.footer-heading {
+    font-family: 'SohneBreitExtrafettKursiv', sans-serif;
+    font-size: 60px;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 30px;
+    line-height: 0.9;
+    letter-spacing: -1px;
+    color: #000;
+}
+
+/* --- INSTALLATION LIST STYLING --- */
+.install-list {
+    list-style: none; /* Remove default bullets */
+    padding: 0;
+    margin: 0;
+    counter-reset: step-counter; /* Initialize counter */
+}
+
+.install-list li {
+    position: relative;
+    font-family: 'Franklin Gothic Medium', Arial, sans-serif; /* Readable font for instructions */
+    font-size: 22px;
+    font-weight: 600;
+    padding: 20px 0;
+    padding-left: 50px;
+    border-top: 2px solid rgba(0,0,0,0.1); /* Subtle divider lines */
+    line-height: 1.4;
+}
+
+.install-list li:last-child {
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+}
+
+/* Custom Numbers (01, 02, etc.) */
+.install-list li::before {
+    counter-increment: step-counter;
+    content: "0" counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 22px;
+    font-family: 'SohneBreitExtrafettKursiv', sans-serif;
+    font-size: 20px;
+    color: rgba(0,0,0,0.4);
+}
+
+.install-list li span {
+    background-color: rgba(0,0,0,0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+/* --- CREDITS / CONTACT SIDE --- */
+.credit-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align text to the right */
+    text-align: right;
+}
+
+.email-link {
+    font-family: 'SohneBreitExtrafettKursiv', sans-serif;
+    font-size: 45px;
+    color: #000;
+    text-decoration: none;
+    line-height: 0.85;
+    margin-bottom: 30px;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.email-link:hover {
+    color: white;
+    transform: scale(1.02) translateX(-10px);
+}
+
+.twitter-link {
+    display: inline-block;
+    background-color: #000;
+    color: rgb(176, 120, 255);
+    font-family: 'SohneBreitExtrafettKursiv', sans-serif;
+    font-size: 30px;
+    padding: 10px 30px;
+    border-radius: 40px;
+    text-decoration: none;
+    margin-bottom: 40px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.twitter-link:hover {
+    background-color: white;
+    color: #000;
+    transform: scale(1.02) translateX(-10px);
+}
+
+.copyright {
+    font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    opacity: 0.6;
+    text-transform: uppercase;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 900px) {
+    .footer-grid {
+        grid-template-columns: 1fr; /* Stack vertically */
+        gap: 60px;
+    }
+    
+    .credit-section {
+        align-items: flex-start; /* Align left on mobile */
+        text-align: left;
+    }
+    
+    .email-link {
+        font-size: 35px;
+    }
+
+    .end {
+        padding: 60px 20px 140px 20px;
+    }
+}

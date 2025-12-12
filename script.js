@@ -1,19 +1,30 @@
+/* --- HERO SCROLL EFFECT (Optimized) --- */
 const hero = document.querySelector('.hero');
 const scrollArea = document.querySelector('.hero-scroll-area');
 
+let isTicking = false;
+
 window.addEventListener("scroll", () => {
-    // Only calculate if the hero area is actually visible/active to save performance
-    if (window.scrollY < scrollArea.offsetHeight) {
-        const scrollRange = scrollArea.offsetHeight - window.innerHeight;
-        const percent = Math.min(window.scrollY / scrollRange, 1);
-        
-        // Calculate movement
-        const move = percent * (hero.scrollWidth - window.innerWidth);
-        hero.style.transform = `translateX(${-move}px)`;
+    if (!isTicking) {
+        window.requestAnimationFrame(() => {
+            updateHeroScroll();
+            isTicking = false;
+        });
+        isTicking = true;
     }
 });
 
-/* Version Carousel Controller */
+function updateHeroScroll() {
+    if (window.scrollY < scrollArea.offsetHeight) {
+        const scrollRange = scrollArea.offsetHeight - window.innerHeight;
+        const percent = Math.max(0, Math.min(window.scrollY / scrollRange, 1));
+        const move = percent * (hero.scrollWidth - window.innerWidth);
+        hero.style.transform = `translate3d(${-move}px, 0, 0)`;
+    }
+}
+
+
+/* --- VERSION SLIDER LOGIC --- */
 const slider = document.querySelector('.version-slider');
 let index = 0;
 
@@ -102,85 +113,93 @@ const tacticsData = [
     ]
 ];
 
+/* --- REPLACE THE renderCards FUNCTION IN script.js --- */
+
 function renderCards(containerIndex, dataArray) {
     const containers = document.querySelectorAll('.tactic-container');
     const targetContainer = containers[containerIndex];
-    
-    // Total count of actual tactic cards
-    const totalCount = dataArray.length;
-
     if (!targetContainer) return;
 
-    // 1. Static Opening Folder
-    let htmlContent = `
-        <div class="version-card card0">
-            <img src="Assets/Images/folder.png" class="bg-card">
-            ${containerIndex === 0 ? '<img src="Assets/Images/Gemini_Generated_Image_f6yypef6yypef6yy.png" class="sticky-note">' : ''}
+    // CONFIGURATION
+    const xStep = 35;      
+    const yStep = -15;     
+    
+    const totalCount = dataArray.length;
+    const totalStackWidth = (totalCount - 1) * xStep;
+    const totalStackHeight = (totalCount - 1) * yStep;
+    
+    // 1. Calculate Start Positions (Top of stack)
+    const startX = -(totalStackWidth / 2);
+    const startY = -(totalStackHeight / 2);
+
+    // 2. Calculate End Positions (Bottom of stack)
+    // This places the back cover exactly aligned with the last card in the sequence
+    const endX = startX + ((totalCount - 1) * xStep);
+    const endY = startY + ((totalCount - 1) * yStep);
+
+    let htmlContent = '';
+
+    htmlContent += `
+        <div class="version-card cardEnd" 
+             style="--x-move: ${endX}px; --y-move: ${endY + 22}px; --z-pos: -60px; z-index: 0;">
+            <img src="Assets/Images/folder.png" class="bg-card"> 
         </div>
     `;
 
-    let xMove=0;
-    let yMove=0;
-
-    // 2. Dynamic Tactic Cards
     dataArray.forEach((tactic, i) => {
-        xMove = i * 4; 
-        yMove = i * -6;
-        // z-layer decreases as we go out (3, 2, 1...)
-        const zLayer = totalCount - i; 
+        const xPos = startX + (i * xStep);
+        const yPos = startY + (i * yStep);
+        const zIndex = 10 + (totalCount - i); 
 
         htmlContent += `
             <div class="version-card dynamic-card" 
-                 style="--x-move: ${xMove}%; --y-move: ${yMove}%; --z-layer: ${zLayer};">
+                 style="--x-move: ${xPos}px; --y-move: ${yPos}px; --z-pos: ${i * 5}px; z-index: ${zIndex};">
                  
                 <img src="Assets/Images/longer_card.png" class="bg-card">
-                <a href="#" class="cardThumbnail"><img src="${tactic.img}"></a>
-                <h1 style="left: 10.5%;">${tactic.title}</h1>
+                
+                <div class="cardThumbnail">
+                     <img src="${tactic.img}" style="width:100%; height:auto;">
+                </div>
+                
+                <h1>${tactic.title}</h1>
                 <p>${tactic.desc}</p>
-                <a href="https://x.com/theSlashMethod/status/${tactic.threadId}" target="_blank" class="thread">See Full Thread</a>
+                
+                <a href="https://x.com/theSlashMethod/status/${tactic.threadId}" target="_blank" class="thread"> See Full Thread</a>
                 <a href="${tactic.download}" target="_blank" class="download-tactic">Download Tactic</a>
             </div>
         `;
     });
 
-    // 3. Dynamic Closing Folder (The "Next" Index)
-    // We calculate position as if this is the next item in the list
-    const endX = xMove + 3; 
-    const endY = yMove + 2;
-    
     htmlContent += `
-        <div class="version-card cardEnd dynamic-card" 
-             style="--x-move: ${endX}%; --y-move: ${endY}%; --z-layer: 0;">
+        <div class="version-card card0" 
+             style="--x-move: ${startX - 10}px; --y-move: ${startY + 40}px; --z-pos: 50px;">
             <img src="Assets/Images/folder.png" class="bg-card">
+            ${containerIndex === 0 ? '<img src="Assets/Images/Gemini_Generated_Image_f6yypef6yypef6yy.png" class="sticky-note">' : ''}
         </div>
     `;
 
     targetContainer.innerHTML = htmlContent;
 }
 
+// Initial Render
 renderCards(0, tacticsData[1]);
 renderCards(1, tacticsData[0]);
 
+// Event Listeners for Interaction
 document.querySelectorAll('.tactic-container').forEach(container => {
     container.addEventListener('click', (e) => {
-        // Find the clicked card
         const card = e.target.closest('.version-card');
         
-        // Safety checks:
-        // 1. Did we click a card?
-        // 2. Did we click the download/thread button? (If so, don't toggle)
-        if (!card || e.target.closest('.download-tactic') || e.target.closest('.thread')) return;
+        // Ignore clicks on buttons or background folder
+        if (!card || card.classList.contains('card0') || e.target.closest('a')) return;
 
-        // Capture current state
-        const isAlreadyActive = card.classList.contains('active');
+        const isActive = card.classList.contains('active');
 
-        // Close all siblings in this container
-        container.querySelectorAll('.version-card').forEach(sibling => {
-            sibling.classList.remove('active');
-        });
+        // Reset all cards in this container
+        container.querySelectorAll('.version-card').forEach(c => c.classList.remove('active'));
 
-        // Toggle the clicked one
-        if (!isAlreadyActive) {
+        // Activate the clicked one (if it wasn't already active)
+        if (!isActive) {
             card.classList.add('active');
         }
     });
