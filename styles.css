@@ -21,6 +21,10 @@ body {
     overflow-x: hidden;
 }
 
+body::-webkit-scrollbar{
+    display: none;
+}
+
 /* --- HEADER --- */
 .wrapper {
     width: 100%;
@@ -35,7 +39,9 @@ body {
 }
 
 .header h1, .header a {
-    margin: 0 40px;
+    display: flex;
+    flex-shrink: 0;
+    margin: 0 70px;
     font-size: 45px;
     transform: scaleX(1.3);
 }
@@ -49,6 +55,24 @@ a {
 
 a:hover {
     color: rgb(176 120 255);
+}
+
+@media (max-width: 800px){
+    
+    body::-webkit-scrollbar{
+        display: none;
+    }
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        margin-left: -25px;
+    }
+    .header h1, .header a {
+        font-size: 20px;
+    }   
+    a:hover {
+        color: rgb(176 120 255);
+    }
 }
 
 /* --- HERO SECTION --- */
@@ -79,6 +103,20 @@ a:hover {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+}
+
+@media (max-width: 800px){
+    .hero-scroll-area {
+        height: 110vh; 
+    }
+
+    .hero{
+        width: 720vw;  
+    }
+
+    .overlay h1{
+        font-size: 40vw;
+    }
 }
 
 /* --- FLOATING NAV --- */
@@ -131,6 +169,35 @@ a:hover {
     width: auto;
 }
 
+@media (max-width: 800px){
+    .floating{
+        position: fixed;
+        left: 2%;
+        transform: translateX(0px);
+        width: 310px;
+        height: 50px;
+        gap: 8px;
+    }    
+
+    .floating .versionButton, 
+    .floating .featuredButton{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+        height: auto;
+        font-size: 25px;
+    }
+    .floating .indexButton{
+        width: 40px;
+        height: auto;    
+    }
+    .floating img{
+        height: 38px;
+        width: auto;
+    }
+}
+
 /* --- FEATURED SECTION --- */
 .featured {
     display: flex;
@@ -177,7 +244,20 @@ a:hover {
     border-radius: 60px; 
     transition: transform 0.3s ease;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    pointer-events: none;
 }
+
+.card-column > h1 {
+    flex: 0 0 auto; 
+    font-size: clamp(60px, 8vw, 130px);
+    font-size: 240px;
+    color: white;
+    margin: 0; 
+    line-height: 1;
+    margin-right: 40px; 
+    margin-left: 40px;
+}
+
 
 /* --- TEXT SIDE (Left) --- */
 .heading {
@@ -198,7 +278,7 @@ a:hover {
     font-size: clamp(60px, 8vw, 130px); /* Responsive big text */
     color: white;
     font-size: 150px;
-    margin: 0 0 30px 0;
+    margin: 0 0 0px 0;
     line-height: 0.9;
     text-transform: uppercase;
 }
@@ -217,16 +297,23 @@ a:hover {
     margin-top: 0;
     text-decoration: none;
     transition: transform 0.2s;
+    pointer-events: all;
 }
+
+.heading a:hover{
+    color: #bd8cff;
+}
+
 
 .heading p {
     color: rgba(255, 255, 255, 0.8);
     font-size: 14px;
-    margin-top: 25px;
+    margin-top: 10px;
     font-family: 'Franklin Gothic Medium', sans-serif;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 700;
+    margin-bottom: 30px;
     transform: none;
 }
 
@@ -238,6 +325,8 @@ a:hover {
     align-items: center;
     position: relative;
     height: 300px; /* Defined height for the image area */
+    z-index: 2;
+    pointer-events: all;
 }
 
 /* The Tactical Screenshot */
@@ -256,10 +345,10 @@ a:hover {
     height: auto;
     z-index: 5;
     top: 50%;
-    left: 50%;
+    left: 49.5%;
     transform: translate(-50%, -50%);
+    z-index: 3;
 }
-
 /* --- COLORS --- */
 .top {
     background-color: #bd8cff; /* Light Purple */
@@ -275,26 +364,42 @@ a:hover {
 
 /* --- RESPONSIVE (Mobile) --- */
 @media (max-width: 1000px) {
+    #card-container{
+        margin-left: -39px;
+        gap: 40px;
+    }
     .card-column {
-        flex-direction: column-reverse; /* Stack vertically on phones */
-        padding: 60px 20px;
+        flex-direction: column; /* Stack vertically on phones */
+        padding: 40px 0px;
         height: auto;
         gap: 40px;
         text-align: center;
     }
 
     .heading h1 {
-        font-size: 80px;
+        font-size: 90px;
+    }
+
+    .heading p {
+        font-size: 12px;
     }
     
+    .card-column > h1{
+        font-size: 90px;
+        margin-bottom: -30px;
+    }
+
     .cardImg {
-        width: 300px;
+        margin-top: 10px;
+        width: 85%;
     }
     
     .plastic-cover {
-        width: 350px;
+        margin-top: 6px;
+        width: 100%;
     }
 }
+
 /* --- VERSIONS SECTION --- */
 .version {
     position: relative;
@@ -304,23 +409,28 @@ a:hover {
     padding-bottom: 200px;
     width: 100%;
     overflow: hidden; /* Essential to crop anything that flies too far */
+    perspective: 1500px;
 }
 
 /* Slider Track */
 .version-slider {
     display: flex;
-    width: 200%; /* 2 slides = 200% width */
+    width: 200%;
+    will-change: transform; /* VITAL: Tells browser to keep this in GPU memory */
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* Individual Slide */
 .slide {
-    width: 50%; /* Each slide is half of the 200% container */
+    width: 100%; /* Each slide is half of the 200% container */
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 800px; /* Fixed height to keep layout stable */
+
+    content-visibility: auto; 
+    contain-intrinsic-size: 800px;
 }
 
 /* The Wrapper that holds the 3 cards */
@@ -344,27 +454,27 @@ a:hover {
     top: 0;
     width: 100%; 
     height: auto;
-    pointer-events: none;
+    pointer-events: auto;
     padding-bottom: 70px;
     transition: 
         transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
-        filter 0.4s ease,
-        z-index 0s,
-        transform 0.2s ease;
+        translate 0.2s ease-out,
+        filter 0.2s ease,
+        z-index 0s;
 }
 
 .card0 {
     width: 100%; 
     height: auto;
     z-index: 1000;
-    
+    pointer-events: none;
     /* VITAL: This line was missing. It tells the class to use the JS variables */
     transform: translateX(var(--x-move, 0px)) translateY(var(--y-move, 0px)); 
     
     .sticky-note {
         width: 650px;
         height: auto;
-        transform: translateX(85px) translateY(-410px);
+        transform: translateX(85px) translateY(-380px);
         filter: drop-shadow(3px 25px 5px rgba(0, 0, 0, 0.137));
     }
 }
@@ -372,14 +482,17 @@ a:hover {
 
 /* This single class handles ANY number of cards */
 .dynamic-card {
-    position: absolute; /* Ensure this is set */
+    position: absolute;
+    pointer-events: none;
     z-index: var(--z-layer, 1);
     /* This connects the JS variables to the actual movement */
     transform: translateX(var(--x-move, 0px)) translateY(var(--y-move, 0px));
     
     filter: drop-shadow(1px -1px 0px rgba(255, 255, 255, 0.295));
-    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
-    filter 0.4s ease;
+    transition: 
+        transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
+        translate 0.2s ease-out,
+        filter 0.2s ease;
 }
 
 
@@ -387,12 +500,11 @@ a:hover {
     margin-top: -90px;
     z-index: 100 !important; /* Force on top of everything */
     width: 145%;
-    filter: brightness(1.1);
         
     .download-tactic, a {
         font-size: 47px;
         left: 58%;
-        bottom: 15%;
+        bottom: 17%;
     }
     .thread, a {
         font-size: 47px;
@@ -407,6 +519,13 @@ a:hover {
         font-size: 36.5px;
     } 
     
+    .plastic-cover{
+        width: 700px;
+        transform: translateX(-590px) translateY(-260px);
+    }
+
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+
     pointer-events: auto;
     transform-style: preserve-3d;
     transform: rotateY(-12deg) rotateX(-18deg) translateX(20px) translateY(-80px) translateZ(200px);
@@ -426,13 +545,11 @@ a:hover {
 
 .tactic-container .version-card.active:hover{
     translate: 0px 0px;
-    filter: brightness(1.1);
 }
 
 .tactic-container .version-card:hover{
-    filter: brightness(1.1) blur(0px);
-    translate: 0px -25px;
-    filter: drop-shadow(1px -1px 0px rgba(255, 255, 255, 0.295));
+    translate: 0px -23px;
+    cursor: pointer;
 }
 
 /* Background Card Image */
@@ -443,6 +560,11 @@ a:hover {
     display: block;
 }
 
+.version-card .plastic-cover{
+    width: 480px;
+    transform: translateX(-405px) translateY(-180px);
+}
+
 /* The Tactic Screenshot */
 .version-card .cardThumbnail {
     position: absolute;
@@ -450,7 +572,7 @@ a:hover {
     left: 31%;
     transform: translateX(-50%);
     width: 48%;
-    z-index: -1; 
+    z-index: 1; 
 }
 .version-card .cardThumbnail img {
     width: 100%;
@@ -505,7 +627,7 @@ a:hover {
     color: black;
     font-family: 'Franklin Gothic Medium', Arial, sans-serif;
     font-size: 33px;
-    padding: 20px 35px;
+    padding: 20px 32px;
     border-radius: 30px;
     text-decoration: none;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -539,17 +661,136 @@ a:hover {
 .prev { left: 40px; }
 .next { right: 40px; }
 
-.end{
-    margin-top: -30px;
-    margin-bottom: -30px;
-    padding: 40px;
-    padding-top: 60px;
-    background-color: rgb(176 120 255);
-    img{
-        width: 104%;
-        height: auto;
-        position: relative;
-        right: 1.8%;
+@media (max-width: 1000px) {
+    /* 1. Fix Slider Logic */
+    /* Must be 200vw because you have 2 slides. 600px breaks the sliding logic. */
+    .version-slider {
+        width: 200vw;
+        margin-top: -120px;
+        margin-bottom: -100px;
+    }
+
+    /* 2. Resize the Slide Container */
+    /* Each slide must take up exactly 1 screen width */
+    .slide {
+        right: 11%;
+        width: 140vw;
+        height: 1000px; /* Reduce height from 800px to fit mobile screens better */
+    }
+
+    /* 3. Scale down the 3D Tactic Container */
+    /* Instead of resizing every pixel, we scale the whole 3D context down */
+    .tactic-container {
+        width: 870px; /* Keep original width for layout logic... */
+        /* ...but scale it down to fit the screen. 
+           0.55 makes it roughly 480px wide visually, fitting most phones. */
+        transform: scaleX(1) scaleY(0.9) rotateX(18deg) rotateY(12deg) rotateZ(90deg) translateY(10px);
+        margin-left: 0; /* Center it */
+    }
+
+    .card0{
+        .sticky-note {
+            transform: scale(0.6) rotateZ(-90deg) translateX(505px) translateY(-30px);
+        }
+    }
+
+    /* 4. Resize the Background Digit (24 / 26) */
+    .digit {
+        width: 118vw; /* Make it responsive to screen width */
+        height: 25%; /* Fade it slightly so cards are more visible */
+    }
+
+    /* 5. Adjust Navigation Arrows */
+    .nav {
+        display: none;
+    }
+    /* 6. Resize Card Elements */
+    /* Because we scaled the container by 0.55, the text visually shrinks. 
+       We increase font sizes here to compensate and keep them readable. */
+    
+    .version-card h1 {
+        font-size: 17px; /* Increased from 25px */
+        top: 7%;
+        left: 10.5%;
+    }
+
+    .version-card p {
+        font-size: 20px; /* Increased from 27px */
+        width: 38%; /* Give text more width */
+        top: 13%;
+        transform: rotateZ(-90deg) translateX(-30px) translateY(20px);
+    }
+
+    .version-card .plastic-cover{
+        width: 300px;
+        transform: rotateZ(-90deg) translateX(127px) translateY(-290px);
+    }
+
+    .version-card .cardThumbnail{
+        width: 255px;
+    }
+
+    .version-card .cardThumbnail img{
+        transform: rotateZ(-90deg) translateX(-5px) translateY(-30px);
+        width: 180px;
+    }
+
+    /* Adjust Buttons */
+    .download-tactic {
+        font-size: 20px; /* Increased from 33px */
+        padding: 15px 29px;
+        bottom: 15%;
+        transform: rotateZ(-90deg) translateX(112px) translateY(-150px);
+    }
+
+    .thread {
+        font-size: 20px; /* Increased from 33px */
+        padding: 15px 30px;
+        bottom: 32%;
+        transform: rotateZ(-90deg) translateX(50px) translateY(-80px);
+    }
+
+    /* 7. Active Card Mobile Behavior */
+    /* When clicked, the card shouldn't get as huge as it does on desktop */
+    .tactic-container .version-card.active {
+        width: 125%; /* Reduce from 145% to prevent horizontal overflow */
+        margin-top: -50px; 
+        
+        /* Simplify the 3D effect for mobile readability */
+        transform: rotateY(12deg) rotateX(-6deg) rotateZ(-2deg) translateZ(100px) translateY(43px)!important;
+    }
+
+    .tactic-container .version-card.active .cardThumbnail{
+        width: 310px;
+        transform: translateX(-150px) translateY(5px);
+    }
+
+    .tactic-container .version-card.active .plastic-cover{
+        width: 355px;
+        transform: translateX(-335px) translateY(-145px) rotateZ(-90deg);
+    }
+    
+    
+    /* Adjust active card text positions if needed */
+    .tactic-container .version-card.active h1 {
+        font-size: 21px;
+        left: 10%;
+    }
+    .tactic-container .version-card.active p {
+        width: 43%;
+        font-size: 21px;
+        transform: translateX(15px) translateY(70px) rotateZ(-90deg);
+    }
+    .tactic-container .version-card.active .download-tactic,
+    .tactic-container .version-card.active .thread {
+        font-size: 30px;
+    }
+    .tactic-container .version-card.active .download-tactic{
+        padding: 15px 23px;
+        transform: translateX(-175px) translateY(-123px) rotateZ(-90deg)
+    }
+    .tactic-container .version-card.active .thread{
+        transform: translateX(-95px) translateY(-55px) rotateZ(-90deg);
     }
 }
 
@@ -565,7 +806,7 @@ a:hover {
     view-timeline-axis: block;
     animation: color-change2 1s linear both;
     animation-timeline: --sectionTimeline;
-    animation-range: entry 25% entry 100%;
+    animation-range: entry 10% entry 100%;
     
 }
 
@@ -623,9 +864,9 @@ a:hover {
     content: "0" counter(step-counter);
     position: absolute;
     left: 0;
-    top: 22px;
+    top: 13px;
     font-family: 'SohneBreitExtrafettKursiv', sans-serif;
-    font-size: 20px;
+    font-size: 30px;
     color: rgba(0,0,0,0.4);
 }
 
@@ -689,7 +930,7 @@ a:hover {
 }
 
 /* --- MOBILE RESPONSIVENESS --- */
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
     .footer-grid {
         grid-template-columns: 1fr; /* Stack vertically */
         gap: 60px;

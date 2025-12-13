@@ -81,7 +81,7 @@ const tacticsData = [
             download: 'https://drive.google.com/drive/folders/1KHFyzwyBWE6pzv79U8t4aWfYnSETKIQJ?usp=drive_link', 
             threadId: '1930224448084328488'
         },
-        {   title: "Uruguay 1950", 
+        {   title: "Uruguay 1950WC", 
             desc: "A historical thread analyzing Uruguay’s shocking 1950 World Cup triumph over Brazil.", 
             img: 'https://pbs.twimg.com/media/Gtj7g4LXsAANixz?format=jpg&name=medium',
             download: 'https://drive.google.com/drive/folders/1zTxsLXBfji4wPqhv4x9swIn967-YEehL?usp=drive_link', 
@@ -121,8 +121,8 @@ function renderCards(containerIndex, dataArray) {
     if (!targetContainer) return;
 
     // CONFIGURATION
-    const xStep = 35;      
-    const yStep = -15;     
+    const xStep = 25;      
+    const yStep = -18;     
     
     const totalCount = dataArray.length;
     const totalStackWidth = (totalCount - 1) * xStep;
@@ -141,7 +141,7 @@ function renderCards(containerIndex, dataArray) {
 
     htmlContent += `
         <div class="version-card cardEnd" 
-             style="--x-move: ${endX}px; --y-move: ${endY + 22}px; --z-pos: -60px; z-index: 0;">
+             style="--x-move: ${endX}px; --y-move: ${endY + 15}px; --z-pos: -60px; z-index: 0; pointer-events: none;">
             <img src="Assets/Images/folder.png" class="bg-card"> 
         </div>
     `;
@@ -154,7 +154,7 @@ function renderCards(containerIndex, dataArray) {
         htmlContent += `
             <div class="version-card dynamic-card" 
                  style="--x-move: ${xPos}px; --y-move: ${yPos}px; --z-pos: ${i * 5}px; z-index: ${zIndex};">
-                 
+                <img src="Assets/Images/cover.png" class="plastic-cover">
                 <img src="Assets/Images/longer_card.png" class="bg-card">
                 
                 <div class="cardThumbnail">
@@ -171,12 +171,12 @@ function renderCards(containerIndex, dataArray) {
     });
 
     htmlContent += `
-        <div class="version-card card0" 
-             style="--x-move: ${startX - 10}px; --y-move: ${startY + 40}px; --z-pos: 50px;">
-            <img src="Assets/Images/folder.png" class="bg-card">
-            ${containerIndex === 0 ? '<img src="Assets/Images/Gemini_Generated_Image_f6yypef6yypef6yy.png" class="sticky-note">' : ''}
-        </div>
-    `;
+         <div class="version-card card0" 
+              style="--x-move: ${startX}px; --y-move: ${startY + 30}px; --z-pos: 50px;">
+             <img src="Assets/Images/folder.png" class="bg-card">
+             ${containerIndex === 0 ? '<img src="Assets/Images/Gemini_Generated_Image_f6yypef6yypef6yy.png" class="sticky-note">' : ''}
+         </div>
+    // `;
 
     targetContainer.innerHTML = htmlContent;
 }
@@ -204,3 +204,31 @@ document.querySelectorAll('.tactic-container').forEach(container => {
         }
     });
 });
+
+/* --- SWIPE SUPPORT --- */
+const touchZone = document.querySelector('.version');
+let touchStartX = 0;
+let touchEndX = 0;
+
+touchZone.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+}, {passive: true});
+
+touchZone.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, {passive: true});
+
+function handleSwipe() {
+    const threshold = 50; 
+    
+    if (touchEndX < touchStartX - threshold) {
+        // Swiped Left -> Go Next
+        document.querySelector('.next').click();
+    }
+    
+    if (touchEndX > touchStartX + threshold) {
+        // Swiped Right -> Go Prev
+        document.querySelector('.prev').click();
+    }
+}
