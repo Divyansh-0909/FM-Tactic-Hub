@@ -107,15 +107,25 @@ a:hover {
 
 @media (max-width: 800px){
     .hero-scroll-area {
-        height: 110vh; 
+        margin-top: -60px;
+        padding-top: 30px;
+        height: 320vh;              /* was 550vh – too much */
+        margin-left: 0;             /* REMOVE offset */
+        overflow: hidden;
     }
 
-    .hero{
-        width: 720vw;  
+    .hero {
+        width: 830vw;
+        background-size: 90%;
+        background-position: left center;
+        background-repeat: no-repeat;
+        will-change: transform;
     }
 
-    .overlay h1{
+    .overlay h1 {
         font-size: 40vw;
+        margin-left: -350px;            /* 40vw was breaking layout */
+        text-align: center;
     }
 }
 
@@ -172,9 +182,10 @@ a:hover {
 @media (max-width: 800px){
     .floating{
         position: fixed;
-        left: 2%;
-        transform: translateX(0px);
-        width: 310px;
+        transform: translateX(-50%);
+        bottom: 3%;
+        width: calc(100vw - 24px);
+        max-width: 310px;
         height: 50px;
         gap: 8px;
     }    
@@ -364,6 +375,9 @@ a:hover {
 
 /* --- RESPONSIVE (Mobile) --- */
 @media (max-width: 1000px) {
+    .featured{
+        margin-top: -1900px;
+    }
     #card-container{
         margin-left: -39px;
         gap: 40px;
@@ -662,30 +676,22 @@ a:hover {
 .next { right: 40px; }
 
 @media (max-width: 1000px) {
-    /* 1. Fix Slider Logic */
-    /* Must be 200vw because you have 2 slides. 600px breaks the sliding logic. */
     .version-slider {
         width: 200vw;
         margin-top: -120px;
         margin-bottom: -100px;
     }
 
-    /* 2. Resize the Slide Container */
-    /* Each slide must take up exactly 1 screen width */
     .slide {
         right: 11%;
         width: 140vw;
         height: 1000px; /* Reduce height from 800px to fit mobile screens better */
     }
 
-    /* 3. Scale down the 3D Tactic Container */
-    /* Instead of resizing every pixel, we scale the whole 3D context down */
     .tactic-container {
-        width: 870px; /* Keep original width for layout logic... */
-        /* ...but scale it down to fit the screen. 
-           0.55 makes it roughly 480px wide visually, fitting most phones. */
+        width: 870px;
         transform: scaleX(1) scaleY(0.9) rotateX(18deg) rotateY(12deg) rotateZ(90deg) translateY(10px);
-        margin-left: 0; /* Center it */
+        margin-left: 0;
     }
 
     .card0{
@@ -694,29 +700,23 @@ a:hover {
         }
     }
 
-    /* 4. Resize the Background Digit (24 / 26) */
     .digit {
-        width: 118vw; /* Make it responsive to screen width */
-        height: 25%; /* Fade it slightly so cards are more visible */
+        width: 118vw;
+        height: 25%;
     }
-
-    /* 5. Adjust Navigation Arrows */
     .nav {
         display: none;
     }
-    /* 6. Resize Card Elements */
-    /* Because we scaled the container by 0.55, the text visually shrinks. 
-       We increase font sizes here to compensate and keep them readable. */
     
     .version-card h1 {
-        font-size: 17px; /* Increased from 25px */
+        font-size: 17px;
         top: 7%;
         left: 10.5%;
     }
 
     .version-card p {
-        font-size: 20px; /* Increased from 27px */
-        width: 38%; /* Give text more width */
+        font-size: 20px;
+        width: 38%;
         top: 13%;
         transform: rotateZ(-90deg) translateX(-30px) translateY(20px);
     }
@@ -735,39 +735,41 @@ a:hover {
         width: 180px;
     }
 
-    /* Adjust Buttons */
+
     .download-tactic {
-        font-size: 20px; /* Increased from 33px */
+        font-size: 20px;
         padding: 15px 29px;
         bottom: 15%;
         transform: rotateZ(-90deg) translateX(112px) translateY(-150px);
     }
 
     .thread {
-        font-size: 20px; /* Increased from 33px */
+        font-size: 20px;
         padding: 15px 30px;
         bottom: 32%;
         transform: rotateZ(-90deg) translateX(50px) translateY(-80px);
     }
 
-    /* 7. Active Card Mobile Behavior */
-    /* When clicked, the card shouldn't get as huge as it does on desktop */
     .tactic-container .version-card.active {
-        width: 125%; /* Reduce from 145% to prevent horizontal overflow */
-        margin-top: -50px; 
-        
-        /* Simplify the 3D effect for mobile readability */
-        transform: rotateY(12deg) rotateX(-6deg) rotateZ(-2deg) translateZ(100px) translateY(43px)!important;
+        width: 125%;
+        margin-top: -50px;
+        top: 10%;
+        transform: scaleY(1) rotateY(12deg) rotateX(-6deg) rotateZ(-2.5deg) translateZ(100px);
+    }
+
+    .tactic-container .version-card:hover{
+        translate: 0px -10px;
+        cursor: pointer;
     }
 
     .tactic-container .version-card.active .cardThumbnail{
         width: 310px;
-        transform: translateX(-150px) translateY(5px);
+        transform: translateX(-155px) translateY(2px);
     }
 
     .tactic-container .version-card.active .plastic-cover{
         width: 355px;
-        transform: translateX(-335px) translateY(-145px) rotateZ(-90deg);
+        transform: translateX(-335px) translateY(-142px) rotateZ(-90deg);
     }
     
     
@@ -779,18 +781,19 @@ a:hover {
     .tactic-container .version-card.active p {
         width: 43%;
         font-size: 21px;
-        transform: translateX(15px) translateY(70px) rotateZ(-90deg);
+        transform: scaleX(1.1) translateX(15px) translateY(70px) rotateZ(-90deg);
     }
     .tactic-container .version-card.active .download-tactic,
     .tactic-container .version-card.active .thread {
         font-size: 30px;
+        transform: scaleX(1.1);
     }
     .tactic-container .version-card.active .download-tactic{
         padding: 15px 23px;
-        transform: translateX(-175px) translateY(-123px) rotateZ(-90deg)
+        transform: translateX(-175px) translateY(-115px) rotateZ(-90deg)
     }
     .tactic-container .version-card.active .thread{
-        transform: translateX(-95px) translateY(-55px) rotateZ(-90deg);
+        transform: translateX(-95px) translateY(-48px) rotateZ(-90deg);
     }
 }
 
@@ -798,9 +801,9 @@ a:hover {
 .end {
     position: relative;
     background-color: rgb(176, 120, 255);
-    color: #151E2E; /* Dark blue/black for text to contrast purple */
-    padding: 80px 60px 180px 60px; /* Large bottom padding for Floating Nav */
-    margin-top: -5px; /* Removes any gap from previous section */
+    color: #151E2E; 
+    padding: 80px 60px 180px 60px;
+    margin-top: -5px; 
     overflow: hidden;
     view-timeline-name: --sectionTimeline;
     view-timeline-axis: block;

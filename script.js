@@ -1,27 +1,55 @@
-/* --- HERO SCROLL EFFECT (Optimized) --- */
-const hero = document.querySelector('.hero');
-const scrollArea = document.querySelector('.hero-scroll-area');
+/* --- HERO SCROLL EFFECT (GSAP Mobile Implementation) --- */
+gsap.registerPlugin(ScrollTrigger);
 
-let isTicking = false;
+// Initialize ScrollTrigger logic
+ScrollTrigger.matchMedia({
+    
+    // MOBILE ONLY (max-width: 800px)
+    "(max-width: 800px)": function() {
+        const hero = document.querySelector('.hero');
+        const scrollArea = document.querySelector('.hero-scroll-area');
 
-window.addEventListener("scroll", () => {
-    if (!isTicking) {
-        window.requestAnimationFrame(() => {
-            updateHeroScroll();
-            isTicking = false;
+        // This creates the pinning and horizontal movement
+        gsap.to(hero, {
+            x: () => -(hero.scrollWidth - window.innerWidth), // Move left by the excess width
+            ease: "none",
+            scrollTrigger: {
+                trigger: scrollArea,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1,
+                pin: true,    
+                invalidateOnRefresh: true 
+            }
         });
-        isTicking = true;
-    }
+    },
 });
 
-function updateHeroScroll() {
-    if (window.scrollY < scrollArea.offsetHeight) {
-        const scrollRange = scrollArea.offsetHeight - window.innerHeight;
-        const percent = Math.max(0, Math.min(window.scrollY / scrollRange, 1));
-        const move = percent * (hero.scrollWidth - window.innerWidth);
-        hero.style.transform = `translate3d(${-move}px, 0, 0)`;
-    }
+/* --- DESKTOP MANUAL FALLBACK (Your original code, wrapped to only run > 800px) --- */
+if (window.matchMedia("(min-width: 801px)").matches) {
+    const hero = document.querySelector('.hero');
+    const scrollArea = document.querySelector('.hero-scroll-area');
+    let isTicking = false;
+
+    window.addEventListener("scroll", () => {
+        // Only run this logic on desktop
+        if (window.innerWidth > 800) { 
+            if (!isTicking) {
+                window.requestAnimationFrame(() => {
+                    if (window.scrollY < scrollArea.offsetHeight) {
+                        const scrollRange = scrollArea.offsetHeight - window.innerHeight;
+                        const percent = Math.max(0, Math.min(window.scrollY / scrollRange, 1));
+                        const move = percent * (hero.scrollWidth - window.innerWidth);
+                        hero.style.transform = `translate3d(${-move}px, 0, 0)`;
+                    }
+                    isTicking = false;
+                });
+                isTicking = true;
+            }
+        }
+    });
 }
+
 
 
 /* --- VERSION SLIDER LOGIC --- */
