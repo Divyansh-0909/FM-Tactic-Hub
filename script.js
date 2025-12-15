@@ -1,6 +1,7 @@
 /* --- HERO SCROLL EFFECT (GSAP Mobile Implementation) --- */
 gsap.registerPlugin(ScrollTrigger);
 
+
 // Initialize ScrollTrigger logic
 ScrollTrigger.matchMedia({
     
