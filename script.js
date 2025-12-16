@@ -51,19 +51,17 @@ if (window.matchMedia("(min-width: 801px)").matches) {
     });
 }
 
-
-
 /* --- VERSION SLIDER LOGIC --- */
 const slider = document.querySelector('.version-slider');
 let index = 0;
 
 document.querySelector('.next').onclick = () => {
-    index = (index + 1) % 2;
+    index = (index + 1) % tacticsData.length;
     slider.style.transform = `translateX(-${index*100}vw)`;
 };
 
 document.querySelector('.prev').onclick = () => {
-    index = (index - 1 + 2) % 2;
+    index = (index - 1 + 2) % tacticsData.length;
     slider.style.transform = `translateX(-${index*100}vw)`;
 };
 
