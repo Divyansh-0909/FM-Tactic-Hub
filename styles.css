@@ -149,6 +149,7 @@ a:hover {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     letter-spacing: -1.3px;
     font-size: 20px;
+    font-weight: 700;
     a:hover{
         color: rgb(223, 223, 223);
     }
@@ -255,6 +256,8 @@ a:hover {
     transition: transform 0.3s ease;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     pointer-events: none;
+    margin-right: 150px;
+    margin-left: 150px;
 }
 
 .card-column > h1 {
