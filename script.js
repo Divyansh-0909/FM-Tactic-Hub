@@ -18,7 +18,7 @@ ScrollTrigger.matchMedia({
                 trigger: scrollArea,
                 start: "top top",
                 end: "bottom bottom",
-                scrub: 1,
+                scrub: 2.8, //scroll speed
                 pin: true,    
                 invalidateOnRefresh: true 
             }
@@ -110,7 +110,7 @@ const tacticsData = [
             download: 'https://drive.google.com/drive/folders/1KHFyzwyBWE6pzv79U8t4aWfYnSETKIQJ?usp=drive_link', 
             threadId: '1930224448084328488'
         },
-        {   title: "Uruguay 1950WC", 
+        {   title: "Uruguay 1950", 
             desc: "A historical thread analyzing Uruguay’s shocking 1950 World Cup triumph over Brazil.", 
             img: 'https://pbs.twimg.com/media/Gtj7g4LXsAANixz?format=jpg&name=medium',
             download: 'https://drive.google.com/drive/folders/1zTxsLXBfji4wPqhv4x9swIn967-YEehL?usp=drive_link', 
@@ -149,9 +149,11 @@ function renderCards(containerIndex, dataArray) {
     const targetContainer = containers[containerIndex];
     if (!targetContainer) return;
 
-    // CONFIGURATION
-    const xStep = 25;      
-    const yStep = -18;     
+    // CONFIGURATION - Mobile vs Desktop offsets
+    const isMobile = window.innerWidth < 1000;
+    
+    const xStep = isMobile ? 10 : 25;      // Reduced from 25 to 12 on mobile
+    const yStep = isMobile ? -16 : -18;     // Reduced from -18 to -8 on mobile
     
     const totalCount = dataArray.length;
     const totalStackWidth = (totalCount - 1) * xStep;
@@ -162,15 +164,18 @@ function renderCards(containerIndex, dataArray) {
     const startY = -(totalStackHeight / 2);
 
     // 2. Calculate End Positions (Bottom of stack)
-    // This places the back cover exactly aligned with the last card in the sequence
     const endX = startX + ((totalCount - 1) * xStep);
     const endY = startY + ((totalCount - 1) * yStep);
+
+    // Mobile-specific adjustments for folder positioning
+    const folderYOffset = isMobile ? 15 : 20;
+    const frontFolderYOffset = isMobile ? 20 : 35;
 
     let htmlContent = '';
 
     htmlContent += `
         <div class="version-card cardEnd" 
-             style="--x-move: ${endX}px; --y-move: ${endY + 15}px; --z-pos: -60px; z-index: 0; pointer-events: none;">
+             style="--x-move: ${endX}px; --y-move: ${endY + folderYOffset}px; --z-pos: -60px; z-index: 0; pointer-events: none;">
             <img src="Assets/Images/folder.png" class="bg-card"> 
         </div>
     `;
@@ -179,10 +184,11 @@ function renderCards(containerIndex, dataArray) {
         const xPos = startX + (i * xStep);
         const yPos = startY + (i * yStep);
         const zIndex = 10 + (totalCount - i); 
+        const zPos = isMobile ? i * 3 : i * 5; // Reduced z-spacing on mobile
 
         htmlContent += `
             <div class="version-card dynamic-card" 
-                 style="--x-move: ${xPos}px; --y-move: ${yPos}px; --z-pos: ${i * 5}px; z-index: ${zIndex};">
+                 style="--x-move: ${xPos}px; --y-move: ${yPos}px; --z-pos: ${zPos}px; z-index: ${zIndex};">
                 <img src="Assets/Images/cover.png" class="plastic-cover">
                 <img src="Assets/Images/longer_card.png" class="bg-card">
                 
@@ -201,11 +207,11 @@ function renderCards(containerIndex, dataArray) {
 
     htmlContent += `
          <div class="version-card card0" 
-              style="--x-move: ${startX}px; --y-move: ${startY + 30}px; --z-pos: 50px;">
+              style="--x-move: ${startX}px; --y-move: ${startY + frontFolderYOffset}px; --z-pos: 50px;">
              <img src="Assets/Images/folder.png" class="bg-card">
              ${containerIndex === 0 ? '<img src="Assets/Images/Gemini_Generated_Image_f6yypef6yypef6yy.png" class="sticky-note">' : ''}
-         </div>
-    // `;
+          </div>
+     `;
 
     targetContainer.innerHTML = htmlContent;
 }
@@ -213,6 +219,17 @@ function renderCards(containerIndex, dataArray) {
 // Initial Render
 renderCards(0, tacticsData[1]);
 renderCards(1, tacticsData[0]);
+
+// Re-render on resize to apply correct offsets
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        renderCards(0, tacticsData[1]);
+        renderCards(1, tacticsData[0]);
+    }, 250);
+});
+
 
 // Event Listeners for Interaction
 document.querySelectorAll('.tactic-container').forEach(container => {

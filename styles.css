@@ -57,7 +57,7 @@ a:hover {
     color: rgb(176 120 255);
 }
 
-@media (max-width: 1500px){
+@media (max-width: 1000px){
     
     body::-webkit-scrollbar{
         display: none;
@@ -105,7 +105,7 @@ a:hover {
     color: transparent;
 }
 
-@media (max-width: 1500px){
+@media (max-width: 1000px){
     .hero-scroll-area {
         margin-top: -20px;
         height: 300vh;              /* was 550vh – too much */
@@ -178,7 +178,7 @@ a:hover {
     width: auto;
 }
 
-@media (max-width: 1500px){
+@media (max-width: 1000px){
     .floating{
         position: fixed;
         left: 50%;
@@ -373,7 +373,7 @@ a:hover {
 }
 
 /* --- RESPONSIVE (Mobile) --- */
-@media (max-width: 1500px) {
+@media (max-width: 1000px) {
     .featured{
         margin-top: -1900px;
     }
@@ -674,127 +674,151 @@ a:hover {
 .prev { left: 40px; }
 .next { right: 40px; }
 
-@media (max-width: 1500px) {
+@media (max-width: 1000px) {
+    .version {
+        overflow: hidden; /* Prevent horizontal overflow */
+        padding-bottom: 150px;
+    }
+
     .version-slider {
         width: 200vw;
         margin-top: -120px;
         margin-bottom: -100px;
+        display: flex;
     }
 
     .slide {
-        right: 11%;
-        width: 140vw;
+        width: 100vw; /* Changed from 140vw - fits viewport */
         height: 1000px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        left: 0; /* Reset positioning */
     }
 
     .tactic-container {
-        width: 870px;
-        transform: scaleX(1) scaleY(0.9) rotateX(18deg) rotateY(12deg) rotateZ(90deg) translateY(10px);
-        margin-left: 0;
+        width: 720px; /* Reduced from 870px to fit mobile */
+        height: 640px;
+        transform: scaleX(0.85) scaleY(0.75) rotateX(18deg) rotateY(12deg) rotateZ(90deg) translateY(10px);
+        margin-left: -200px;
     }
 
-    .card0{
+    .card0 {
         .sticky-note {
-            transform: scale(0.6) rotateZ(-90deg) translateX(505px) translateY(-30px);
+            transform: scale(0.63) rotateZ(-90deg) translateX(500px) translateY(-35px);
         }
     }
     
     .digit {
-        width: 118vw;
-        height: 25%;
+        width: 120vw; /* Reduced to fit viewport */
+        height: auto;
+        margin-left: -10px;
+        max-height: 25%;
     }
+
     .nav {
         display: none;
     }
     
     .version-card h1 {
-        font-size: 17px;
-        top: 7%;
-        left: 10.5%;
+        font-size: 18px;
+        top: 5.5%;
+        left: 11%;
     }
 
     .version-card p {
-        font-size: 20px;
-        width: 38%;
+        font-size: 21px;
+        width: 40%;
         top: 13%;
-        transform: rotateZ(-90deg) translateX(-30px) translateY(20px);
+        transform: rotateZ(-90deg) translateX(-60px) translateY(20px);
     }
 
-    .version-card .plastic-cover{
-        width: 300px;
-        transform: rotateZ(-90deg) translateX(127px) translateY(-290px);
+    .version-card .plastic-cover {
+        width: 320px;
+        transform: rotateZ(-90deg) translateX(130px) translateY(-305px);
     }
 
-    .version-card .cardThumbnail{
-        width: 255px;
+    .version-card .cardThumbnail {
+        width: 280px;
     }
 
-    .version-card .cardThumbnail img{
-        transform: rotateZ(-90deg) translateX(-5px) translateY(-30px);
-        width: 180px;
+    .version-card .cardThumbnail img {
+        transform: rotateZ(-90deg) translateX(-8px) translateY(-25px);
+        width: 150px;
     }
-
 
     .download-tactic {
-        font-size: 20px;
-        padding: 15px 29px;
-        bottom: 15%;
-        transform: rotateZ(-90deg) translateX(112px) translateY(-150px);
+        font-size: 23px;
+        padding: 12px 20px;
+        bottom: 20%;
+        transform: rotateZ(-90deg) translateX(90px) translateY(-140px);
     }
 
     .thread {
-        font-size: 20px;
-        padding: 15px 30px;
+        font-size: 23px;
+        padding: 12px 24px;
         bottom: 32%;
-        transform: rotateZ(-90deg) translateX(50px) translateY(-80px);
+        transform: rotateZ(-90deg) translateX(40px) translateY(-70px);
     }
 
+    /* Active expanded card */
     .tactic-container .version-card.active {
-        width: 700px;
-        left: 50%;
-        margin-left: -320px;
-        margin-top: -60px; 
-        top: 13%;
+        width: 850px;
+        top: 7%;
         transform: scaleY(1) rotateY(12deg) rotateX(-6deg) rotateZ(-2.5deg) translateZ(100px);
     }
 
-    .tactic-container .version-card:hover{
-        translate: 0px -10px;
+    .tactic-container .version-card:hover {
+        translate: 0px -8px;
         cursor: pointer;
     }
 
-    .tactic-container .version-card.active .cardThumbnail{
-        width: 310px;
-        transform: scaleY(0.97) translateX(-155px) translateY(2px);
+    .tactic-container .version-card.active .cardThumbnail {
+        width: 380px;
+        transform: scaleY(0.94) translateX(-205px) translateY(2px);
     }
 
-    .tactic-container .version-card.active .plastic-cover{
-        width: 355px;
-        transform: scaleY(0.97) translateX(-335px) translateY(-142px) rotateZ(-90deg);
+    .tactic-container .version-card.active .plastic-cover {
+        width: 430px;
+        transform: scaleY(0.97) translateX(-410px) translateY(-175px) rotateZ(-90deg);
     }
     
     .tactic-container .version-card.active h1 {
-        font-size: 21px;
-        left: 10%;
+        font-size: 24px;
+        left: 10.5%;
+        top: 7%;
     }
+
     .tactic-container .version-card.active p {
         width: 43%;
-        font-size: 21px;
-        transform: scaleX(1.12) translateX(15px) translateY(70px) rotateZ(-90deg);
+        font-size: 25px;
+        left: 72%;
+        bottom: 17%;
+        transform: scaleX(1.12) rotateZ(-90deg);
     }
+
     .tactic-container .version-card.active .download-tactic,
     .tactic-container .version-card.active .thread {
-        font-size: 30px;
+        font-size: 38px;
         transform: scaleY(0.95);
+        bottom: 43%;
+        
     }
-    .tactic-container .version-card.active .download-tactic{
-        padding: 15px 23px;
-        transform: translateX(-175px) translateY(-115px) rotateZ(-90deg)
+
+    .tactic-container .version-card.active .download-tactic {
+        padding: 14px 22px;
+        transform: rotateZ(-90deg);
+        left: 33%;
     }
-    .tactic-container .version-card.active .thread{
-        transform: translateX(-95px) translateY(-48px) rotateZ(-90deg);
+
+    .tactic-container .version-card.active .thread {
+        padding: 14px 28px;
+        transform: rotateZ(-90deg);
+        left: 45%;
     }
 }
+
 
 /* --- FOOTER REDESIGN --- */
 .end {
@@ -932,7 +956,7 @@ a:hover {
 }
 
 /* --- MOBILE RESPONSIVENESS --- */
-@media (max-width: 1500px) {
+@media (max-width: 1000px) {
     .footer-grid {
         grid-template-columns: 1fr; /* Stack vertically */
         gap: 60px;
