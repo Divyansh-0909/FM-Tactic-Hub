@@ -252,10 +252,10 @@ a:hover {
     max-width: 1400px;
     height: auto;
     min-height: 450px;
-    padding: 0 80px;
+    min-width: 380px;
+    padding: 0 60px;
     border-radius: 60px; 
     transition: transform 0.3s ease;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     pointer-events: none;
 }
 
@@ -266,8 +266,7 @@ a:hover {
     color: white;
     margin: 0; 
     line-height: 1;
-    margin-right: 40px; 
-    margin-left: 40px;
+    margin-right: 40px;
 }
 
 
@@ -292,6 +291,7 @@ a:hover {
     font-size: 150px;
     margin: 0 0 0px 0;
     line-height: 0.9;
+    width: 600px;
     text-transform: uppercase;
 }
 
