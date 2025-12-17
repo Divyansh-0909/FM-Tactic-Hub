@@ -247,8 +247,13 @@ a:hover {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center; /* Pushes Text to Left, Image to Right */
-    width: 83%; 
+<<<<<<< HEAD
+    justify-content: space-between; /* Pushes Text to Left, Image to Right */
+    width: 85%; 
+=======
+    justify-content: space-between; /* Pushes Text to Left, Image to Right */
+    width: 85%; 
+>>>>>>> 98a6aebe937aab9b70b9b5ffa708ff33128f7aa2
     max-width: 1400px;
     height: auto;
     min-height: 450px;
