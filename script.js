@@ -1,8 +1,6 @@
 /* --- HERO SCROLL EFFECT (GSAP Mobile Implementation) --- */
 gsap.registerPlugin(ScrollTrigger);
 
-
-// Initialize ScrollTrigger logic
 ScrollTrigger.matchMedia({
     
     // MOBILE ONLY (max-width: 800px)
@@ -10,9 +8,8 @@ ScrollTrigger.matchMedia({
         const hero = document.querySelector('.hero');
         const scrollArea = document.querySelector('.hero-scroll-area');
 
-        // This creates the pinning and horizontal movement
         gsap.to(hero, {
-            x: () => -(hero.scrollWidth - window.innerWidth), // Move left by the excess width
+            x: () => -(hero.scrollWidth - window.innerWidth),
             ease: "none",
             scrollTrigger: {
                 trigger: scrollArea,
@@ -26,14 +23,14 @@ ScrollTrigger.matchMedia({
     },
 });
 
-/* --- DESKTOP MANUAL FALLBACK (Your original code, wrapped to only run > 800px) --- */
+/* --- DESKTOP MANUAL FALLBACK --- */
 if (window.matchMedia("(min-width: 801px)").matches) {
     const hero = document.querySelector('.hero');
     const scrollArea = document.querySelector('.hero-scroll-area');
     let isTicking = false;
 
     window.addEventListener("scroll", () => {
-        // Only run this logic on desktop
+        // DESKTOP ONLY
         if (window.innerWidth > 800) { 
             if (!isTicking) {
                 window.requestAnimationFrame(() => {
@@ -65,9 +62,8 @@ document.querySelector('.prev').onclick = () => {
     slider.style.transform = `translateX(-${index*100}vw)`;
 };
 
-// Data Array: Index 0 = FM24, Index 1 = FM26
 const tacticsData = [
-    [ // FM24 Tactics (Index 0)
+    [ // FM24 Tactics
         { 
             title: 'The Pep Manual', 
             desc: 'From Barcelona to Bayern to Manchester City, Pep Guardiola has reinvented the game at every stop.', 
@@ -115,7 +111,7 @@ const tacticsData = [
             threadId: '1934572652225511464'
         }
     ],
-    [ // FM26 Tactics (Index 1)
+    [ // FM26 Tactics
         { 
             title: "Arteta's Arsenal", 
             desc: "How Mikel Arteta has transformed Arsenal into one of the most fluid, intelligent, and structurally dominant teams in Europe.", 
@@ -140,7 +136,7 @@ const tacticsData = [
     ]
 ];
 
-/* --- REPLACE THE renderCards FUNCTION IN script.js --- */
+/* --- 3D folder --- */
 
 function renderCards(containerIndex, dataArray) {
     const containers = document.querySelectorAll('.tactic-container');
@@ -150,8 +146,8 @@ function renderCards(containerIndex, dataArray) {
     // CONFIGURATION - Mobile vs Desktop offsets
     const isMobile = window.innerWidth < 1000;
     
-    const xStep = isMobile ? 10 : 25;      // Reduced from 25 to 12 on mobile
-    const yStep = isMobile ? -16 : -18;     // Reduced from -18 to -8 on mobile
+    const xStep = isMobile ? 10 : 25;      // Reduced from 25 to 10 on mobile
+    const yStep = isMobile ? -16 : -18;     // Reduced from -18 to -16 on mobile
     
     const totalCount = dataArray.length;
     const totalStackWidth = (totalCount - 1) * xStep;
@@ -214,7 +210,6 @@ function renderCards(containerIndex, dataArray) {
     targetContainer.innerHTML = htmlContent;
 }
 
-// Initial Render
 renderCards(0, tacticsData[1]);
 renderCards(1, tacticsData[0]);
 

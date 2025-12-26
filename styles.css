@@ -108,8 +108,8 @@ a:hover {
 @media (max-width: 1000px){
     .hero-scroll-area {
         margin-top: -20px;
-        height: 300vh;              /* was 550vh – too much */
-        margin-left: 0;             /* REMOVE offset */
+        height: 320vh;             
+        margin-left: 0;            
         overflow: hidden;
     }
 
@@ -247,7 +247,7 @@ a:hover {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between; /* Pushes Text to Left, Image to Right */
+    justify-content: space-between; 
     width: 83%; 
     max-width: 1400px;
     height: auto;
@@ -282,7 +282,7 @@ a:hover {
     justify-content: center;
     z-index: 2;
     text-align: center;
-    margin-top: 0; /* Resetting your negative margins */
+    margin-top: 0; 
     position: static; /* Resetting position */
     width: auto;
     height: auto;
@@ -339,7 +339,7 @@ a:hover {
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 300px; /* Defined height for the image area */
+    height: 300px;
     z-index: 2;
     pointer-events: all;
 }
@@ -364,20 +364,18 @@ a:hover {
     transform: translate(-50%, -50%);
     z-index: 3;
 }
-/* --- COLORS --- */
 .top {
-    background-color: #bd8cff; /* Light Purple */
+    background-color: #bd8cff;
 }
 
 .standout {
-    background-color: #2b213a; /* Dark Navy/Purple */
+    background-color: #2b213a;
 }
 
 .recent {
-    background-color: #000000; /* Black */
+    background-color: #000000;
 }
 
-/* --- RESPONSIVE (Mobile) --- */
 @media (max-width: 1000px) {
     .featured{
         margin-top: -1900px;
@@ -386,7 +384,7 @@ a:hover {
         gap: 40px;
     }
     .card-column {
-        flex-direction: column; /* Stack vertically on phones */
+        flex-direction: column; 
         padding: 40px 0px;
         height: auto;
         gap: 40px;
@@ -403,6 +401,7 @@ a:hover {
     
     .card-column > h1{
         font-size: 90px;
+        margin: 0px;
         margin-bottom: -30px;
     }
 
