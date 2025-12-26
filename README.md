@@ -2,7 +2,7 @@
 
 > The ultimate home for Football Manager tactics, featuring analysis, downloads and recreations.
 
-![hero section](image.png)
+![promotion image](image-1.png)
 
 **FM Tactic Hub** is a responsive, interactive website designed to showcase and distribute custom tactics for Football Manager. It serves as a central portfolio for tactical deep dives, offering direct downloads and links to detailed analysis threads.
 
