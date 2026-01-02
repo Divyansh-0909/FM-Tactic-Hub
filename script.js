@@ -113,6 +113,13 @@ const tacticsData = [
     ],
     [ // FM26 Tactics
         { 
+            title: "Le Bris’ Sunderland", 
+            desc: "How Sunderland are statistically wrong. 3rd lowest possession. High shot volume conceded. Yet 6th in the PL.", 
+            img: 'https://pbs.twimg.com/media/G9aj36LawAEqFqy?format=jpg&name=medium', 
+            download: 'https://drive.google.com/drive/folders/1r9CoHTQlW4ZeYtNlkL-ePrW_4Ij_EXEk?usp=sharing', 
+            threadId: '2005970910453600435'
+        },
+        { 
             title: "Arteta's Arsenal", 
             desc: "How Mikel Arteta has transformed Arsenal into one of the most fluid, intelligent, and structurally dominant teams in Europe.", 
             img: 'https://pbs.twimg.com/media/G6wdRufaQAAHPws?format=jpg&name=medium', 
