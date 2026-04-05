@@ -1,0 +1,113 @@
+/* --- FLOATING NAV --- */
+.floating-nav {
+    position: fixed;
+    z-index: 9999;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    padding: 15px 25px;
+
+    background: linear-gradient(
+        to bottom,
+        rgb(250, 243, 255),
+        rgb(217, 212, 221)
+    );
+
+    border-radius: 52px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.226),
+        inset 0 1px 2px rgba(255, 255, 255, 0.6),
+        inset 0 -2px 10px rgba(255, 255, 255, 0.2);
+
+    font-size: 20px;
+}
+
+.floating-nav::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+.floating-nav a:hover {
+    color: rgb(223, 223, 223);
+}
+
+.floating-nav p {
+    margin: 0;
+    padding: 0;
+}
+
+.floating-nav__featured-btn,
+.floating-nav__version-btn {
+    font-size: 28px;
+    background-color: rgba(129, 61, 223, 0.83);
+    padding: 8px 25px;
+    border-radius: 32px;
+    box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.16),
+        inset 0px 0px 20px 8px rgb(181, 138, 243);
+}
+
+.floating-nav__home-btn {
+    background-color: rgba(129, 61, 223, 0.83);
+    padding: 8px 10px;
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.16),
+        inset 0px 0px 20px 8px rgb(181, 138, 243);
+}
+
+.floating-nav__home-icon {
+    margin-bottom: -5px;
+    height: 40px;
+    width: auto;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+.floating-nav__home-icon:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 1000px) {
+    .floating-nav {
+        position: fixed;
+        left: 50%;
+        bottom: 4dvh;
+        width: calc(100vw - 24px);
+        max-width: 310px;
+        height: 50px;
+        gap: 8px;
+    }
+
+    .floating-nav__featured-btn,
+    .floating-nav__version-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+        height: auto;
+        font-size: 25px;
+    }
+
+    .floating-nav__home-btn {
+        width: 40px;
+        height: auto;
+    }
+
+    .floating-nav__home-icon {
+        height: 38px;
+        width: auto;
+    }
+}

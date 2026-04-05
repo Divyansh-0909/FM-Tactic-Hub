@@ -1,0 +1,149 @@
+/* --- EDITION FOLDER CONTAINER --- */
+.folder-wrapper {
+  scroll-snap-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: fit-content;
+  padding: 100px;
+  padding-bottom: 0;
+  transition: opacity 0.4s ease;
+}
+
+.folder-wrapper.folder-wrapper--inactive {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.folder-wrapper::scroll-marker {
+  content: "";
+  height: 0.5em;
+  width: 4em;
+  border-radius: 5em;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.folder-wrapper::scroll-marker:target-current {
+  background-color: rgba(129, 61, 223, 0.83);
+}
+
+/* --- FOLDER CARD --- */
+.folder-card {
+  position: relative;
+  width: 480px;
+  height: 320px;
+  cursor: pointer;
+  transform-origin: bottom;
+  perspective: 3000px;
+  z-index: 10;
+}
+
+/* Back shell (orange folder body) */
+.folder-card__back {
+  background-color: #c76c04e1;
+  width: 100%;
+  height: 100%;
+  transform-origin: top;
+  border-radius: 2rem;
+  border-top-left-radius: 0;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.folder-card__back::after {
+  position: absolute;
+  content: '';
+  bottom: 100%;
+  left: 0;
+  width: 160px;
+  height: 32px;
+  background-color: #c76c04e1;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+
+/* Stacked layer pages inside the folder */
+.folder-layer,
+.folder-layer--3,
+.folder-layer--2,
+.folder-layer--1 {
+  position: absolute;
+  inset: 8px;
+  border-radius: 2rem;
+  border-top-right-radius: 0;
+  transition: all 0.3s ease;
+  transform-origin: bottom;
+  user-select: none;
+}
+
+.folder-layer--3::before,
+.folder-layer--2::before,
+.folder-layer--1::before {
+  position: absolute;
+  content: '';
+  bottom: 99%;
+  right: 0;
+  width: 280px;
+  height: 32px;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+
+.folder-layer--3 { background-color: #3a3a3a; z-index: 2; }
+.folder-layer--3::before { background-color: #3a3a3a; }
+
+.folder-layer--2 { background-color: #2a2a2a; z-index: 3; }
+.folder-layer--2::before { background-color: #2a2a2a; }
+
+.folder-layer--1 { background-color: #1a1a1a; z-index: 4; }
+.folder-layer--1::before { background-color: #1a1a1a; }
+
+/* Front flap (golden gradient cover) */
+.folder-card__front {
+  z-index: 5;
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(to top, #f59f0bc9, #fbbe24c9);
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  transition: all 0.3s ease;
+  transform-origin: bottom;
+  display: flex;
+  align-items: flex-end;
+  box-shadow: inset 0 40px 80px #fbbe24af, inset 0 -40px 80px #d97706b9;
+}
+
+/* --- FOLDER HOVER ANIMATIONS --- */
+.folder-card:hover .folder-card__back {
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
+}
+
+.folder-card:hover .folder-layer--3 { transform: rotateX(-20deg); }
+.folder-card:hover .folder-layer--2 { transform: rotateX(-30deg); }
+.folder-card:hover .folder-layer--1 { transform: rotateX(-38deg); }
+
+.folder-card:hover .folder-card__front {
+  box-shadow: inset 0 40px 80px #fbbf24, inset 0 -40px 80px #d97706;
+  transform: rotateX(-46deg) translateY(2px);
+}
+
+/* --- FOLDER LABEL --- */
+.folder-label {
+  margin: 60px 0px 20px 0px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+  opacity: 0.8;
+  cursor: pointer;
+  color: #000000;
+  transition: color 0.3s ease;
+}
+
+.folder-label:hover {
+  color: rgba(129, 61, 223);
+}

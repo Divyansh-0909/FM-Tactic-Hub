@@ -1,0 +1,16 @@
+.detialed-view{
+    margin: 10px;
+    position:fixed;
+    z-index: 9999;
+    display: flex;
+    background-color: #F6EDFF;
+    width: 99%;
+    height: 92%;
+    border-radius: 60px 60px 0px 0px;
+    bottom: 0;
+    box-shadow: 0px 0px 50px 20px rgba(0, 0, 0, 0.50);
+}
+
+.detialed-view.detialed-view--inactive{
+    display: none;
+}

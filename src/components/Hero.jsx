@@ -2,33 +2,32 @@ import { Link } from "react-router-dom";
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-    
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import './Hero.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function Header(){
+function Header() {
     return (
-        <>
-            <div className="wrapper">
-                <div id="header" className="header">
-                    <Link to="/">FM TACTIC HUB</Link>
-                    <a
+        <div className="site-header-wrapper">
+            <div id="header" className="site-header">
+                <Link to="/">FM TACTIC HUB</Link>
+                <a
                     href="https://x.com/theSlashMethod?s=20"
-                    className="socialMedia"
+                    className="site-header__social-link"
                     target="_blank"
                     rel="noopener noreferrer"
-                    >
+                >
                     THESLASHMETHOD
-                    </a>
-                </div>
+                </a>
             </div>
-        </>
-    )
+        </div>
+    );
 }
 
-function Hero(){
-    const hero=useRef();
+function Hero() {
+    const hero = useRef();
+
     useGSAP(() => {
         if (hero.current.scrollWidth <= window.innerWidth) return;
 
@@ -39,22 +38,21 @@ function Hero(){
                 trigger: hero.current,
                 scrub: 1,
                 pin: true,
-                invalidateOnRefresh: true, 
+                invalidateOnRefresh: true,
             },
         });
     }, { scope: hero });
-        
 
     return (
         <>
-            <Header/>
-                <div ref={hero} className="hero">
-                    <div className="overlay">
+            <Header />
+            <div ref={hero} className="hero-banner">
+                <div className="hero-overlay">
                     <h1>THE HOME OF FOOTBALL MANAGER TACTICS</h1>
-                    </div>
                 </div>
+            </div>
         </>
-    )
+    );
 }
 
 export default Hero;
