@@ -45,7 +45,7 @@ const EditionFolder = ({ prop }) => {
         <div className="folder-card__front" ref={folderFrontRef} />
       </div>
 
-      <h3 className="folder-label" ref={labelRef} onClick={()=>prop.setIsVisible(!prop.isVisible)}>
+      <h3 className="folder-label" ref={labelRef} onClick={()=>prop.handleClick()}>
         {prop.text}
       </h3>
     </section>

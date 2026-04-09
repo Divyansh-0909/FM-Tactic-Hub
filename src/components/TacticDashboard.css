@@ -54,3 +54,35 @@
         margin-top: -1900px;
     }
 }
+
+.edition-detail-panel {
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+}
+
+.edition-detail-panel-btn{
+    padding: 10px 20px;
+    position: absolute;
+    z-index: 99999;
+    border: none;
+    border-radius: 15px;
+    background-color: rgb(176 120 255);
+    color: white;
+    top: 60px;
+    right: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.edition-detail-panel-btn h2{
+    font-size: 20px;
+    margin: 0;
+}
+
+.edition-detail-panel-btn:hover {
+    background-color: black;
+}
+
+
+

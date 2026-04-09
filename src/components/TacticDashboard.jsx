@@ -12,6 +12,7 @@ const folders = [
 function TacticDashboard() {
     const [activeCardId, setActiveCardId] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
+    const [element,setElement]=useState({});
 
     return (
         <>
@@ -28,15 +29,21 @@ function TacticDashboard() {
                                     isActive: activeCardId === folder.id,
                                     isInactive: activeCardId !== null && activeCardId !== folder.id,
                                     onToggle: () => setActiveCardId(activeCardId === folder.id ? null : folder.id),
-                                    setIsVisible: setIsVisible,
-                                    isVisible: isVisible
+                                    handleClick: ()=> {
+                                        setIsVisible(true);
+                                        setElement(data);
+                                    },
                                 }}
                             />
                     );
                 })}
             </div>
         </div>
-        <EditionDetailView prop={{ visibility: isVisible}} />
+        {isVisible && 
+            <div className="edition-detail-panel">
+                <button onClick={()=>setIsVisible(false)} className="edition-detail-panel-btn"><h2>Close</h2></button>
+                <EditionDetailView prop={{data: element}}/>
+            </div>}
         </>
     );
 }

@@ -3,13 +3,13 @@ import { tacticsData } from './tacticData';
 import TacticPreviewList from './TacticPreviewList';
 
 function EditionDetailView(prop){
-    const data = tacticsData.find((t) => t.name === 'Football Manager 24');
+    // const data = tacticsData.find((t) => t.name === 'Football Manager 24');
     return (
         <>
-            <div className={`detialed-view ${prop.visibility? 'detialed-view--inactive': ''}`}>
-                <h2 className='version-title'>Football Manager <span>24</span></h2>
+            <div className={`detialed-view`}>
+                <h2 className='version-title'>{prop.data?.name}</h2>
                 <div className='card-Collection'>
-                    <TacticPreviewList prop={{n: data.arr.length, isVersion: true, arr: data?.arr || [] }} />
+                    <TacticPreviewList prop={{n: prop.data.arr.length, isVersion: true, arr: prop.data?.arr || [] }} />
                 </div>
             </div>
         </>
