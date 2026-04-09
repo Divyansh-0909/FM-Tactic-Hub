@@ -65,42 +65,6 @@
   border-top-right-radius: 2rem;
 }
 
-/* Stacked layer pages inside the folder */
-.folder-layer,
-.folder-layer--3,
-.folder-layer--2,
-.folder-layer--1 {
-  position: absolute;
-  inset: 8px;
-  border-radius: 2rem;
-  border-top-right-radius: 0;
-  transition: all 0.3s ease;
-  transform-origin: bottom;
-  user-select: none;
-}
-
-.folder-layer--3::before,
-.folder-layer--2::before,
-.folder-layer--1::before {
-  position: absolute;
-  content: '';
-  bottom: 99%;
-  right: 0;
-  width: 280px;
-  height: 32px;
-  border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
-}
-
-.folder-layer--3 { background-color: #3a3a3a; z-index: 2; }
-.folder-layer--3::before { background-color: #3a3a3a; }
-
-.folder-layer--2 { background-color: #2a2a2a; z-index: 3; }
-.folder-layer--2::before { background-color: #2a2a2a; }
-
-.folder-layer--1 { background-color: #1a1a1a; z-index: 4; }
-.folder-layer--1::before { background-color: #1a1a1a; }
-
 /* Front flap (golden gradient cover) */
 .folder-card__front {
   z-index: 5;

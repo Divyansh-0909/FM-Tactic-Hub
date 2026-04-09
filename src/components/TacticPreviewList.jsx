@@ -8,7 +8,7 @@ const TacticPreviewList = ({ prop }) => {
       {prop.arr.slice(0, prop.n).map((item, i) => (
         <div
           className={`folder-layer--${prop.isVersion ? 'version' : `${i + 1}`}`}
-          ref={(el) => (prop.Refs.current[i] = el)}
+          ref= {prop.isVersion? null : (el) => (prop.Refs.current[i] = el)}
           key={i}
         >
           <div className="tactic-card">

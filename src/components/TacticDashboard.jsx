@@ -11,7 +11,7 @@ const folders = [
 
 function TacticDashboard() {
     const [activeCardId, setActiveCardId] = useState(null);
-      const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
 
     return (
         <>
@@ -20,23 +20,23 @@ function TacticDashboard() {
                 {folders.map((folder) => {
                     const data = tacticsData.find((t) => t.name === folder.name);
                     return (
-                        <EditionFolder
-                            key={folder.id}
-                            prop={{
-                                text: folder.name,
-                                tactics: data?.arr || [],
-                                isActive: activeCardId === folder.id,
-                                isInactive: activeCardId !== null && activeCardId !== folder.id,
-                                onToggle: () => setActiveCardId(activeCardId === folder.id ? null : folder.id),
-                                setIsVisible: setIsVisible,
-                                isVisible: isVisible
-                            }}
-                        />
+                            <EditionFolder
+                                key={folder.id}
+                                prop={{
+                                    text: folder.name,
+                                    tactics: data?.arr || [],
+                                    isActive: activeCardId === folder.id,
+                                    isInactive: activeCardId !== null && activeCardId !== folder.id,
+                                    onToggle: () => setActiveCardId(activeCardId === folder.id ? null : folder.id),
+                                    setIsVisible: setIsVisible,
+                                    isVisible: isVisible
+                                }}
+                            />
                     );
                 })}
             </div>
         </div>
-        {/* <EditionDetailView prop={{ visibility: isVisible}} /> */}
+        <EditionDetailView prop={{ visibility: isVisible}} />
         </>
     );
 }
