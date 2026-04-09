@@ -12,10 +12,14 @@ const folders = [
 function TacticDashboard() {
     const [activeCardId, setActiveCardId] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
-    const [element,setElement]=useState({});
+    const [element,setElement]=useState();
 
     return (
         <>
+        <div id="featured" className="featured-tactic-section">
+            
+        </div>
+
         <div id="version" className="tactic-section">
             <div className="folders-carousel">
                 {folders.map((folder) => {
@@ -39,11 +43,11 @@ function TacticDashboard() {
                 })}
             </div>
         </div>
-        {isVisible && 
-            <div className="edition-detail-panel">
-                <button onClick={()=>setIsVisible(false)} className="edition-detail-panel-btn"><h2>Close</h2></button>
-                <EditionDetailView prop={{data: element}}/>
-            </div>}
+        
+        <div className={`edition-detail-panel ${isVisible? 'open': ''}`}>
+            <button onClick={()=>setIsVisible(false)} className="edition-detail-panel-btn"><h2>X</h2></button>
+            <EditionDetailView prop={{element: element}}/>
+        </div>
         </>
     );
 }

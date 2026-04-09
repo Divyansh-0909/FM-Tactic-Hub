@@ -55,33 +55,49 @@
     }
 }
 
-.edition-detail-panel {
+.edition-detail-panel{
+    opacity: 0;
+    visibility: hidden;
+    translate: 0px -1000px;
+    transition: all 0.5ms ease;
+}
+
+.edition-detail-panel.open {
     position: fixed;
     z-index: 9999;
     inset: 0;
+    opacity: 1;
+    visibility: visible;
+    translate: 0px 0px;
+    transition: all 0.5ms ease;
 }
 
 .edition-detail-panel-btn{
-    padding: 10px 20px;
+    width: 65px;
+    height: 65px;
     position: absolute;
     z-index: 99999;
     border: none;
-    border-radius: 15px;
+    border-radius: 100px;
     background-color: rgb(176 120 255);
     color: white;
-    top: 60px;
-    right: 30px;
+    bottom: 3vh;
+    border: 2px solid rgb(198, 158, 255);
+    right: 50%;
+    left: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .edition-detail-panel-btn h2{
-    font-size: 20px;
+    font-size: 32px;
     margin: 0;
 }
 
 .edition-detail-panel-btn:hover {
+    border: 2px solid rgb(53, 45, 65);
     background-color: black;
+    color:  rgb(176 120 255);
 }
 
 

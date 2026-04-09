@@ -1,5 +1,4 @@
 .detialed-view{
-    margin: 0vw 0.4vw;
     position:fixed;
     z-index: 9999;
     display: flex;
@@ -9,7 +8,7 @@
     background: linear-gradient(
         to bottom,
         #F6EDFF,
-        rgb(214, 207, 219)
+        rgb(217, 205, 224)
     );
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-bottom: 0px;
@@ -18,18 +17,16 @@
     height: 96%;
     bottom: 0;
     box-shadow: 0px 0px 50px 20px rgba(0, 0, 0, 0.589);
+    transition: opacity 0.5 ease;
 }
+
 
 .detialed-view::-webkit-scrollbar{
     display: none;
 }
 
-.detialed-view--inactive{
-    display: none;
-}
-
 .version-title{
-    margin-top: 4vh;
+    margin: 4vh 0vh 8vh 0vh;
     font-size: 7rem;
 }
 
@@ -39,7 +36,7 @@
 
 .card-Collection{
     padding: 0 0 4vh 0;
-    scale: 1.1;
+    scale: 1.15;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
