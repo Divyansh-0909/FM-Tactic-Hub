@@ -64,24 +64,28 @@ a {
 }
 
 a:hover {
-    color: rgb(176 120 255);
+    color: rgb(128, 61, 223);
 }
 
 .full-page-loader {
+  position: fixed;
+  inset: 0;
+  background-color: #151E2E;
   display: flex;
+  align-items: center;
   justify-content: center;
-  position: relative;       
+  z-index: 9999;
 }
 
-.full-page-loader h1 {
-  position: absolute;
-  top: 28vh;
-  font-size: 12vw;           
-  font-weight: 900;
-  letter-spacing: -1px;
-  transform: scaleX(1.3);
-  background: linear-gradient(to left, #DDCAF8, rgb(128, 61, 223));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.spinner {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 10px solid rgba(128, 61, 223, 0.15);
+  border-top-color: rgb(128, 61, 223);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }

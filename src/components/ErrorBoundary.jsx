@@ -16,7 +16,7 @@ const styles = {
     fontSize: 'clamp(2rem, 8vw, 10rem)',
     fontWeight: 900,
     margin: 0,
-    background: 'linear-gradient(to right, #DDCAF8, rgb(128, 61, 223))',
+    background: 'linear-gradient(to left, #DDCAF8, rgb(128, 61, 223))',
     WebkitBackgroundClip: 'text',
     backgroundClip: 'text',
     color: 'transparent',
@@ -52,15 +52,15 @@ const styles = {
   button: {
     marginTop: '8px',
     padding: '12px 36px',
-    backgroundColor: 'rgba(129, 61, 223, 0.83)',
+    background: 'linear-gradient(5deg,rgb(68, 27, 126),rgb(93, 39, 168),rgb(128, 61, 223),#d4b5ff)',
+    boxShadow: 'inset 0px 0px 10px #bf96f84d',
     color: 'white',
     border: 'none',
     borderRadius: '32px',
     fontFamily: 'SöhneKraftig, sans-serif',
     fontSize: '1.5rem',
     cursor: 'pointer',
-    boxShadow: '0px 6px 10px rgba(0,0,0,0.16), inset 0px 0px 15px 5px rgba(182, 138, 243, 0.58)',
-    transition: 'opacity 0.3s ease',
+    transition: 'all 0.3s ease',
   }
 };
 
@@ -95,8 +95,16 @@ class ErrorBoundary extends Component {
           </div>
           <button
             style={styles.button}
-            onMouseEnter={e => e.target.style.opacity = 0.8}
-            onMouseLeave={e => e.target.style.opacity = 1}
+            onMouseEnter={e => {
+              e.target.style.background = 'linear-gradient(5deg,rgb(212, 212, 212))'
+              e.target.style.color = 'rgb(128, 61, 223)'
+              e.target.style.boxShadow = 'inset 0px 0px 5px 1px #ffffff'
+            }}
+            onMouseLeave={e => {
+              e.target.style.background = 'linear-gradient(5deg,rgb(68, 27, 126),rgb(93, 39, 168),rgb(128, 61, 223),#d4b5ff)'
+              e.target.style.color = 'white'
+              e.target.style.boxShadow = 'inset 0px 0px 10px #bf96f84d'
+            }}
             onClick={() => window.location.reload()}
           >
             Reload

@@ -1,6 +1,5 @@
 .tactic-section{
     background-color: #F6EDFF;
-
     view-timeline-name: --sectionTimeline;
     view-timeline-axis: block;
     animation: tactic-section-fade-in 1s linear both;
@@ -15,49 +14,170 @@
 
 .featured-tactic-section{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 220px 130px;
+    padding: 20px 0px 100px 0px;
+    gap: 5vh;
 }
 
-.featured-tactic-section--thumbnails img{
-    display: block;
-    width: 30vw;
-    height: auto;
+.featured-tactic-section h1{
+    font-size: 10rem;
 }
 
-.featured-tactic-section--thumbnails.imgInctive img{
-    display: none;
+.featured-tactic-section--cards{
+    display: flex;
+    justify-content: center;
+    scale: 1.1;
 }
 
-.featured-tactic-section--heading ul{
+.featured-tactic-section--thumbnails{
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 25.5vw;
+    gap: 10px;
+    margin: 0px -70px;
+    padding: 2vh 10vw;
+    border-radius: 60px;
+    border-top-right-radius: 0;
+    z-index: 1;
+    border: 2px solid rgba(99, 99, 99, 0.37);
+    box-shadow: 0px 40px 95px rgba(0, 0, 0, 0.5);
+    border-bottom: none;
+    background: linear-gradient(to top, rgba(0, 0, 0, 1), rgb(49, 38, 65,1));
+    transition: all 0.3s ease;
+}
+
+.featured-tactic-section--thumbnails::before {
+  position: absolute;
+  content: '';
+  bottom: 100%;
+  right: -2.2px;
+  width: 280px;
+  border: 2px solid rgba(99, 99, 99, 0.37);
+  border-bottom: none;
+  height: 5vh;
+  border-top-left-radius: 3rem;
+  background-color:rgb(49, 38, 65,1);
+  border-top-right-radius: 3rem;
+}
+
+.featured-tactic-section--thumbnails:hover{
+    z-index: 1;
+    scale: 1.05;
+    translate: 0px -60px;
+}
+
+#recent{
+    transform: translateY(-10px);
+}
+
+#standOut{
+    transform: rotateZ(-10deg) translateY(30px);
+}
+
+#topRated{
+    transform: rotateZ(10deg) translateY(30px);
+}
+
+.featured-tactic-section--thumbnails.inactiveImg{
+    box-shadow: none;
+    z-index: 0;
+    scale: 0.95;
+    filter: grayscale(90%) contrast(0.8) brightness(1.1);
+    transform: translateZ(0px);
+}
+
+.featured-tactic-section--thumbnails a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12vw;
+    height: 5vh;
+    background: linear-gradient(5deg,rgb(68, 27, 126),rgb(93, 39, 168),rgb(128, 61, 223),#d4b5ff);
+    box-shadow: inset 0px 0px 10px #bf96f84d;
+    border-radius: 60px;
+    font-size: 1.8rem;
+    margin: 5px;
+    color: white;
     font-family: "SöhneKraftig";
-    font-weight: bold;
-    font-size: 8rem;
+    font-weight: normal;
+    cursor: pointer;
+    transition: all 0.3 ease;
+}
+
+.featured-tactic-section--thumbnails h3{
+    top: -45px;
+    right: -50px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 20vw;
+    color: white;
+    font-size: 2.1rem;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.featured-tactic-section--thumbnails a:hover{
+    background: linear-gradient(5deg,rgb(212, 212, 212));
+    color: rgb(128, 61, 223);
+    box-shadow: inset 0px 0px 5px 3px #ffffff;
+}
+
+.featured-tactic-section--thumbnails h2{
     margin: 0;
     padding: 0;
 }
 
-.featured-tactic-section--heading li{
-    list-style: none;
-    margin: 12px;
+.featured-tactic-section--thumbnails img{
+    display: block;
+    width: 23.5vw;
+    height: auto;
+    border-radius: 40px;
+}
+
+.featured-tactic-section--heading{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.featured-tactic-section--heading ul{
+    display: flex;
+    justify-content: space-evenly;
+    font-family: "SöhneKraftig";
+    font-weight: bold;
+    font-size: 4rem;
+    margin: 0;
     padding: 0;
-    transition: color 0.3s ease;
+    gap: 11vw;
+}
+
+.featured-tactic-section--heading li{
+    display: flex;
+    justify-content: center;
+    width: 20vw;
+    list-style: none;
+    padding: 0;
+    transition: all 0.3s ease;
     cursor: pointer;
 }
 
-.featured-tactic-section--heading li:hover{
-    color: rgb(176 120 255);
-}
-
-.featured-tactic-section--heading li.active{
-    color: rgb(176 120 255);
-}
-
 /* --- TACTIC DASHBOARD / VERSION SECTION --- */
+.version-heading{
+    position: absolute;
+    font-size: 40rem;
+    margin: 0;
+}
+
 .version-tactic-section {
     width: 100%;
-    padding: 150px 0px 250px 0px;
+    padding: 250px 0px 250px 0px;
     z-index: -2;
     transform: translateZ(0);
     display: flex;
@@ -103,7 +223,7 @@
     opacity: 0;
     visibility: hidden;
     translate: 0px -1000px;
-    transition: all 0.5ms ease;
+    transition: all 0.3 ease;
 }
 
 .edition-detail-panel.open {
@@ -113,24 +233,25 @@
     opacity: 1;
     visibility: visible;
     translate: 0px 0px;
-    transition: all 0.5ms ease;
+    transition: all 0.3 ease;
 }
 
 .edition-detail-panel-btn{
+    opacity: 0.96;
     width: 65px;
     height: 65px;
     position: absolute;
     z-index: 99999;
-    border: none;
-    border-radius: 100px;
-    background-color: rgb(176 120 255);
+    background: linear-gradient(5deg,rgb(68, 27, 126),rgb(93, 39, 168),rgb(128, 61, 223),#d4b5ff);
+    box-shadow: inset 0px 0px 10px #bf96f84d;
+    border-radius: 60px;
     color: white;
     bottom: 3vh;
-    border: 2px solid rgb(198, 158, 255);
+    border: none;
     right: 50%;
     left: 50%;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3 ease;
 }
 
 .edition-detail-panel-btn h2{
@@ -139,9 +260,9 @@
 }
 
 .edition-detail-panel-btn:hover {
-    border: 2px solid rgb(53, 45, 65);
-    background-color: black;
-    color:  rgb(176 120 255);
+    background: linear-gradient(5deg,rgb(212, 212, 212));
+    color: rgb(128, 61, 223);
+    box-shadow: inset 0px 0px 5px 1px #ffffff;
 }
 
 
