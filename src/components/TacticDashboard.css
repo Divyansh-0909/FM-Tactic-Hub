@@ -1,13 +1,5 @@
-/* --- TACTIC DASHBOARD / VERSION SECTION --- */
-.tactic-section {
-    width: 100%;
-    padding: 150px 0px;
-    z-index: -2;
-    transform: translateZ(0);
+.tactic-section{
     background-color: #F6EDFF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
     view-timeline-name: --sectionTimeline;
     view-timeline-axis: block;
@@ -19,6 +11,58 @@
 @keyframes tactic-section-fade-in {
     from { background-color: transparent; }
     to   { background-color: #F6EDFF; }
+}
+
+.featured-tactic-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 220px 130px;
+}
+
+.featured-tactic-section--thumbnails img{
+    display: block;
+    width: 30vw;
+    height: auto;
+}
+
+.featured-tactic-section--thumbnails.imgInctive img{
+    display: none;
+}
+
+.featured-tactic-section--heading ul{
+    font-family: "SöhneKraftig";
+    font-weight: bold;
+    font-size: 8rem;
+    margin: 0;
+    padding: 0;
+}
+
+.featured-tactic-section--heading li{
+    list-style: none;
+    margin: 12px;
+    padding: 0;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.featured-tactic-section--heading li:hover{
+    color: rgb(176 120 255);
+}
+
+.featured-tactic-section--heading li.active{
+    color: rgb(176 120 255);
+}
+
+/* --- TACTIC DASHBOARD / VERSION SECTION --- */
+.version-tactic-section {
+    width: 100%;
+    padding: 150px 0px 250px 0px;
+    z-index: -2;
+    transform: translateZ(0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* --- FOLDERS CAROUSEL --- */

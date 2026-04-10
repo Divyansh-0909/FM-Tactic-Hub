@@ -1,4 +1,34 @@
 export const tacticsData = [
+    {name: 'Football Manager 26', arr: [
+        { 
+            title: "Le Bris’ Sunderland", 
+            desc: "How Sunderland are statistically wrong. 3rd lowest possession. High shot volume conceded. Yet 6th in the PL.", 
+            img: 'https://pbs.twimg.com/media/G9aj36LawAEqFqy?format=jpg&name=medium', 
+            download: 'https://drive.google.com/drive/folders/1r9CoHTQlW4ZeYtNlkL-ePrW_4Ij_EXEk?usp=sharing', 
+            threadId: '2005970910453600435'
+        },
+        { 
+            title: "Arteta's Arsenal", 
+            desc: "How Mikel Arteta has transformed Arsenal into one of the most fluid, intelligent, and structurally dominant teams in Europe.", 
+            img: 'https://pbs.twimg.com/media/G6wdRufaQAAHPws?format=jpg&name=medium', 
+            download: 'https://drive.google.com/drive/folders/1KxcZi9KmNTlb-zEEcel8FgM9CVKYkzBJ?usp=sharing', 
+            threadId: '1994000969001304158'
+        },
+        { 
+            title: "Kompany's FCB", 
+            desc: "This analysis explores his innovative 4-2-3-1 that morphs into fluid structures.", 
+            img: 'https://pbs.twimg.com/media/G5ZL3nDbIAAkjrx?format=jpg&name=medium', 
+            download: 'https://drive.google.com/drive/folders/1i1YQraofQ5J8n2VUmDn1MnpZHWRweYcw?usp=sharing', 
+            threadId: '1987859799141396769'
+        },
+        { 
+            title: "Romeu's Barca", 
+            desc: "A detailed tactical breakdown of FC Barcelona Femení under Pere Romeu, how he preserved Juego de Posición", 
+            img: 'https://i.postimg.cc/mZyVMDL7/FM-Tactics.png', 
+            download: 'https://drive.google.com/drive/folders/12kdpSKzYmIurJjw3skPiAKDWrnpyNHH6?usp=drive_link', 
+            threadId: '1982018806009479343'
+        }
+    ]},
     {name: 'Football Manager 24', arr: [
         { 
             title: 'The Pep Manual', 
@@ -47,34 +77,4 @@ export const tacticsData = [
             threadId: '1934572652225511464'
         }
     ]},
-    {name: 'Football Manager 26', arr: [ // FM26 Tactics
-        { 
-            title: "Le Bris’ Sunderland", 
-            desc: "How Sunderland are statistically wrong. 3rd lowest possession. High shot volume conceded. Yet 6th in the PL.", 
-            img: 'https://pbs.twimg.com/media/G9aj36LawAEqFqy?format=jpg&name=medium', 
-            download: 'https://drive.google.com/drive/folders/1r9CoHTQlW4ZeYtNlkL-ePrW_4Ij_EXEk?usp=sharing', 
-            threadId: '2005970910453600435'
-        },
-        { 
-            title: "Arteta's Arsenal", 
-            desc: "How Mikel Arteta has transformed Arsenal into one of the most fluid, intelligent, and structurally dominant teams in Europe.", 
-            img: 'https://pbs.twimg.com/media/G6wdRufaQAAHPws?format=jpg&name=medium', 
-            download: 'https://drive.google.com/drive/folders/1KxcZi9KmNTlb-zEEcel8FgM9CVKYkzBJ?usp=sharing', 
-            threadId: '1994000969001304158'
-        },
-        { 
-            title: "Kompany's FCB", 
-            desc: "This analysis explores his innovative 4-2-3-1 that morphs into fluid structures.", 
-            img: 'https://pbs.twimg.com/media/G5ZL3nDbIAAkjrx?format=jpg&name=medium', 
-            download: 'https://drive.google.com/drive/folders/1i1YQraofQ5J8n2VUmDn1MnpZHWRweYcw?usp=sharing', 
-            threadId: '1987859799141396769'
-        },
-        { 
-            title: "Romeu's Barca", 
-            desc: "A detailed tactical breakdown of FC Barcelona Femení under Pere Romeu, how he preserved Juego de Posición", 
-            img: 'https://i.postimg.cc/mZyVMDL7/FM-Tactics.png', 
-            download: 'https://drive.google.com/drive/folders/12kdpSKzYmIurJjw3skPiAKDWrnpyNHH6?usp=drive_link', 
-            threadId: '1982018806009479343'
-        }
-    ]}
 ];
