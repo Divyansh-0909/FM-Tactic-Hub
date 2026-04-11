@@ -6,7 +6,14 @@ function EditionDetailView({prop}){
     return (
         <>
             <div className={`detialed-view`}>
-                <h2 className='version-title'>Football Manager <span>{title?.slice(-2)}</span></h2>
+                <div className="version-title">
+                    <h1>FM<span>{title?.slice(-2)}</span></h1>
+                    <p>
+                        Every tactic. Every formation. <br />
+                        One edition. One place. <br />
+                        Download or read the full thread on X.
+                    </p>
+                </div>
                 <div className='card-Collection'>
                     <TacticPreviewList prop={{n: prop.element?.arr.length, isVersion: true, arr: prop.element?.arr || [] }} />
                 </div>

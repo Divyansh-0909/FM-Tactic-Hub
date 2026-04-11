@@ -10,7 +10,7 @@
   height: fit-content;
   padding: 100px;
   padding-bottom: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.3s ease;
 }
 
 .folder-wrapper.folder-wrapper--inactive {
@@ -20,14 +20,15 @@
 
 .folder-wrapper::scroll-marker {
   content: "";
-  height: 0.5em;
-  width: 4em;
+  height: 0.6em;
+  width: 0.6em;
   border-radius: 5em;
   background-color: rgba(0, 0, 0, 0.3);
 }
 
 .folder-wrapper::scroll-marker:target-current {
   background-color: rgb(122, 52, 219);
+  width: 3em;
 }
 
 /* --- FOLDER CARD --- */
