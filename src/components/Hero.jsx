@@ -26,14 +26,14 @@ function Hero() {
     }, { scope: hero });
 
     return (
-        <>
+        <header>
             <Header/>
             <div ref={hero} className="hero-banner">
                 <div className="hero-overlay">
                     <h1>THE HOME OF FOOTBALL MANAGER TACTICS</h1>
                 </div>
             </div>
-        </>
+        </header>
     );
 }
 

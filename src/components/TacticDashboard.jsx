@@ -4,6 +4,7 @@ import EditionFolder from "./EditionFolder";
 import './TacticDashboard.css';
 import EditionDetailView from './EditionDetailView';
 import clipIcon from "../assets/Images/clip.png";
+import { HoverText } from "./HoverText";
 
 const folders = [
     { name: 'Football Manager 26', id: crypto.randomUUID() },
@@ -85,7 +86,7 @@ function TacticDashboard() {
             </div>
 
 
-            <div className="version-heading">
+            <div id='version' className="version-heading">
                 <div>
                     <img src={clipIcon} alt="clip emoji" />
                     <h1>EDITIONS</h1>
