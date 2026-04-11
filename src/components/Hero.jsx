@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import './Hero.css';
+import Header from '../components/Header.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,6 +27,7 @@ function Hero() {
 
     return (
         <>
+            <Header/>
             <div ref={hero} className="hero-banner">
                 <div className="hero-overlay">
                     <h1>THE HOME OF FOOTBALL MANAGER TACTICS</h1>

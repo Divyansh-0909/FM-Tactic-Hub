@@ -1,0 +1,142 @@
+.installation-section{
+    background: linear-gradient(to top,#0a0a0a,#2e2b2b 15%,#F6EDFF,#F6EDFF);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 10vh;
+    padding: 20vh 5vw;
+}
+
+.folder-open {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 80vw;
+  height: 90vh;
+}
+
+/* --- Left panel (folder back) --- */
+.folder-open__back {
+  position: relative;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(to bottom, #ca8205, #dfa209);
+  border-radius: 0;
+  box-shadow: inset 0 40px 80px #fbbe24af, inset 0 -40px 80px #d97706b9, 0 0 100px rgba(0, 0, 0, 0.3);
+}
+
+.folder-open__back::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -55px;
+  width: 4vw;
+  height: 35vh;
+  background: linear-gradient(to bottom, #e6a708,#e2940d,#da8d09,#da8d09, #df920c,#df920c);
+  border-radius: 4rem 0rem 0rem 2rem;
+}
+
+.folder-open__back::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -55px;
+  width: 4vw;
+  height: 35vh;
+  background: linear-gradient(to bottom, #e2940d,#e29510,#d89d07,#df920c);
+  border-radius: 2rem 0rem 0rem 4rem;
+}
+
+/* --- Right panel (folder front flap) --- */
+.folder-open__front {
+  position: relative;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(to bottom, #ca8205, #dfa209);
+  border-radius: 0rem 4rem 4rem 0rem;
+  box-shadow: inset 0 40px 80px #fbbe24af, inset 0 -40px 80px #d97706b9,0 0 100px rgba(0, 0, 0, 0.3);
+  border-left: 1px solid rgba(0, 0, 0, 1);
+}
+/* right side tab */
+.folder-open__front::before {
+  content: '';
+  position: absolute;
+  top: 40%;
+  right: -14px;
+  width: 4vw;
+  height: 20vh;
+  background: #e8c84a;
+  border-radius: 0.5rem 1rem 1rem 0.5rem;
+}
+
+/* --- Paper/document inside --- */
+.folder-open__paper {
+  position: absolute;
+  box-sizing: border-box;
+  top: -1.5vh;
+  right: 4vw;
+  z-index: 1;
+  width: 120%;
+  height: 103%;
+  rotate: 5deg;
+  background: #f0f0f0;
+  border-radius: 2px;
+  box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+  padding: 3vh 3vw;
+  border: 25px solid  #f0f0f0;;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 27px,
+    #bfc0c0 27px,
+    #b8b9b9 28px
+  );
+
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.folder-open__paper h1{
+    font-size: 7.5rem;
+    margin: 0;
+}
+
+.folder-open__paper ul{
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.folder-open__paper li{
+    margin: 2vh 0;
+}
+
+.folder-open__paper span{
+    font-weight: 900;
+}
+
+
+.folder-open__paper-blank{
+  position: absolute;
+  box-sizing: border-box;
+  top: -1.5vh;
+  right: 4vw;
+  z-index: 1;
+  width: 120%;
+  height: 103%;
+  rotate: 0deg;
+  background:  #f0f0f0;
+  border-radius: 2px;
+  box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+  border: 20px solid  #f0f0f0;;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 27px,
+    #bfc0c0 27px,
+    #b8b9b9 28px
+  );
+}

@@ -4,13 +4,14 @@
     view-timeline-axis: block;
     animation: tactic-section-fade-in 1s linear both;
     animation-timeline: --sectionTimeline;
-    animation-range: entry 10% entry 100%;
+    animation-range: entry 10% entry 70%;
 }
 
 @keyframes tactic-section-fade-in {
     from { background-color: transparent; }
     to   { background-color: #F6EDFF; }
 }
+
 
 .featured-tactic-section{
     display: flex;
