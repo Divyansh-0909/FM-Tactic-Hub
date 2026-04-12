@@ -19,7 +19,7 @@ const TacticPreviewList = ({ prop }) => {
                   <img className="tactic-card__image" src={item.img} alt="Thumbnail" />
                 </div>
                 <div className="tactic-card__meta">
-                  <div>
+                  <div className="tactic-card_desc">
                     <p>Mentality: <br /> {item.mentality}</p>
                     <p>In Possession: <br /> {item.ip}</p>
                     <p>Out of Possession: <br /> {item.op}</p>
