@@ -274,12 +274,6 @@
     display: none;
 }
 
-@media (max-width: 1000px) {
-    .tactic-section {
-        margin-top: -1900px;
-    }
-}
-
 .edition-detail-panel{
     display: flex;
     flex-direction: column;
@@ -330,5 +324,244 @@
     box-shadow: inset 0px 0px 5px 1px #ffffff,0px 4px 0px rgba(0, 0, 0, 0.35);
 }
 
+/* Tablet */
+@media (max-width: 1024px) {
+ 
+    /* --- Spotlight --- */
+    .featured-tactic-section .mount {
+        width: 3vw;
+    }
+ 
+    .featured-tactic-section .arm {
+        width: 40vw;
+    }
+ 
+    .featured-tactic-section h1 {
+        font-size: 7rem;
+        margin-top: -3.5vh;
+        margin-bottom: 5vh;
+    }
+ 
+    /* --- Cards --- */
+    .featured-tactic-section--cards {
+        scale: 1;
+        gap: 0;
+        width: 100%;
+        padding: 0 2vw;
+        box-sizing: border-box;
+    }
+ 
+    .featured-tactic-section--thumbnails {
+        width: 32vw;
+        margin: 0 -50px;
+        padding: 2vh 6vw;
+        border-radius: 40px;
+        border-top-right-radius: 0;
+    }
+ 
+    .featured-tactic-section--thumbnails img {
+        width: 30vw;
+        border-radius: 28px;
+    }
+ 
+    .featured-tactic-section--thumbnails a {
+        width: 18vw;
+        font-size: 1.4rem;
+        height: 4.5vh;
+    }
+ 
+    .featured-tactic-section--thumbnails h3 {
+        font-size: 1.6rem;
+        width: 26vw;
+        top: -38px;
+        right: -30px;
+    }
+ 
+    .featured-tactic-section--thumbnails::before {
+        width: 200px;
+    }
+ 
+    /* --- Version heading --- */
+    .version-heading {
+        gap: 8vw;
+        margin-top: 14vh;
+    }
+ 
+    .version-heading h1 {
+        font-size: 7rem;
+    }
+ 
+    .version-heading img {
+        width: 10vw;
+    }
+ 
+    .version-heading p {
+        font-size: 1.2rem;
+    }
+ 
+    /* --- Carousel --- */
+    .folders-carousel {
+        scale: 1;
+        padding: 0 calc(50% - 200px);
+    }
+ 
+    .folders-carousel::scroll-marker-group {
+        width: 480px;
+        height: 600px;
+    }
+ 
+    /* --- Edition panel button --- */
+    .edition-detail-panel-btn {
+        width: 56px;
+        height: 56px;
+    }
+ 
+    .edition-detail-panel-btn h2 {
+        font-size: 26px;
+    }
+}
+ 
+ 
+/* Mobile */
+@media (max-width: 580px) {
+ 
+    /* --- Spotlight --- */
+    .featured-tactic-section {
+        padding: 10px 0 60px 0;
+        gap: 0.5vh;
+    }
+ 
+    .featured-tactic-section .spotlight {
+        margin-top: 6vh;
+    }
+ 
+    .featured-tactic-section .mount {
+        width: 4.5vw;
+        height: 6vh;
+        border-radius: 8px;
+    }
+ 
+    .featured-tactic-section .arm {
+        width: 62vw;
+        height: 5vh;
+        transform: perspective(40px) rotateX(8deg) scaleX(1.1);
+        border-radius: 300px 300px 70px 70px;
+    }
+ 
+    .featured-tactic-section h1 {
+        font-size: 5.8rem;
+        margin-top: -2.5vh;
+        margin-bottom: 4vh;
+    }
+ 
+    /* Cards stack vertically */
+    .featured-tactic-section--cards {
+        flex-direction: column;
+        align-items: center;
+        transform-origin: center center;
+        scale: 1;
+        width: 100%;
+        gap: 7vh;
+        padding: 2vh 6vw;
+        box-sizing: border-box;
+    }
+ 
+    .featured-tactic-section--thumbnails {
+        width: 80vw;
+        transform-origin: center center;
+        margin: 0;
+        padding: 2vh 8vw;
+        border-radius: 32px;
+        border-top-right-radius: 0px;
+        gap: 1vh;
+    }
+ 
+    #standOut,
+    #topRated {
+        transform: none;
+        translate: 0;
+    }
+ 
+    .featured-tactic-section--thumbnails img {
+        width: 72vw;
+        border-radius: 20px;
+    }
+ 
+    .featured-tactic-section--thumbnails a {
+        width: 48vw;
+        height: 5vh;
+        font-size: 1.4rem;
+    }
+ 
+    .featured-tactic-section--thumbnails h3 {
+        top: -37px;
+        right: 40px;
+        width: 30vw;
+    }
+ 
+    .featured-tactic-section--thumbnails.inactiveImg {
+        scale: 0.95;
+    }
+ 
+    .featured-tactic-section p {
+        font-size: 1.1rem;
+        margin: 2vh 4vw 0;
+    }
+ 
+    /* Version heading stack vertically */
+    .version-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0vh;
+        margin-top: 10vh;
+        padding: 0 6vw;
+        position: relative;
+    }
+ 
+    .version-heading img {
+        position: absolute;
+        width: 16vw;
+        left: -0.5vw;
+        top: -1.5vh;
+        height: auto;
+    }
+ 
+    .version-heading h1 {
+        font-size: 7.5rem;
+        line-height: 1;
+    }
+ 
+    .version-heading p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+ 
+    /* Version Carousel */
+    .version-tactic-section {
+        padding: 8vh 0 12vh 0;
+    }
+ 
+    .folders-carousel {
+        width: 100%;
+        padding: 0;
+    }
+ 
+    .folders-carousel::scroll-marker-group {
+        width: 340px;
+        height: 42vh;
+    }
+ 
+    /* --- Edition detail panel close button --- */
+    .edition-detail-panel-btn {
+        width: 48px;
+        height: 48px;
+        bottom: 2vh;
+    }
+ 
+    .edition-detail-panel-btn h2 {
+        font-size: 22px;
+    }
+}
+ 
 
 
