@@ -55,7 +55,7 @@
     margin-top: -4vh;
     margin-bottom: 7vh;
     font-size: 9rem;
-    transform: perspective(70px) rotateX(8deg) scaleX(1.1);
+    transform: perspective(90px) rotateX(8deg) scaleX(1.1);
     transform-origin: top bottom;
     cursor: alias;
     transition: all 0.3s ease;
