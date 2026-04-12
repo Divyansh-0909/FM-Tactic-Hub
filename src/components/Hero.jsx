@@ -18,7 +18,7 @@ function Hero() {
             const overflow = hero.current.scrollWidth - window.innerWidth;
 
             // Start the banner left aligned
-            gsap.set(hero.current, { x: 0 });
+            gsap.set(hero.current, { x: -200 });
 
             gsap.to(hero.current, {
                 x: -overflow,
@@ -41,7 +41,7 @@ function Hero() {
                 ease: "none",
                 scrollTrigger: {
                     trigger: hero.current,
-                    scrub: 1,
+                    scrub: 2,
                     pin: true,
                     invalidateOnRefresh: true,
                 },

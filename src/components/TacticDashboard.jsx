@@ -12,13 +12,14 @@ const folders = [
 ];
 
 function TacticDashboard() {
+    const isMobile = window.matchMedia('(max-width: 580px)').matches;
     const [activeCardId, setActiveCardId] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
     const [element,setElement]=useState();
     const recent=tacticsData[0].arr[0];
     const topRated=tacticsData[1].arr[3];
     const standOut=tacticsData[0].arr[2];
-    const [selected,setSelected]=useState(recent);
+    const [selected,setSelected]=useState(isMobile ? topRated : recent);
     const [light,setLight]=useState(false)
     const carouselRef = useRef();
     const isDragging = useRef(false);
