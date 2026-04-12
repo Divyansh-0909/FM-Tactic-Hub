@@ -407,7 +407,7 @@
  
     .folders-carousel::scroll-marker-group {
         width: 480px;
-        height: 600px;
+        height: 650px;
     }
  
     /* --- Edition panel button --- */
@@ -442,7 +442,7 @@
     }
  
     .featured-tactic-section .arm {
-        width: 62vw;
+        width: 64vw;
         height: 5vh;
         transform: perspective(40px) rotateX(8deg) scaleX(1.1);
         border-radius: 300px 300px 70px 70px;
@@ -548,18 +548,19 @@
  
     .folders-carousel::scroll-marker-group {
         width: 340px;
-        height: 42vh;
+        height: 30vh;
     }
  
     /* --- Edition detail panel close button --- */
     .edition-detail-panel-btn {
-        width: 48px;
-        height: 48px;
-        bottom: 2vh;
+        width: 60px;
+        height: 60px;
+        bottom: 3vh;
+        left: 45%;
     }
  
     .edition-detail-panel-btn h2 {
-        font-size: 22px;
+        font-size: 2rem;
     }
 }
  

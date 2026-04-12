@@ -314,7 +314,7 @@ footer span{
     .folder-open {
         padding-left: 5vw;
         width: 80vw;
-        height: 42vh;
+        height: 41vh;
     }
 
     .folder-open__back {
@@ -358,7 +358,7 @@ footer span{
         right: 2vw;
         top: 0.5vh;
         width: 66vw;
-        height: 41vh;
+        height: 40vh;
         border-width: 14px;
         rotate: 3deg;
         padding: 1vh 1vw;

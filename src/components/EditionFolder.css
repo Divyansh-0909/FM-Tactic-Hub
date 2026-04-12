@@ -112,10 +112,38 @@
   color: rgb(122, 52, 219);
 }
 
+/* Tablet */
+@media (max-width: 1024px){
+  .folder-wrapper {
+        scale: 1;
+        height: 110vh;
+        /* Allow cards to spread outside the wrapper vertically when active */
+        overflow: visible;
+    }
+    .folders-carousel {
+        overflow-x: auto;
+        overflow-y: visible;
+        margin-left: -8vw;
+        margin-top: -38vh;
+        margin-bottom: -45vh;
+    }
+
+}
+
 @media (max-width: 580px) {
-    .folder-wrapper{
-      scale: 0.75;
-      padding: 0;
-      padding-top: 2vh;
+    .folder-wrapper {
+        scale: 0.72;
+        padding: 0;
+        height: 110vh;
+        /* Allow cards to spread outside the wrapper vertically when active */
+        overflow: visible;
+    }
+
+    /* The carousel container must also allow vertical overflow */
+    .folders-carousel {
+        overflow-x: auto;
+        overflow-y: visible;
+        margin: -35vh;
+        margin-bottom: -28vh;
     }
 }

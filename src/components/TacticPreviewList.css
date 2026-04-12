@@ -42,7 +42,7 @@
   background: rgb(82, 79, 85);
   border-radius: 40px;
   margin: 0.3vw 0.3vw;
-  padding: 4vh 1.15vw 2.5vh 0.4vw;
+  padding: 3.3vh 5vw 2.5vh 3.7vw;
   box-shadow:
     inset 0 3px 15px rgba(0,0,0,0.7),
     inset 0 1px 2px rgba(0,0,0,0.2),
@@ -92,7 +92,7 @@
   border-bottom: none;
 }
 
-.folder-layer--version {  background: linear-gradient(1deg,rgb(17,16,18),rgb(17,16,18),rgb(49, 44, 56)); z-index: 4; }
+.folder-layer--version { background: linear-gradient(1deg,rgb(17,16,18),rgb(17,16,18),rgb(49, 44, 56)); z-index: 4; }
 .folder-layer--version::before { background-color:rgb(49, 44, 56); }
 
 
@@ -116,7 +116,6 @@
   align-items: center;
 }
 
-/* --- TACTIC CARD INFO ROW --- */
 .tactic-card__info {
   box-sizing: border-box;
   padding: 10px;
@@ -131,7 +130,6 @@
   grid-template-rows: 1fr;
 }
 
-/* --- THUMBNAIL --- */
 .tactic-card__image {
   position: relative;
   z-index: 1;
@@ -156,7 +154,6 @@
     inset 0px 0px 15px 5px rgba(120, 120, 120, 0.7);
 }
 
-/* --- META TEXT --- */
 .tactic-card__meta {
   padding-bottom: 15px;
   font-size: 0.7rem;
@@ -172,7 +169,6 @@
   margin: 0;
 }
 
-/* --- ACTION BUTTONS --- */
 .tactic-card__actions {
   display: flex;
   justify-content: start;
@@ -200,4 +196,122 @@
 .tactic-card__actions img {
   width: 20px;
   height: auto;
+}
+
+
+/* Tablet */
+@media (max-width: 1024px) {
+
+  .folder-layer .folder-layer--version {
+    width: 380px;
+    height: 254px;
+  }
+
+  .folder-layer .folder-layer--version::before {
+    width: 220px;
+    height: 28px;
+  }
+
+  .folder-layer .tactic-card {
+    width: 365px;
+    height: 262px;
+    translate: 0px -24px;
+    grid-template-columns: 160px 205px;
+    grid-template-rows: 32px 230px;
+  }
+
+  .folder-layer .tactic-card__title {
+    font-size: 1.1rem;
+  }
+
+  .folder-layer .tactic-card__info {
+    width: 365px;
+    height: 244px;
+    padding: 8px 8px 8px 12px;
+    grid-template-columns: 268px 97px;
+  }
+
+  .folder-layer .tactic-card__image {
+    width: 263px;
+  }
+
+  .folder-layer .tactic-card__thumbnail-overlay {
+    width: 263px;
+    height: 220px;
+  }
+
+  .folder-layer .tactic-card__meta {
+    font-size: 0.65rem;
+  }
+}
+
+
+/* Mobile */
+@media (max-width: 580px) {
+
+  .folder-layer .folder-layer--version {
+    width: 265px;
+    height: 170px;
+    border-radius: 1.5rem;
+    border-top-right-radius: 0;
+    margin-left: -2.5vw;
+  }
+
+  .folder-layer .folder-layer--version::before {
+    width: 155px;
+    height: 24px;
+  }
+
+  .folder-layer .tactic-card {
+    width: 254px;
+    height: 196px;
+    translate: 0px -18px;
+    grid-template-columns: 112px 142px;
+    grid-template-rows: 26px 170px;
+  }
+
+  .folder-layer .tactic-card__title {
+    font-size: 0.85rem;
+    margin-top: 0.3vh;
+    margin-right: -3vw;
+    font-weight: 500;
+  }
+
+  .folder-layer .tactic-card__info {
+    width: 254px;
+    height: 178px;
+    padding: 2px 6px 6px 8px;
+    grid-template-columns: 186px 68px;
+  }
+
+  .folder-layer .tactic-card__image {
+    width: 182px;
+    border-radius: 15px;
+  }
+
+  .folder-layer .tactic-card__thumbnail-overlay {
+    width: 182px;
+    height: 152px;
+  }
+
+  .folder-layer .tactic-card__meta {
+    font-size: 0.55rem;
+    margin-left: -0.5px;
+    padding-left: 0px;
+    padding-bottom: 20px;
+  }
+
+  .folder-layer .tactic-card__actions {
+    gap: 6px;
+  }
+
+  .folder-layer .tactic-card__actions button {
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+  }
+
+  .folder-layer .tactic-card__actions img {
+    width: 14px;
+  }
 }
