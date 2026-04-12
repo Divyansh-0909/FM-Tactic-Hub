@@ -37,6 +37,7 @@
     }
     
     .hero-banner {
+        background-position: left center;
         width: 350vw;
         height: 80vh;
     }
@@ -50,15 +51,19 @@
 /* Mobile */
 @media (max-width: 580px) {
     .hero-scroll-area {
-        height: 100vh;
+        height: 280vh;
     }
-  .hero-banner {
-        width: 300vw;
+ 
+    .hero-banner {
+        position: sticky;
+        background-position: left center;
+        top: 0;
+        width: 800vw;
         height: 100vh;
     }
  
     .hero-overlay h1 {
-        font-size: 30vw;
+        font-size: 40vw;
         letter-spacing: 0;
     }
 }

@@ -1,5 +1,6 @@
 import './Header.css';
 import { Link } from "react-router-dom";
+import { HoverText } from "./HoverText";
 
 function Header() {
     return (

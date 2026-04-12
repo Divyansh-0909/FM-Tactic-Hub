@@ -12,24 +12,28 @@ function Hero() {
     const scrollArea = useRef();
 
     useGSAP(() => {
-        const isMobile = window.innerWidth <= 580;
+        const isMobile = window.matchMedia('(max-width: 580px)').matches;
 
         if (isMobile) {
+            const overflow = hero.current.scrollWidth - window.innerWidth;
+
+            // Start the banner left aligned
+            gsap.set(hero.current, { x: 0 });
+
             gsap.to(hero.current, {
-                x: () => -(hero.current.scrollWidth - window.innerWidth),
+                x: -overflow,
                 ease: "none",
                 scrollTrigger: {
-                    trigger: hero.current,
+                    trigger: scrollArea.current,
                     start: "top top",
                     end: "bottom bottom",
-                    scrub: 2.8,
-                    pin: true,
+                    scrub: 1,
+                    pin: hero.current,
+                    anticipatePin: 1,
                     invalidateOnRefresh: true,
                 }
             });
-        }
-
-        else{
+        } else {
             if (hero.current.scrollWidth <= window.innerWidth) return;
 
             gsap.to(hero.current, {
@@ -43,7 +47,7 @@ function Hero() {
                 },
             });
         }
-    }, { scope: hero });
+    }, { scope: scrollArea });
 
     return (
         <header ref={scrollArea} className="hero-scroll-area">
