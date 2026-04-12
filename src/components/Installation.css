@@ -8,10 +8,15 @@
     padding: 10vh 5vw;
 }
 
+.installation-section p{
+    font-size: 1.4rem;
+}
+
 .folder-open {
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 80vw;
   height: 90vh;
 }
@@ -112,10 +117,10 @@
 
 .folder-open__paper ul{
     margin: 0;
-    font-size: 1.5rem;
 }
 
 .folder-open__paper li{
+    font-size: 1.8rem;
     margin: 2.6vh 0;
 }
 
@@ -220,6 +225,12 @@ footer h2{
     padding: 0 0.3em;
 }
 
+  footer > h2:last-child {
+        font-size: 1.5rem;
+        text-align: center;
+        margin: 1vh 4vw;
+    }
+
 @keyframes infinity{
     from { transform: translateX(0); }
     to   { transform: translateX(-100%); }
@@ -228,4 +239,195 @@ footer h2{
 footer span{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 1000;
+}
+
+
+/* =============================================
+   TABLET BREAKPOINT — 1024px
+   ============================================= */
+@media (max-width: 1024px) {
+
+    .installation-section {
+        gap: 7vh;
+        padding: 8vh 5vw;
+    }
+
+    /* --- Folder --- */
+    .folder-open {
+        width: 90vw;
+        height: 75vh;
+    }
+
+    .folder-open__back::before,
+    .folder-open__back::after {
+        left: -40px;
+        width: 5vw;
+    }
+
+    .folder-open__front img {
+        width: 12vw;
+        top: -7vh;
+        left: -14vw;
+    }
+
+    /* --- Paper content --- */
+    .folder-open__paper h1 {
+        font-size: 5rem;
+    }
+
+    .folder-open__paper ul {
+        font-size: 1.25rem;
+    }
+
+    .folder-open__paper li {
+        margin: 2vh 0;
+    }
+
+    /* --- Footer --- */
+    footer {
+        padding: 14vh 0 3vh 0;
+        gap: 2.5vh;
+    }
+
+    .footer-carousel--group h1 {
+        font-size: 15rem;
+    }
+
+    .footer-subheading {
+        font-size: 1.3rem;
+    }
+}
+
+
+/* Mobile */
+@media (max-width: 580px) {
+
+    .installation-section {
+        gap: 5vh;
+        padding: 6vh 4vw;
+    }
+
+    .installation-section p{
+        font-size: 1rem;
+    }
+
+    .folder-open {
+        padding-left: 5vw;
+        width: 80vw;
+        height: 42vh;
+    }
+
+    .folder-open__back {
+        width: 40%;
+    }
+
+    .folder-open__back::before,
+    .folder-open__back::after {
+        left: -23px;
+        width: 6vw;
+        height: 17vh;
+        border-radius: 2rem 0 0 2rem;
+    }
+
+    .folder-open__back::before{
+      background: linear-gradient(to bottom, #e6a708,#e79f19,#d89b16,#e0940f, #df920c,#df920c);
+    }
+
+    .folder-open__back::after{
+      background: linear-gradient(to bottom, #e99c17,#e49815,#e09c0a,#e49711);
+    }
+
+    .folder-open__front {
+        width: 55%;
+        border-radius: 0 2rem 2rem 0;
+    }
+
+    .folder-open__front::before {
+        width: 6vw;
+        right: -10px;
+        height: 12vh;
+    }
+
+    .folder-open__front img {
+        width: 18vw;
+        top: -3vh;
+        left: -30vw;
+    }
+    .folder-open__paper,
+    .folder-open__paper-blank {
+        right: 2vw;
+        top: 0.5vh;
+        width: 66vw;
+        height: 41vh;
+        border-width: 14px;
+        rotate: 3deg;
+        padding: 1vh 1vw;
+        background-image: repeating-linear-gradient(
+          to bottom,
+          transparent,
+          transparent 18px,
+          #bfc0c0 20px,
+          #b8b9b9 18px
+        );
+    }
+
+    .folder-open__paper-blank{
+        rotate: -3deg;
+    }
+
+    .folder-open__paper h1 {
+        font-size: 2.6rem;
+        text-align: center;
+        line-height: 1.1;
+        margin-bottom: 0vh;
+    }
+
+    .folder-open__paper ul {
+        font-size: 0;
+        padding-left: 1.3rem;
+    }
+
+    .folder-open__paper li {
+        margin: 0.5vh 0;
+        font-size: 0.9rem;
+    }
+
+    /* Footer*/
+    footer {
+        padding: 10vh 0 3vh 0;
+        gap: 2vh;
+    }
+
+    .footer-heading {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .footer-heading h2 {
+        font-size: 1rem;
+        margin: 0 4vw;
+    }
+
+    .footer-subheading {
+        font-size: 1.1rem;
+        padding: 0 10vw 1vh 10vw;
+    }
+
+    .footer-subheading h2 {
+        font-size: 1.1rem;
+    }
+
+    .footer-carousel--group {
+        margin: -1.2rem 0;
+    }
+
+    .footer-carousel--group h1 {
+        font-size: 7rem;
+    }
+
+    footer > h2:last-child {
+        font-size: 0.85rem;
+        text-align: center;
+        margin: 1vh 4vw;
+    }
 }

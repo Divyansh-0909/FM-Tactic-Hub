@@ -6,7 +6,7 @@ function Installation(){
     return (
         <>
             <div id='guide' className='installation-section'>
-                <p style={{fontSize: '1.4rem'}}>
+                <p>
                     Get in the game. Plug it in. Dominate & Win.
                 </p>
                 <div class="folder-open">
