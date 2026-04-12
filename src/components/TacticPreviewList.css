@@ -253,6 +253,16 @@
   .folder-layer .tactic-card__meta {
     font-size: 0.65rem;
   }
+
+  .folder-layer .tactic-card__meta p {
+    padding-top: 2px;
+    font-size: 0.55rem;
+    margin: 0;
+  }
+
+  .folder-layer .tactic-card__actions {
+    padding-left: 0px;
+  }
 }
 
 
@@ -313,6 +323,12 @@
     margin-left: -0.5px;
     padding-left: 0px;
     padding-bottom: 20px;
+  }
+
+  .folder-layer .tactic-card_desc{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
 
   .folder-layer .tactic-card__actions {
