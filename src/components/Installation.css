@@ -111,7 +111,7 @@
 }
 
 .folder-open__paper h1{
-    font-size: 7.5rem;
+    font-size: 6.5rem;
     margin: 0;
 }
 
@@ -120,7 +120,7 @@
 }
 
 .folder-open__paper li{
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: 2.6vh 0;
 }
 
@@ -243,9 +243,7 @@ footer span{
 }
 
 
-/* =============================================
-   TABLET BREAKPOINT — 1024px
-   ============================================= */
+/* Tablet */
 @media (max-width: 1024px) {
 
     .installation-section {
@@ -390,7 +388,7 @@ footer span{
 
     .folder-open__paper li {
         margin: 0.5vh 0;
-        font-size: 0.9rem;
+        font-size: 0.7rem;
     }
 
     /* Footer*/
