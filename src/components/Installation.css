@@ -111,7 +111,7 @@
 }
 
 .folder-open__paper h1{
-    font-size: 6.5rem;
+    font-size: 6rem;
     margin: 0;
 }
 
@@ -120,7 +120,7 @@
 }
 
 .folder-open__paper li{
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin: 2.6vh 0;
 }
 
@@ -271,11 +271,11 @@ footer span{
 
     /* --- Paper content --- */
     .folder-open__paper h1 {
-        font-size: 5rem;
+        font-size: 4rem;
     }
 
     .folder-open__paper ul {
-        font-size: 1.25rem;
+        font-size: 1rem;
     }
 
     .folder-open__paper li {
