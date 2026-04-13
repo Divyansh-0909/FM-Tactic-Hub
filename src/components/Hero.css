@@ -6,7 +6,7 @@
 .hero-banner {
     position: sticky;
     top: 0;
-    max-width: 225vw;
+    width: 225vw;
     height: 100vh;
     background-image: url(../assets/Images/Intro.png);
     opacity: 0.85;
