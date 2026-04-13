@@ -248,7 +248,7 @@
 
 /* --- FOLDERS CAROUSEL --- */
 .folders-carousel {
-    scale: 1.2;
+    scale: 1;
     width: 100%;
     overflow-x: auto;
     display: flex;
