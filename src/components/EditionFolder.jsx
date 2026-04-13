@@ -26,7 +26,7 @@ const EditionFolder = ({ prop }) => {
             folderCardRef.current.style.overflow = 'visible';
             el.style.transform = `scale(1.1) translateY(${(i - center) * 21.5}em)`;
           } else {
-            el.style.transform = `scale(1.1) translateX(${(i - center) * 25}em)`;
+            el.style.transform = `scale(1.1) translateX(${(i - center) * 28}em)`;
           }
 
           el.style.zIndex = 10 - i;
