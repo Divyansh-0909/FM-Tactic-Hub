@@ -449,7 +449,7 @@
     }
  
     .featured-tactic-section h1 {
-        font-size: 550px;
+        font-size: 80px;
         margin-top: -2.5vh;
         margin-bottom: 4vh;
         transform: perspective(70px) rotateX(8deg) scaleX(1.1);
