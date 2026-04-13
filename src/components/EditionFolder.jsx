@@ -24,9 +24,9 @@ const EditionFolder = ({ prop }) => {
 
           if (isMobile) {
             folderCardRef.current.style.overflow = 'visible';
-            el.style.transform = `scale(1.1) translateY(${(i - center) * 21.5}em)`;
+            el.style.transform = `scale(1) translateY(${(i - center) * 21.5}em)`;
           } else {
-            el.style.transform = `scale(1.1) translateX(${(i - center) * 29}em)`;
+            el.style.transform = `scale(1) translateX(${(i - center) * 29}em)`;
           }
 
           el.style.zIndex = 10 - i;
