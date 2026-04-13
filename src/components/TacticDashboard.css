@@ -145,8 +145,8 @@
 }
 
 .featured-tactic-section--thumbnails h3{
-    top: -45px;
-    right: -50px;
+    top: -38px;
+    right: 6px;
     position: absolute;
     display: flex;
     justify-content: center;
@@ -449,7 +449,7 @@
     }
  
     .featured-tactic-section h1 {
-        font-size: 80px;
+        font-size: 85px;
         margin-top: -2.5vh;
         margin-bottom: 4vh;
         transform: perspective(70px) rotateX(8deg) scaleX(1.1);
@@ -495,6 +495,7 @@
     }
  
     .featured-tactic-section--thumbnails h3 {
+        font-size: 1.8rem;
         top: -37px;
         right: 40px;
         width: 30vw;
