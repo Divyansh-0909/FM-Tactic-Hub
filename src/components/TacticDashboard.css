@@ -43,7 +43,7 @@
 
 
 .featured-tactic-section .arm{
-    width: 450px;
+    width: 420px;
     height: 7vh;
     background-color: black;
     transform: perspective(60px) rotateX(8deg) scaleX(1.1);
@@ -52,7 +52,7 @@
 }
 
 .featured-tactic-section h1{
-    margin-top: -4vh;
+    margin-top: -50px;
     margin-bottom: 7vh;
     font-size: 9rem;
     transform: perspective(90px) rotateX(8deg) scaleX(1.1);
