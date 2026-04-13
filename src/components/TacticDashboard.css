@@ -263,7 +263,7 @@
     position: absolute;
     z-index: -1;
     width: 620px;
-    height: 650px;
+    height: 600px;
     display: flex;
     justify-content: center;
     align-items: last baseline;
@@ -548,7 +548,7 @@
  
     .folders-carousel::scroll-marker-group {
         width: 360px;
-        height: 30vh;
+        height: 34vh;
     }
  
     /* --- Edition detail panel close button --- */
