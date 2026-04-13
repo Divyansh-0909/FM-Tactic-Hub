@@ -33,7 +33,7 @@
 
 .featured-tactic-section .mount{
     width: 1.5vw;
-    height: 8vh;
+    height: 8.5vh;
     border: 3px solid #F6EDFF;
     z-index: 1;
     margin-bottom: -2.5vh;
@@ -52,7 +52,7 @@
 }
 
 .featured-tactic-section h1{
-    margin-top: -50px;
+    margin-top: -45px;
     margin-bottom: 7vh;
     font-size: 9rem;
     transform: perspective(90px) rotateX(8deg) scaleX(1.1);
@@ -449,9 +449,10 @@
     }
  
     .featured-tactic-section h1 {
-        font-size: 5.8rem;
+        font-size: 550px;
         margin-top: -2.5vh;
         margin-bottom: 4vh;
+        transform: perspective(70px) rotateX(8deg) scaleX(1.1);
     }
  
     /* Cards stack vertically */
