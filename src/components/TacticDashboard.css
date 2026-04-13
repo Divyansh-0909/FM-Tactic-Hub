@@ -1,0 +1,568 @@
+.tactic-section{
+    background-color: #F6EDFF;
+    view-timeline-name: --sectionTimeline;
+    view-timeline-axis: block;
+    animation: tactic-section-fade-in 1s linear both;
+    animation-timeline: --sectionTimeline;
+    animation-range: entry 10% entry 70%;
+}
+
+@keyframes tactic-section-fade-in {
+    from { background-color: transparent; }
+    to   { background-color: #F6EDFF; }
+}
+
+
+.featured-tactic-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px 100px 0px;
+    gap: 1vh;
+}
+
+.featured-tactic-section .spotlight{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+
+}
+
+.featured-tactic-section .mount{
+    width: 1.5vw;
+    height: 8vh;
+    border: 3px solid #F6EDFF;
+    z-index: 1;
+    margin-bottom: -2.5vh;
+    background-color: black;
+    border-radius: 10px;
+}
+
+
+.featured-tactic-section .arm{
+    width: 21vw;
+    height: 7vh;
+    background-color: black;
+    transform: perspective(60px) rotateX(8deg) scaleX(1.1);
+    transform-origin: top bottom;
+    border-radius: 400px 400px 40px 40px;
+}
+
+.featured-tactic-section h1{
+    margin-top: -4vh;
+    margin-bottom: 7vh;
+    font-size: 9rem;
+    transform: perspective(90px) rotateX(8deg) scaleX(1.1);
+    transform-origin: top bottom;
+    cursor: alias;
+    transition: all 0.3s ease;
+}
+
+.featured-tactic-section--cards{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    scale: 1.05;
+}
+
+.featured-tactic-section--thumbnails{
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    transform-origin: bottom center;
+    width: 25.5vw;
+    gap: 10px;
+    margin: 0px -80px;
+    padding: 2vh 10vw;
+    border-radius: 60px;
+    border-top-right-radius: 0;
+    z-index: 1;
+    border: 2px solid rgba(99, 99, 99, 0.37);
+    box-shadow: 0px 40px 95px rgba(0, 0, 0, 0.5);
+    border-bottom: none;
+    background: linear-gradient(to top, rgba(0, 0, 0, 1), rgb(49, 38, 65,1));
+    transition: all 0.3s ease 0.15s;
+}
+
+.featured-tactic-section--thumbnails::before {
+  position: absolute;
+  content: '';
+  bottom: 100%;
+  right: -2.2px;
+  width: 280px;
+  border: 2px solid rgba(99, 99, 99, 0.37);
+  border-bottom: none;
+  height: 5vh;
+  border-top-left-radius: 3rem;
+  background-color:rgb(49, 38, 65,1);
+  border-top-right-radius: 3rem;
+}
+
+.featured-tactic-section--thumbnails:hover{
+    z-index: 1;
+    scale: 1.05;
+}
+
+#standOut{
+    transform: rotateZ(-10deg);
+    translate: 0px 3vh;
+}
+
+#topRated{
+    transform: rotateZ(10deg);
+    translate: 0px 3vh;
+}
+
+.featured-tactic-section--thumbnails.inactiveImg{
+    box-shadow: none;
+    z-index: 0;
+    scale: 0.9;
+    filter: grayscale(90%) contrast(0.8) brightness(1.1);
+}
+
+.featured-tactic-section--thumbnails a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12vw;
+    height: 5vh;
+    background: linear-gradient(5deg,rgb(68, 27, 126),rgb(93, 39, 168),rgb(128, 61, 223),#d4b5ff);
+    box-shadow: inset 0px 0px 10px #bf96f84d;
+    border-radius: 60px;
+    font-size: 1.8rem;
+    margin: 5px;
+    color: white;
+    font-family: "SöhneKraftig";
+    font-weight: normal;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.featured-tactic-section--thumbnails h3{
+    top: -45px;
+    right: -50px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 20vw;
+    color: white;
+    font-size: 2.1rem;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.featured-tactic-section--thumbnails a:hover{
+    background: linear-gradient(5deg,rgb(212, 212, 212));
+    color: rgb(128, 61, 223);
+    box-shadow: inset 0px 0px 5px 3px #ffffff;
+}
+
+.featured-tactic-section--thumbnails h2{
+    margin: 0;
+    padding: 0;
+}
+
+.featured-tactic-section--thumbnails img{
+    display: block;
+    width: 23.5vw;
+    height: auto;
+    border-radius: 40px;
+}
+
+.featured-tactic-section--heading{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.featured-tactic-section--heading ul{
+    display: flex;
+    justify-content: space-evenly;
+    font-family: "SöhneKraftig";
+    font-weight: bold;
+    font-size: 4rem;
+    margin: 0;
+    padding: 0;
+    gap: 11vw;
+}
+
+.featured-tactic-section--heading li{
+    display: flex;
+    justify-content: center;
+    width: 20vw;
+    list-style: none;
+    padding: 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.featured-tactic-section p{
+    margin: 8vh 0 0 0;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+/* --- TACTIC DASHBOARD / VERSION SECTION --- */
+
+.version-heading{
+    display: flex;
+    justify-content: left;
+    gap: 16vw;
+    align-items: center;
+    padding: 0px 4vw;   
+    margin-top: 20vh;
+}
+
+.version-heading img{
+    position: absolute;
+    width: 7vw;
+    left: 0.8vw;
+    height: auto;
+}
+
+.version-heading h1{
+    font-size: 10rem;
+    margin: 0;
+}
+
+.version-heading p{
+    text-align: left;
+    font-size: 1.4rem;
+}
+
+.version-tactic-section {
+    width: 100%;
+    padding: 50px 0px 250px 0px;
+    z-index: -2;
+    transform: translateZ(0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- FOLDERS CAROUSEL --- */
+.folders-carousel {
+    scale: 1.2;
+    width: 100%;
+    overflow-x: auto;
+    display: flex;
+    scroll-behavior: smooth;
+    anchor-name: --carousel;
+    scroll-snap-type: x mandatory;
+    padding: 0 calc(50% - 250px);
+    scroll-marker-group: after;
+}
+
+.folders-carousel::scroll-marker-group {
+    position: absolute;
+    z-index: -1;
+    width: 620px;
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: last baseline;
+    gap: 0.5em;
+}
+
+.folders-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.edition-detail-panel{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    translate: 0px 800px;
+    transition: all 0.5s ease;
+}
+
+.edition-detail-panel.open {
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    opacity: 1;
+    visibility: visible;
+    translate: 0px 0px;
+    transition: all 0.5s ease;
+}
+
+.edition-detail-panel-btn{
+    opacity: 0.96;
+    width: 65px;
+    height: 65px;
+    position: absolute;
+    z-index: 99999;
+    background: linear-gradient(5deg,rgb(68, 27, 126),rgb(93, 39, 168),rgb(128, 61, 223),#d4b5ff);
+    box-shadow: inset 0px 0px 10px #bf96f84d, 0px 4px 0px rgba(0, 0, 0, 0.35);
+    border-radius: 60px;
+    color: white;
+    bottom: 3vh;
+    border: none;
+    right: 50%;
+    left: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.edition-detail-panel-btn h2{
+    font-size: 32px;
+    margin: 0;
+}
+
+.edition-detail-panel-btn:hover {
+    background: linear-gradient(5deg,rgb(219, 219, 219));
+    color: rgb(128, 61, 223);
+    box-shadow: inset 0px 0px 5px 1px #ffffff,0px 4px 0px rgba(0, 0, 0, 0.35);
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+ 
+    /* --- Spotlight --- */
+    .featured-tactic-section .mount {
+        width: 3vw;
+    }
+ 
+    .featured-tactic-section .arm {
+        width: 40vw;
+    }
+ 
+    .featured-tactic-section h1 {
+        font-size: 7rem;
+        margin-top: -3.5vh;
+        margin-bottom: 5vh;
+    }
+ 
+    /* --- Cards --- */
+    .featured-tactic-section--cards {
+        scale: 1;
+        gap: 0;
+        width: 100%;
+        padding: 0 2vw;
+        box-sizing: border-box;
+    }
+ 
+    .featured-tactic-section--thumbnails {
+        width: 32vw;
+        margin: 0 -50px;
+        padding: 2vh 6vw;
+        border-radius: 40px;
+        border-top-right-radius: 0;
+    }
+ 
+    .featured-tactic-section--thumbnails img {
+        width: 30vw;
+        border-radius: 28px;
+    }
+ 
+    .featured-tactic-section--thumbnails a {
+        width: 18vw;
+        font-size: 1.4rem;
+        height: 4.5vh;
+    }
+ 
+    .featured-tactic-section--thumbnails h3 {
+        font-size: 1.6rem;
+        width: 26vw;
+        top: -38px;
+        right: -30px;
+    }
+ 
+    .featured-tactic-section--thumbnails::before {
+        width: 200px;
+    }
+ 
+    /* --- Version heading --- */
+    .version-heading {
+        gap: 8vw;
+        margin-top: 14vh;
+    }
+ 
+    .version-heading h1 {
+        font-size: 7rem;
+    }
+ 
+    .version-heading img {
+        width: 10vw;
+    }
+ 
+    .version-heading p {
+        font-size: 1.2rem;
+    }
+ 
+    /* --- Carousel --- */
+    .folders-carousel {
+        scale: 1;
+        padding: 0 calc(50% - 200px);
+    }
+ 
+    .folders-carousel::scroll-marker-group {
+        width: 480px;
+        height: 650px;
+    }
+ 
+    /* --- Edition panel button --- */
+    .edition-detail-panel-btn {
+        width: 56px;
+        height: 56px;
+    }
+ 
+    .edition-detail-panel-btn h2 {
+        font-size: 26px;
+    }
+}
+ 
+ 
+/* Mobile */
+@media (max-width: 580px) {
+ 
+    /* --- Spotlight --- */
+    .featured-tactic-section {
+        padding: 10px 0 60px 0;
+        gap: 0.5vh;
+    }
+ 
+    .featured-tactic-section .spotlight {
+        margin-top: 6vh;
+    }
+ 
+    .featured-tactic-section .mount {
+        width: 4.5vw;
+        height: 6vh;
+        border-radius: 8px;
+    }
+ 
+    .featured-tactic-section .arm {
+        width: 64vw;
+        height: 5vh;
+        transform: perspective(40px) rotateX(8deg) scaleX(1.1);
+        border-radius: 300px 300px 70px 70px;
+    }
+ 
+    .featured-tactic-section h1 {
+        font-size: 5.8rem;
+        margin-top: -2.5vh;
+        margin-bottom: 4vh;
+    }
+ 
+    /* Cards stack vertically */
+    .featured-tactic-section--cards {
+        flex-direction: column;
+        align-items: center;
+        transform-origin: center center;
+        scale: 1;
+        width: 100%;
+        gap: 7vh;
+        padding: 2vh 6vw;
+        box-sizing: border-box;
+    }
+ 
+    .featured-tactic-section--thumbnails {
+        width: 80vw;
+        transform-origin: center center;
+        margin: 0;
+        padding: 2vh 8vw;
+        border-radius: 32px;
+        border-top-right-radius: 0px;
+        gap: 1vh;
+    }
+ 
+    #standOut,
+    #topRated {
+        transform: none;
+        translate: 0;
+    }
+ 
+    .featured-tactic-section--thumbnails img {
+        width: 72vw;
+        border-radius: 20px;
+    }
+ 
+    .featured-tactic-section--thumbnails a {
+        width: 48vw;
+        height: 5vh;
+        font-size: 1.4rem;
+    }
+ 
+    .featured-tactic-section--thumbnails h3 {
+        top: -37px;
+        right: 40px;
+        width: 30vw;
+    }
+ 
+    .featured-tactic-section--thumbnails.inactiveImg {
+        scale: 0.95;
+    }
+ 
+    .featured-tactic-section p {
+        font-size: 1rem;
+        margin: 2vh 4vw 0;
+    }
+ 
+    /* Version heading stack vertically */
+    .version-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0vh;
+        margin-top: 10vh;
+        padding: 0 6vw;
+        position: relative;
+    }
+ 
+    .version-heading img {
+        position: absolute;
+        width: 16vw;
+        left: -0.5vw;
+        top: -1.5vh;
+        height: auto;
+    }
+ 
+    .version-heading h1 {
+        font-size: 7rem;
+        line-height: 1;
+    }
+ 
+    .version-heading p {
+        font-size: 1rem;
+        line-height: 1.3;
+    }
+ 
+    /* Version Carousel */
+    .version-tactic-section {
+        padding: 8vh 0 12vh 0;
+    }
+ 
+    .folders-carousel {
+        width: 100%;
+        padding: 0;
+    }
+ 
+    .folders-carousel::scroll-marker-group {
+        width: 340px;
+        height: 30vh;
+    }
+ 
+    /* --- Edition detail panel close button --- */
+    .edition-detail-panel-btn {
+        width: 60px;
+        height: 60px;
+        bottom: 3vh;
+        left: 45%;
+    }
+ 
+    .edition-detail-panel-btn h2 {
+        font-size: 2rem;
+    }
+}
+ 
+
+
