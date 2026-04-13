@@ -43,7 +43,7 @@
 
 
 .featured-tactic-section .arm{
-    width: 200px;
+    width: 450px;
     height: 7vh;
     background-color: black;
     transform: perspective(60px) rotateX(8deg) scaleX(1.1);
