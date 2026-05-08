@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["typedSql"]
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id       String @id @default(cuid())
+  email    String @unique
+  password String
+  createdAt DateTime @default(now())
+}
+
+
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String  
+  expiresAt   DateTime  
+}
+model Data { 
+  id        Int     @id @default(autoincrement()) 
+  edition   String
+  tactics   Tactic[]
+} 
+
+model Tactic { 
+  id        Int     @id @default(autoincrement()) 
+  title     String  @unique
+  mentality String
+  ip        String
+  op        String
+  img       String
+  download  String  
+  threadId  String  @unique
+  version   Data    @relation(fields: [versionId],references: [id])
+  versionId Int
+} 
