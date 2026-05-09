@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Log In</title>
+  <link rel="stylesheet" href="/log-in-form.css">
+</head>
+<body>
+  <div class="account-form">
+    <h1>
+      FROM THE DUGOUT. <br>
+      TO YOUR GAME. <br>
+    </h1>
+    <p>
+      Greatest tactics every played. Now your to dowload.
+    </p>
+    <form action="/log-in" method="POST">
+      <fieldset>
+        <label for="email">EMAIL</label>
+        <input id="email" name="email" type="email" placeholder="xyz@example.com"/>
+      </fieldset>
+      <fieldset>
+        <!-- add show password feature -->
+        <label for="password">PASSWORD</label>
+        <input id="password" name="password" type="password" placeholder="••••••••••"/>
+        <a href="/account-recovery" class="account-recovery">Forgot password?</a>
+        <% if (error) { %>
+          <div class="error-message">
+            <img src="/server/src/assests/alert-rhombus.svg" alt="alert">
+            <p><%= error %></p>
+          </div>
+        <% } %>
+      </fieldset>
+      
+      <fieldset class="buttons">
+        <div class="access-buttons">
+          <a href="/sign-up">Create account</a>
+          <button type="submit">Log in</button>
+        </div>
+        <a href="/sign-in-google" class="sign-in-google">Sign in with Google</a>
+      </fieldset>
+     </form>
+  </div>
+</body>
+</html>

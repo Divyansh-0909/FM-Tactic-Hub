@@ -23,15 +23,18 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.use(express.static(path.join(__dirname, "public")));
+
 app.use(express.urlencoded({ extended: false }));
 
 // SESSION SETUP
+
 app.use(
   expressSession({
     cookie: {
       maxAge: 7 * 24 * 60 * 60 * 1000,
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // true in production with HTTPS
+      secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
     },
 
@@ -49,13 +52,22 @@ app.use(
 );
 
 // PASSPORT
+
 app.use(passport.initialize());
 
 app.use(passport.session());
 
 // GLOBAL USER
+
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
+
+  res.locals.error = req.session.messages
+    ? req.session.messages[0]
+    : null;
+
+  delete req.session.messages;
+
   next();
 });
 
@@ -80,7 +92,18 @@ app.post("/sign-up", async (req, res, next) => {
     });
 
     if (existingUser) {
-      return res.send("User already exists");
+      return res.send("Username is taken");
+    }
+
+
+    const existingEmail = await prisma.user.findUnique({
+      where: {
+        email: req.body.email,
+      },
+    });
+
+    if (existingEmail) {
+      return res.send("Email is already used");
     }
 
     const hashedPassword = await bcrypt.hash(
@@ -90,7 +113,7 @@ app.post("/sign-up", async (req, res, next) => {
 
     await prisma.user.create({
       data: {
-        username: req.body.username,
+        email: req.body.email,
         password: hashedPassword,
       },
     });
@@ -113,6 +136,7 @@ app.post(
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/log-in",
+    failureMessage: true,
   })
 );
 
@@ -139,36 +163,42 @@ app.get("/log-out", (req, res, next) => {
 // PASSPORT STRATEGY
 
 passport.use(
-  new LocalStrategy(async (username, password, done) => {
-    try {
-      const user = await prisma.user.findUnique({
-        where: {
-          username,
-        },
-      });
+  new LocalStrategy(
+    {
+      usernameField: "email",
+    },
 
-      if (!user) {
-        return done(null, false, {
-          message: "Incorrect username",
+    async (email, password, done) => {
+      try {
+        const user = await prisma.user.findUnique({
+          where: {
+            email,
+          },
         });
+
+        if (!user) {
+          return done(null, false, {
+            message: "Incorrect email",
+          });
+        }
+
+        const match = await bcrypt.compare(
+          password,
+          user.password
+        );
+
+        if (!match) {
+          return done(null, false, {
+            message: "Incorrect password",
+          });
+        }
+
+        return done(null, user);
+      } catch (err) {
+        return done(err);
       }
-
-      const match = await bcrypt.compare(
-        password,
-        user.password
-      );
-
-      if (!match) {
-        return done(null, false, {
-          message: "Incorrect password",
-        });
-      }
-
-      return done(null, user);
-    } catch (err) {
-      return done(err);
     }
-  })
+  )
 );
 
 // STORE USER ID IN SESSION

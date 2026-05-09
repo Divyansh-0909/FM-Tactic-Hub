@@ -1,0 +1,164 @@
+body{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 1fr;
+    height: 98vh;
+    background-color: #F6EDFF;
+}
+
+.account-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.account-form h1{
+    margin-bottom: 0;
+    font-size: 45px;
+}
+
+.account-form p{
+    margin: 5px;
+    margin-bottom: 16px;
+    font-size: 20px;
+}
+
+form{
+    background-color: rgb(27, 27, 27);
+    color: #F6EDFF;
+    border-radius: 45px;
+    padding: 40px 20px;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 32px;
+}
+
+form fieldset{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    outline: none;
+    border: none;
+}
+
+form .account-recovery{
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    padding-left: 6px;
+    width: fit-content;
+    color: #F6EDFF;
+}
+
+form .account-recovery:hover{
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    padding-left: 6px;
+    width: fit-content;
+    color: rgba(128, 61, 223);
+}
+
+form label{
+    font-size: 18px;
+    padding: 4px;
+}
+
+form input{
+    font-size: 18px;
+    font-weight: 600;
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid rgba(246, 237, 255, 0.2);
+    background-color: rgb(49, 49, 49);
+    border-radius: 14px;
+    color: #F6EDFF;
+    height: 50px;
+    padding: 12px;
+    transition: all 0.3 ease-in-out;
+}
+
+form input:active{
+    outline: none;
+    border: 1px solid rgba(246, 237, 255, 0.5);
+}
+
+form input:hover{
+    outline: none;
+    border: 1px solid rgba(246, 237, 255, 0.5);
+}
+
+.error-message p{
+    font-size: 17px;
+    color: rgb(214, 2, 2);
+    margin: 0;
+    padding: 0;
+    padding-left: 6px;
+}
+
+.error-message img{
+    width: 10px;
+    height: auto;
+}
+
+form .buttons{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+form .access-buttons{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+fieldset button,a {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 190px;
+    padding: 14px;
+    margin: 0;
+    cursor: pointer;
+}
+
+fieldset button{
+    background-image: linear-gradient(5deg, rgb(68, 27, 126), rgb(93, 39, 168), rgb(128, 61, 223), rgb(212, 181, 255));
+    color: #F6EDFF;
+    border: none;
+    border-radius: 80px;
+    transition: all 0.3s ease-in-out;
+}
+
+fieldset button:hover{
+    background-image: linear-gradient(5deg, #F6EDFF);
+    color: rgba(128, 61, 223);
+    border: none;
+    border-radius: 80px;
+}
+
+fieldset a{
+    color: #F6EDFF;
+    background-color: transparent;
+    border: 1px solid rgba(246, 237, 255, 0.3);
+    border-radius: 80px;
+    margin: 0;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+fieldset a:hover{
+    background-color: black;
+    border: 1px solid rgba(246, 237, 255, 0);
+}
+
+fieldset .sign-in-google{
+    width: inherit;
+}

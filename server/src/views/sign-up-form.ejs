@@ -3,15 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <title>Sign Up</title>
+  <link rel="stylesheet" href="/sign-up-form.css">
 </head>
 <body>
-  <h1>Sign Up</h1>
-  <form action="/sign-up" method="POST">
-    <label for="username">Username</label>
-    <input id="username" name="username" placeholder="username" type="text" />
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password" />
-    <button type="submit">Sign Up</button>
-  </form>
+  <div class="account-form">
+    <h1>
+      CREATE ACCOUNT
+    </h1>
+    <p>
+      Join FM Tactic Hub today.
+    </p>
+    <form action="/sign-up" method="POST">
+      <fieldset>
+        <label for="username">USERNAME</label>
+        <input id="username" name="username" type="text" placeholder="xyz123"/>
+      </fieldset>
+      <fieldset>
+        <label for="email">EMAIL</label>
+        <input id="email" name="email" type="email" placeholder="xyz@example.com"/>
+      </fieldset>
+      <fieldset>
+        <!-- add show password feature -->
+        <label for="password">PASSWORD</label>
+        <input id="password" name="password" type="password" placeholder="••••••••••"/>
+      </fieldset>
+      <fieldset>
+        <label for="password">CONFIRM PASSWORD</label>
+        <input id="password" name="password" type="password" placeholder="••••••••••"/>
+      </fieldset>
+      <% if (error) { %>
+        <p class="error-message"><%= error %></p>
+      <% } %>
+      <fieldset class="buttons">
+        <div class="access-buttons">
+          <a href="/log-in">Log in</a>
+          <button type="submit">Sign up</button>
+        </div>
+        <a href="/sign-in-google" class="sign-in-google">Sign up with Google</a>
+      </fieldset>
+     </form>
+  </div>
 </body>
 </html>
+
