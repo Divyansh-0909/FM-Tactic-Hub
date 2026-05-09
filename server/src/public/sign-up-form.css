@@ -92,12 +92,23 @@ form input:hover{
 }
 
 .error-message{
-    font-size: 12px;
+    padding-left: 16px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.error-message p{
+    font-size: 17px;
     color: rgb(214, 2, 2);
     margin: 0;
     padding: 0;
-    padding-left: 22px;
-    margin-top: -10px;
+}
+
+.error-message img{
+    filter: invert(27%) sepia(93%) saturate(7471%) hue-rotate(356deg) brightness(95%) contrast(97%);
+    width: 20px;
+    height: auto;
 }
 
 form .buttons{
@@ -155,5 +166,13 @@ fieldset a:hover{
 }
 
 fieldset .sign-in-google{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
     width: inherit;
+}
+
+fieldset .sign-in-google img{
+    width: 26px;
 }

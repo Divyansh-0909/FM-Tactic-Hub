@@ -11,6 +11,7 @@ const { PrismaSessionStore } = require("@quixo3/prisma-session-store");
 
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const GoogleStrategy = require("passport-google-oidc");
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL,
@@ -86,33 +87,26 @@ app.get("/sign-up", (req, res) => {
 app.post("/sign-up", async (req, res, next) => {
   try {
     const existingUser = await prisma.user.findUnique({
-      where: {
-        username: req.body.username,
-      },
+      where: { username: req.body.username },
     });
 
     if (existingUser) {
-      return res.send("Username is taken");
+      return res.render("sign-up-form", { error: "Username is already taken" });
     }
 
-
     const existingEmail = await prisma.user.findUnique({
-      where: {
-        email: req.body.email,
-      },
+      where: { email: req.body.email },
     });
 
     if (existingEmail) {
-      return res.send("Email is already used");
+      return res.render("sign-up-form", { error: "This email is already registered" });
     }
 
-    const hashedPassword = await bcrypt.hash(
-      req.body.password,
-      10
-    );
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
     await prisma.user.create({
       data: {
+        username: req.body.username,
         email: req.body.email,
         password: hashedPassword,
       },
@@ -160,6 +154,71 @@ app.get("/log-out", (req, res, next) => {
   });
 });
 
+
+// GOOGLE STRATEGY
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: "http://localhost:3000/oauth2/redirect/google",
+      scope: ["profile", "email"],
+    },
+    async (issuer, profile, done) => {
+      try {
+        const cred = await prisma.federatedCredential.findUnique({
+          where: {
+            provider_subject: {
+              provider: issuer,
+              subject: String(profile.id),
+            },
+          },
+          include: { user: true },
+        });
+
+        if (cred) {
+          return done(null, cred.user);
+        }
+
+        // Handle duplicate username from Google
+        const displayName = profile.displayName
+          ? profile.displayName.replace(/\s+/g, "_").toLowerCase()
+          : `user_${Date.now()}`;
+
+        const user = await prisma.user.create({
+          data: {
+            username: displayName,
+            email: profile.emails?.[0]?.value ?? null, // save email
+            federatedCredentials: {
+              create: {
+                provider: issuer,
+                subject: String(profile.id),
+              },
+            },
+          },
+        });
+
+        return done(null, user);
+      } catch (err) {
+        return done(err);
+      }
+    }
+  )
+);
+
+// Redirect to Google
+app.get("/login/google", passport.authenticate("google"));
+
+// Google redirects back here
+app.get(
+  "/oauth2/redirect/google",
+  passport.authenticate("google", {
+    successRedirect: "/",
+    failureRedirect: "/log-in",
+  })
+);
+
 // PASSPORT STRATEGY
 
 passport.use(
@@ -178,7 +237,7 @@ passport.use(
 
         if (!user) {
           return done(null, false, {
-            message: "Incorrect email",
+            message: "No account found with that email",
           });
         }
 
@@ -189,7 +248,7 @@ passport.use(
 
         if (!match) {
           return done(null, false, {
-            message: "Incorrect password",
+            message: "Incorrect email or password",
           });
         }
 

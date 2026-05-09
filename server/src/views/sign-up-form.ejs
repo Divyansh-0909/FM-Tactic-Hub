@@ -32,14 +32,17 @@
         <input id="password" name="password" type="password" placeholder="••••••••••"/>
       </fieldset>
       <% if (error) { %>
-        <p class="error-message"><%= error %></p>
-      <% } %>
+          <div class="error-message">
+            <img src="/alert-rhombus.svg" alt="alert">
+            <p><%= error %></p>
+          </div>
+        <% } %>
       <fieldset class="buttons">
         <div class="access-buttons">
           <a href="/log-in">Log in</a>
           <button type="submit">Sign up</button>
         </div>
-        <a href="/sign-in-google" class="sign-in-google">Sign up with Google</a>
+        <a href="/login/google" class="sign-in-google"><img src="/Google__G__logo.svg.webp" alt="google-logo">Sign up with Google</a>
       </fieldset>
      </form>
   </div>

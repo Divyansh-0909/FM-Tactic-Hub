@@ -17,6 +17,7 @@ body{
 .account-form h1{
     margin-bottom: 0;
     font-size: 45px;
+    text-align: center;
 }
 
 .account-form p{
@@ -92,16 +93,23 @@ form input:hover{
     border: 1px solid rgba(246, 237, 255, 0.5);
 }
 
+.error-message{
+    padding-left: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
 .error-message p{
     font-size: 17px;
     color: rgb(214, 2, 2);
     margin: 0;
     padding: 0;
-    padding-left: 6px;
 }
 
 .error-message img{
-    width: 10px;
+    filter: invert(27%) sepia(93%) saturate(7471%) hue-rotate(356deg) brightness(95%) contrast(97%);
+    width: 20px;
     height: auto;
 }
 
@@ -160,5 +168,13 @@ fieldset a:hover{
 }
 
 fieldset .sign-in-google{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
     width: inherit;
+}
+
+fieldset .sign-in-google img{
+    width: 26px;
 }
