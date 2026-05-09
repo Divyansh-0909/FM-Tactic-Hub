@@ -1,3 +1,39 @@
+@font-face {
+  font-family: "SohneBreitExtrafettKursiv";
+  src: url("/Fonts/TestSohneSchmal-Fett-BF663d89cadad5a.otf") format("opentype");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "SöhneDreiviertelfett";
+  src: url("/Fonts/TestSohne-Dreiviertelfett-BF663d89ccc5f66.otf") format("opentype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "SöhneKraftig";
+  src: url("/Fonts/TestSohne-Kraftig-BF663d89cd37e26.otf") format("opentype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "SöhneBuch";
+  src: url("/Fonts/TestSohne-Buch-BF663d89cd32e6a.otf") format("opentype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "BrotherhoodScriptFont";
+  src: url("/Fonts/BrotherhoodScriptFont-Regular.ttf") format("opentype");
+  font-weight: 900;
+}
+
+p  { font-family: "SöhneBuch"; }
+h1 { font-family: 'SohneBreitExtrafettKursiv', sans-serif;}
+h2,a,button { font-family: "SöhneKraftig"; }
+h3 { font-family: "SöhneDreiviertelfett"; }
+h4 { margin: 0; font-family: "SöhneDreiviertelfett"; }
+
 body{
     display: grid;
     align-items: center;
@@ -15,8 +51,10 @@ body{
 }
 
 .account-form h1{
-    margin-bottom: 0;
-    font-size: 45px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    line-height: 0.8;
+    font-size: 80px;
 }
 
 .account-form p{
@@ -28,7 +66,8 @@ form{
     background-color: rgb(27, 27, 27);
     color: #F6EDFF;
     border-radius: 45px;
-    padding: 40px 20px;
+    padding: 30px 20px;
+    padding-bottom: 20px;
     width: 450px;
     display: flex;
     flex-direction: column;
@@ -210,7 +249,7 @@ fieldset .eye-button-password button{
     position: absolute;
     width: 55px;
     right: 39%;
-    top: 53.5%;
+    top: 56.3%;
     background-color: transparent;
     background-image: linear-gradient(transparent);
     filter: invert(90%) sepia(10%) saturate(500%) hue-rotate(220deg) brightness(105%) contrast(95%);
@@ -229,7 +268,7 @@ fieldset .eye-button-confirmPassword button{
     position: absolute;
     width: 55px;
     right: 39%;
-    bottom: 27.7%;
+    bottom: 24.8%;
     background-color: transparent;
     background-image: linear-gradient(transparent);
     filter: invert(90%) sepia(10%) saturate(500%) hue-rotate(220deg) brightness(105%) contrast(95%);
