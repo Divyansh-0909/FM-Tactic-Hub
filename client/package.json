@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@mdi/js": "^7.4.47",
+    "@mdi/react": "^1.6.1",
     "gasp": "^0.0.2",
     "prop-types": "^15.8.1",
     "react": "^19.2.0",

@@ -1,23 +1,18 @@
-const bcrypt = require("bcryptjs");
 const path = require("node:path");
 const express = require("express");
 const expressSession = require("express-session");
-require("dotenv/config");
 
-const { PrismaPg } = require("@prisma/adapter-pg");
-const { PrismaClient } = require("../generated/prisma/client");
+require("dotenv/config");
 
 const { PrismaSessionStore } = require("@quixo3/prisma-session-store");
 
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
-const GoogleStrategy = require("passport-google-oidc");
-
-const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL,
-});
-
-const prisma = new PrismaClient({ adapter });
+const prisma = require("./lib/prisma");
+const passport = require("./config/passport");
+const locals = require("./middleware/locals");
+ 
+const indexRouter = require("./routes/index");
+const authRouter = require("./routes/auth");
+const googleRouter = require("./routes/google");
 
 const app = express();
 
@@ -58,271 +53,15 @@ app.use(passport.initialize());
 
 app.use(passport.session());
 
-// GLOBAL USER
+// GLOBAL USERS
 
-app.use((req, res, next) => {
-  res.locals.currentUser = req.user;
-
-  res.locals.error = req.session.messages
-    ? req.session.messages[0]
-    : null;
-
-  delete req.session.messages;
-
-  next();
-});
+app.use(locals);
 
 // ROUTES
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
-// SIGN UP
-
-app.get("/sign-up", (req, res) => {
-  res.render("sign-up-form", { error: null, email: "", username: "" });;
-});
-
-app.post("/sign-up", async (req, res, next) => {
-  try {
-    if (!req.body.email && !req.body.password && !req.body.username) {
-      return res.render("sign-up-form", { error: "Please fill in all fields", email: "", username: "" });
-    }
-
-    if (!req.body.username) {
-      return res.render("sign-up-form", { error: "Username is required", email: req.body.email, username: "" });
-    }
-
-    if (!req.body.email) {
-      return res.render("sign-up-form", { error: "Email is required", email: "", username: req.body.username });
-    }
-
-    if (!req.body.password) {
-      return res.render("sign-up-form", { error: "Password is required", email: req.body.email, username: req.body.username });
-    }
-
-    if (!req.body.confirmPassword) {
-      return res.render("sign-up-form", { error: "Please confirm your password", email: req.body.email, username: req.body.username });
-    }
-
-    if (req.body.password !== req.body.confirmPassword) {
-      return res.render("sign-up-form", { error: "Passwords do not match", email: req.body.email, username: req.body.username });
-    }
-
-    const existingUser = await prisma.user.findUnique({
-      where: { username: req.body.username },
-    });
-
-    if (existingUser) {
-      return res.render("sign-up-form", { error: "Username is already taken", email: req.body.email, username: req.body.username });
-    }
-
-    const existingEmail = await prisma.user.findUnique({
-      where: { email: req.body.email },
-    });
-
-    if (existingEmail) {
-      return res.render("sign-up-form", { error: "This email is already registered", email: req.body.email, username: req.body.username });
-    }
-
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
-    await prisma.user.create({
-      data: {
-        username: req.body.username,
-        email: req.body.email,
-        password: hashedPassword,
-      },
-    });
-
-    res.redirect("/log-in");
-  } catch (error) {
-    console.error(error);
-    next(error);
-  }
-});
-
-// LOGIN
-
-app.get("/log-in", (req, res) => {
-  res.render("log-in-form", { error: null, email: ""});;
-});
-
-app.post("/log-in", (req, res, next) => {
-  if (!req.body.email && !req.body.password) {
-    return res.render("log-in-form", { error: "Please fill in all fields", email: "" });
-  }
-
-  if (!req.body.email) {
-    return res.render("log-in-form", { error: "Email is required", email: "" });
-  }
-
-  if (!req.body.password) {
-    return res.render("log-in-form", { error: "Password is required", email: req.body.email });
-  }
-
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/log-in",
-    failureMessage: true,
-  })(req, res, next);
-});
-
-// LOGOUT
-
-app.get("/log-out", (req, res, next) => {
-  req.logout((err) => {
-    if (err) {
-      return next(err);
-    }
-
-    req.session.destroy((err) => {
-      if (err) {
-        return next(err);
-      }
-
-      res.clearCookie("connect.sid");
-
-      res.redirect("/");
-    });
-  });
-});
-
-
-// GOOGLE STRATEGY
-
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/oauth2/redirect/google",
-      scope: ["profile", "email"],
-    },
-    async (issuer, profile, done) => {
-      try {
-        const cred = await prisma.federatedCredential.findUnique({
-          where: {
-            provider_subject: {
-              provider: issuer,
-              subject: String(profile.id),
-            },
-          },
-          include: { user: true },
-        });
-
-        if (cred) {
-          return done(null, cred.user);
-        }
-
-        // Handle duplicate username from Google
-        const displayName = profile.displayName
-          ? profile.displayName.replace(/\s+/g, "_").toLowerCase()
-          : `user_${Date.now()}`;
-
-        const user = await prisma.user.create({
-          data: {
-            username: displayName,
-            email: profile.emails?.[0]?.value ?? null, // save email
-            federatedCredentials: {
-              create: {
-                provider: issuer,
-                subject: String(profile.id),
-              },
-            },
-          },
-        });
-
-        return done(null, user);
-      } catch (err) {
-        return done(err);
-      }
-    }
-  )
-);
-
-// Redirect to Google
-app.get("/login/google", passport.authenticate("google"));
-
-// Google redirects back here
-app.get(
-  "/oauth2/redirect/google",
-  passport.authenticate("google", {
-    successRedirect: "/",
-    failureRedirect: "/log-in",
-  })
-);
-
-// PASSPORT STRATEGY
-
-passport.use(
-  new LocalStrategy(
-    {
-      usernameField: "email",
-    },
-
-    async (email, password, done) => {
-      try {
-        const user = await prisma.user.findUnique({
-          where: {
-            email,
-          },
-        });
-
-        if (!user) {
-          return done(null, false, {
-            message: "No account found with that email",
-          });
-        }
-
-        // ✅ Handle Google users who have no password
-        if (!user.password) {
-          return done(null, false, {
-            message: "This account uses Google to sign in",
-          });
-        }
-
-        const match = await bcrypt.compare(
-          password,
-          user.password
-        );
-
-        if (!match) {
-          return done(null, false, {
-            message: "Incorrect email or password",
-          });
-        }
-
-        return done(null, user);
-      } catch (err) {
-        return done(err);
-      }
-    }
-  )
-);
-
-// STORE USER ID IN SESSION
-
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-
-// GET USER FROM SESSION
-
-passport.deserializeUser(async (id, done) => {
-  try {
-    const user = await prisma.user.findUnique({
-      where: {
-        id,
-      },
-    });
-
-    done(null, user);
-  } catch (err) {
-    done(err);
-  }
-});
+app.use("/", indexRouter);
+app.use("/", authRouter);
+app.use("/", googleRouter);
 
 // START SERVER
 

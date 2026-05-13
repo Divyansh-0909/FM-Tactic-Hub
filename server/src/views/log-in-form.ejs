@@ -20,13 +20,14 @@
         <label for="email"><h4>EMAIL</h4></label>
         <input id="email" name="email" type="email" placeholder="xyz@example.com" value="<%= email %>"/>
       </fieldset>
-      <fieldset class="password">
-        <!-- add show password feature -->
+      <fieldset>
         <label for="password"><h4>PASSWORD</h4></label>
-        <input id="password" name="password" type="password" placeholder="••••••••••"/>
-        
-        <div class="eye-button"><button type="button" class="toggle" onclick="togglebutton('password')"><img src="/eye-outline.svg" alt="see-password"></button></div>
-        
+        <div class="password-wrapper">
+          <input id="password" name="password" type="password" placeholder="••••••••••"/>
+          <button type="button" class="toggle" onclick="togglebutton('password')"><img src="/eye-outline.svg" alt="see-password"></button>
+        </div>
+
+        <!-- implement forgot password -->
         <a href="/account-recovery" class="account-recovery">Forgot password?</a>
         
         <% if (error) { %>

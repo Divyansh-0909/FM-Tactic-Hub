@@ -28,7 +28,7 @@
   font-weight: 900;
 }
 
-p  { font-family: "SöhneBuch"; }
+p,input  { font-family: "SöhneBuch"; }
 h1 { font-family: 'SohneBreitExtrafettKursiv', sans-serif;}
 h2,a,button { font-family: "SöhneKraftig"; }
 h3 { font-family: "SöhneDreiviertelfett"; }
@@ -113,6 +113,7 @@ form .account-recovery{
     background-color: transparent;
     border: none;
     font-size: 18px;
+    padding: 5px;
     padding-left: 6px;
     width: fit-content;
     color: #F6EDFF;
@@ -242,21 +243,33 @@ fieldset .sign-in-google img{
     width: 26px;
 }
 
-fieldset .password{
+.password-wrapper {
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
-fieldset .eye-button button{
+.password-wrapper input {
+    width: 100%;
+    padding-right: 50px;
+}
+
+.password-wrapper .toggle {
     position: absolute;
-    width: 55px;
-    right: 39%;
-    top: 57.8%;
-    background-color: transparent;
-    background-image: linear-gradient(transparent);
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    background: transparent;
+    background-image: none;
+    border: none;
+    padding: 0;
     filter: invert(90%) sepia(10%) saturate(500%) hue-rotate(220deg) brightness(105%) contrast(95%);
     opacity: 30%;
+    cursor: pointer;
 }
 
-fieldset .eye-button button:hover{
+.password-wrapper .toggle:hover {
     opacity: 100%;
+    background-image: none;
 }

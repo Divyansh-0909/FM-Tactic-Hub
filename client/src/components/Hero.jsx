@@ -3,60 +3,71 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import './Hero.css';
-import Header from '../components/Header.jsx';
+import React, { Component } from 'react';
+import Icon from '@mdi/react';
+import { mdiChevronDown } from '@mdi/js';
+import './Header.css';
+import { Link } from "react-router-dom";
+import { HoverText } from "./HoverText";
+import footballIcon from "../assets/Images/Ball.png";
+import bootIcon from "../assets/Images/boot.png";
+import trophyIcon from "../assets/Images/trophy.png";
+
+class App extends Component {
+  render() {
+    return (
+      <Icon path={mdiChevronDown}
+        title="Arrow down"
+        size={1}
+        horizontal
+        vertical
+        rotate={90}
+        color="red"
+        spin
+      />
+    );
+  }
+};
 
 gsap.registerPlugin(ScrollTrigger);
 
 function Hero() {
-    const hero = useRef();
-    const scrollArea = useRef();
-
-    useGSAP(() => {
-        const isMobile = window.matchMedia('(max-width: 580px)').matches;
-
-        if (isMobile) {
-            const overflow = hero.current.scrollWidth - window.innerWidth;
-
-            // Start the banner left aligned
-            gsap.set(hero.current, { x: -200 });
-
-            gsap.to(hero.current, {
-                x: -overflow,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: scrollArea.current,
-                    start: "top top",
-                    end: "bottom bottom",
-                    scrub: 1,
-                    pin: hero.current,
-                    anticipatePin: 1,
-                    invalidateOnRefresh: true,
-                }
-            });
-        } else {
-            if (hero.current.scrollWidth <= window.innerWidth) return;
-
-            gsap.to(hero.current, {
-                x: () => -(hero.current.scrollWidth - window.innerWidth),
-                ease: "none",
-                scrollTrigger: {
-                    trigger: hero.current,
-                    scrub: 2,
-                    pin: true,
-                    invalidateOnRefresh: true,
-                },
-            });
-        }
-    }, { scope: scrollArea });
-
     return (
-        <header ref={scrollArea} className="hero-scroll-area">
-            <div ref={hero} className="hero-banner">
-                <div className="hero-overlay">
-                    <h1>THE HOME OF FOOTBALL MANAGER TACTICS</h1>
+        <div className='hero'>
+            <header>
+                <div id="header" className="site-header">
+                    <Link to="/">FM Tactic Hub</Link>
+                    <Link>Spotlight</Link>
+                    <Link>Editions</Link>
+                    <Link >Login</Link>
                 </div>
+            </header>
+            
+            <div className='hero-main'>
+                <img src={footballIcon} alt="ball" className='ball'/>
+                
+                <h1 className='heading'>
+                    HOME OF
+                    <br />
+                    <span>FOOTBALL </span>
+                    <br />
+                    MANAGER
+                </h1>
+                <img src={bootIcon} alt="boot" className='boot'/>
+                <img src={trophyIcon} alt="trophy" className='trophy'/>
             </div>
-        </header>
+
+            <div className='hero-bottom'>
+                <p className='subheading'>
+                    Ever watched a match <span>&</span> thought how the system works<span>?</span>
+                    <br />
+                    Here, we break down the system<span> & </span> show you how to replicate it<span>.</span>
+                </p>
+                <p className='browse-button'>
+                    Scroll to explore <Icon path={mdiChevronDown} size={2} />
+                </p>
+            </div>
+        </div>
     );
 }
 

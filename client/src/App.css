@@ -17,6 +17,12 @@ html {
 }
 
 @font-face {
+  font-family: "SohneExtrafett";
+  src: url("assets/Fonts/TestSohne-Extrafett-BF663d89cc9f2c0.otf") format("opentype");
+  font-weight: 400;
+}
+
+@font-face {
   font-family: "SöhneDreiviertelfett";
   src: url("assets/Fonts/TestSohne-Dreiviertelfett-BF663d89ccc5f66.otf") format("opentype");
   font-weight: 400;
@@ -63,7 +69,7 @@ html {
 
 body {
     font-family: 'SohneBreitExtrafettKursiv', sans-serif;
-    background-color: #111b2c;
+    background-color: #000000;
     margin: 0;
     overflow-x: hidden;
 }
@@ -91,7 +97,7 @@ a:hover {
 .full-page-loader {
   position: fixed;
   inset: 0;
-  background-color: #111b2c;
+  background-color: black;
   display: flex;
   align-items: center;
   justify-content: center;
