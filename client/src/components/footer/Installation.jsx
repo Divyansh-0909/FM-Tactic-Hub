@@ -49,7 +49,7 @@ function Installation(){
                         </a>
                     </div>
                     <div className='footer-navigation'>
-                        <a href="#header">
+                        <a href="/">
                             <h2>Home</h2>
                         </a>
                         <a href="#featured">

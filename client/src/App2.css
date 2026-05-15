@@ -7,7 +7,10 @@
 */
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 @font-face {
@@ -71,6 +74,7 @@ body {
     font-family: 'SohneBreitExtrafettKursiv', sans-serif;
     background-color: #000000;
     margin: 0;
+    padding: 0;
     overflow-x: hidden;
 }
 
@@ -78,13 +82,10 @@ body::-webkit-scrollbar {
     display: none;
 }
 
-p,input { font-family: "SöhneBuch"; }
+p,input  { font-family: "SöhneBuch"; }
 h2,a,button { font-family: "SöhneKraftig"; }
 h3 { font-family: "SöhneDreiviertelfett"; }
-h4 {
-  margin: 0;
-  font-family: "SöhneDreiviertelfett";
-}
+h4 { margin: 0; font-family: "SöhneDreiviertelfett"; }
 
 a {
     text-decoration: none;
@@ -130,31 +131,4 @@ a:hover {
 
 @keyframes spin {
   to { transform: rotate(360deg); }
-}
-
-.scroll-wrapper {
-  overflow: hidden;
-}
-
-.scroll-item {
-  position: relative;
-  width: 100%;
-}
-
-.layer-1 {
-  height: 100vh;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.layer-2 {
-  min-height: 100vh;
-  z-index: 2;
-}
-
-#portal-root {
-  position: fixed;
-  pointer-events: none;
-  inset: 0;
-  z-index: 9999;
 }

@@ -32,6 +32,20 @@ function App() {
         pinSpacing: false,
       });
     });
+
+    gsap.to(".layer-1", {
+      scale: 0.9,
+      borderRadius: "24px",
+      opacity: 0.6,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".layer-2",
+        start: "top bottom",  
+        end: "top top",      
+        scrub: true,
+      },
+    });
+
   }, { scope: containerRef });
 
   return (
