@@ -1,18 +1,16 @@
 const path = require("node:path");
 const express = require("express");
-const expressSession = require("express-session");
-
 require("dotenv/config");
-
-const { PrismaSessionStore } = require("@quixo3/prisma-session-store");
 
 const prisma = require("./lib/prisma");
 const passport = require("./config/passport");
-const locals = require("./middleware/locals");
  
-const indexRouter = require("./routes/index");
 const authRouter = require("./routes/auth");
 const googleRouter = require("./routes/google");
+
+const session = require("express-session");
+
+const cors = require("cors");
 
 const app = express();
 
@@ -22,49 +20,53 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json()); 
 
 // SESSION SETUP
+// For google strategy
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: false, // set to true in production (HTTPS only)
+    maxAge: 1000 * 60 * 60 * 24, // 1 day
+  }
+}));
 
 app.use(
-  expressSession({
-    cookie: {
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-    },
-
-    secret: process.env.SESSION_SECRET,
-
-    resave: false,
-
-    saveUninitialized: false,
-
-    store: new PrismaSessionStore(prisma, {
-      checkPeriod: 2 * 60 * 1000,
-      dbRecordIdIsSessionId: true,
-    }),
-  })
+    cors({
+        origin: process.env.CLIENT_URL || "http://localhost:5173",
+        credentials: true,
+    })
 );
 
 // PASSPORT
 
 app.use(passport.initialize());
-
-app.use(passport.session());
-
-// GLOBAL USERS
-
-app.use(locals);
-
 // ROUTES
 
-app.use("/", indexRouter);
 app.use("/", authRouter);
 app.use("/", googleRouter);
 
+
+// ERROR HANDLER
+
+app.use((err, req, res, next) => {
+
+    console.error(err);
+
+    res.status(500).json({
+        error: "Server error",
+    });
+});
+
 // START SERVER
 
-app.listen(3000, () => {
+const PORT =
+    process.env.PORT || 3000;
+
+app.listen(PORT, () => {
   console.log("Server running on port 3000");
 });

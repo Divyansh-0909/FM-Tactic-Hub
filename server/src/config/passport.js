@@ -6,6 +6,10 @@ const GoogleStrategy = require("passport-google-oidc");
 
 const prisma = require("../lib/prisma");
 
+const JwtStrategy = require("passport-jwt").Strategy;
+
+const ExtractJwt = require("passport-jwt").ExtractJwt;
+
 // PASSPORT STRATEGY
 
 passport.use(
@@ -54,27 +58,40 @@ passport.use(
   )
 );
 
-// STORE USER ID IN SESSION
+passport.use(
+    new JwtStrategy(
+        {
+            jwtFromRequest:
+                ExtractJwt.fromAuthHeaderAsBearerToken(),
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
+            secretOrKey:
+                process.env.JWT_SECRET,
+        },
 
-// GET USER FROM SESSION
+        async (payload, done) => {
 
-passport.deserializeUser(async (id, done) => {
-  try {
-    const user = await prisma.user.findUnique({
-      where: {
-        id,
-      },
-    });
+            try {
 
-    done(null, user);
-  } catch (err) {
-    done(err);
-  }
-});
+                const user =
+                    await prisma.user.findUnique({
+                        where: {
+                            id: payload.id,
+                        },
+                    });
+
+                if (!user) {
+                    return done(null, false);
+                }
+
+                return done(null, user);
+
+            } catch (error) {
+
+                return done(error, false);
+            }
+        }
+    )
+);
 
 // GOOGLE STRATEGY
 
@@ -88,6 +105,7 @@ passport.use(
     },
     async (issuer, profile, done) => {
       try {
+        // 1. Check for existing federated credential
         const cred = await prisma.federatedCredential.findUnique({
           where: {
             provider_subject: {
@@ -102,7 +120,26 @@ passport.use(
           return done(null, cred.user);
         }
 
-        // Handle duplicate username from Google
+        const email = profile.emails?.[0]?.value ?? null;
+
+        // 2. Check if a local account with this email already exists
+        const existingUser = email
+          ? await prisma.user.findUnique({ where: { email } })
+          : null;
+
+        if (existingUser) {
+          // Link Google to their existing account
+          await prisma.federatedCredential.create({
+            data: {
+              provider: issuer,
+              subject: String(profile.id),
+              userId: existingUser.id,
+            },
+          });
+          return done(null, existingUser);
+        }
+
+        // 3. Brand new user — create account + credential together
         const displayName = profile.displayName
           ? profile.displayName.replace(/\s+/g, "_").toLowerCase()
           : `user_${Date.now()}`;
@@ -110,7 +147,7 @@ passport.use(
         const user = await prisma.user.create({
           data: {
             username: displayName,
-            email: profile.emails?.[0]?.value ?? null, // save email
+            email,
             federatedCredentials: {
               create: {
                 provider: issuer,

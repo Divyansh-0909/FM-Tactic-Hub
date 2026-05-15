@@ -1,10 +1,15 @@
 import './App.css';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useRef , useEffect } from 'react';
 import ErrorBoundary from './components/ErrorBoundary';
-import Hero from './components/Hero';
+import Hero from './components/hero/Hero';
+import gsap from "gsap";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 
-const TacticDashboard = lazy(() => import('./components/TacticDashboard'));
-const Installation = lazy(() => import('./components/Installation'));
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+const TacticDashboard = lazy(() => import('./components/tacticDashboard/TacticDashboard'));
+const Installation = lazy(() => import('./components/footer/Installation'));
 
 const LoadingScreen = () => (
   <div className="full-page-loader">
@@ -13,14 +18,41 @@ const LoadingScreen = () => (
 );
 
 function App() {
+  const containerRef = useRef();
+
+  useGSAP(() => {
+    const items = gsap.utils.toArray(".scroll-item");
+
+    // Pin everything except the last section
+    items.slice(0, -1).forEach((item) => {
+      ScrollTrigger.create({
+        trigger: item,
+        start: "top top",
+        pin: true,
+        pinSpacing: false,
+      });
+    });
+  }, { scope: containerRef });
+
   return (
     <ErrorBoundary>
-      <Suspense fallback={<LoadingScreen />}>
-        <Hero />
-        <TacticDashboard />
-        <Installation/>
-      </Suspense>
+      <div ref={containerRef} className="scroll-wrapper">
+
+        <div className="scroll-item layer-1">
+          <Suspense fallback={<LoadingScreen />}>
+            <Hero />
+          </Suspense>
+        </div>
+
+        <div className="scroll-item layer-2" tabIndex={-1}>
+          <Suspense fallback={<LoadingScreen />}>
+            <TacticDashboard />
+            <Installation />
+          </Suspense>
+        </div>
+      </div>
     </ErrorBoundary>
   );
 }
+
 export default App;

@@ -1,41 +1,39 @@
 const bcrypt = require("bcryptjs");
 const { Router } = require("express");
 const passport = require("passport");
- 
+
+const jwt = require("jsonwebtoken");
+
 const prisma = require("../lib/prisma");
  
 const router = Router();
 
 // SIGN UP
 
-router.get("/sign-up", (req, res) => {
-  res.render("sign-up-form", { error: null, email: "", username: "" });;
-});
-
 router.post("/sign-up", async (req, res, next) => {
   try {
     if (!req.body.email && !req.body.password && !req.body.username) {
-      return res.render("sign-up-form", { error: "Please fill in all fields", email: "", username: "" });
+      return res.json({ error: "Please fill in all fields", email: "", username: "" });
     }
 
     if (!req.body.username) {
-      return res.render("sign-up-form", { error: "Username is required", email: req.body.email, username: "" });
+      return res.json({ error: "Username is required", email: req.body.email, username: "" });
     }
 
     if (!req.body.email) {
-      return res.render("sign-up-form", { error: "Email is required", email: "", username: req.body.username });
+      return res.json({ error: "Email is required", email: "", username: req.body.username });
     }
 
     if (!req.body.password) {
-      return res.render("sign-up-form", { error: "Password is required", email: req.body.email, username: req.body.username });
+      return res.json({ error: "Password is required", email: req.body.email, username: req.body.username });
     }
 
     if (!req.body.confirmPassword) {
-      return res.render("sign-up-form", { error: "Please confirm your password", email: req.body.email, username: req.body.username });
+      return res.json({ error: "Please confirm your password", email: req.body.email, username: req.body.username });
     }
 
     if (req.body.password !== req.body.confirmPassword) {
-      return res.render("sign-up-form", { error: "Passwords do not match", email: req.body.email, username: req.body.username });
+      return res.json({ error: "Passwords do not match", email: req.body.email, username: req.body.username });
     }
 
     const existingUser = await prisma.user.findUnique({
@@ -43,7 +41,7 @@ router.post("/sign-up", async (req, res, next) => {
     });
 
     if (existingUser) {
-      return res.render("sign-up-form", { error: "Username is already taken", email: req.body.email, username: req.body.username });
+      return res.json({ error: "Username is already taken", email: req.body.email, username: req.body.username });
     }
 
     const existingEmail = await prisma.user.findUnique({
@@ -51,12 +49,12 @@ router.post("/sign-up", async (req, res, next) => {
     });
 
     if (existingEmail) {
-      return res.render("sign-up-form", { error: "This email is already registered", email: req.body.email, username: req.body.username });
+      return res.json({ error: "This email is already registered", email: req.body.email, username: req.body.username });
     }
 
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-    await prisma.user.create({
+    const user = await prisma.user.create({
       data: {
         username: req.body.username,
         email: req.body.email,
@@ -64,57 +62,86 @@ router.post("/sign-up", async (req, res, next) => {
       },
     });
 
-    res.redirect("/log-in");
+    const token = jwt.sign(
+            {
+                id: user.id,
+                email: user.email,
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: "1h",
+            }
+        );
+
+    res.status(201).json({
+            message:
+                "Account created successfully",
+            token,
+            user: {
+                id: user.id,
+                username: user.username,
+                email: user.email,
+            },
+        });
+  } catch (error) {
+
+    console.error(error);
+    next(error);
+  
+  }
+});
+
+// LOGIN
+
+router.post("/log-in", async (req, res, next) => {
+  try {
+    if (!req.body.email && !req.body.password) {
+      return res.json({ error: "Please fill in all fields", email: "" });
+    }
+
+    if (!req.body.email) {
+      return res.json({ error: "Email is required", email: "" });
+    }
+
+    if (!req.body.password) {
+      return res.json({ error: "Password is required", email: req.body.email });
+    }
+
+    passport.authenticate("local", { session: false }, (err, user, info) => {
+      if (err) return next(err);
+
+      if (!user) {
+        return res.status(401).json({ error: info.message });
+      }
+
+      const token = jwt.sign(
+        { id: user.id, email: user.email },
+        process.env.JWT_SECRET,
+        { expiresIn: "1h" }
+      );
+
+      return res.json({
+        message: "Login successful",
+        token,
+        user: { id: user.id, username: user.username, email: user.email },
+      });
+    })(req, res, next);
+
   } catch (error) {
     console.error(error);
     next(error);
   }
 });
 
-// LOGIN
-
-router.get("/log-in", (req, res) => {
-  res.render("log-in-form", { error: null, email: ""});;
-});
-
-router.post("/log-in", (req, res, next) => {
-  if (!req.body.email && !req.body.password) {
-    return res.render("log-in-form", { error: "Please fill in all fields", email: "" });
-  }
-
-  if (!req.body.email) {
-    return res.render("log-in-form", { error: "Email is required", email: "" });
-  }
-
-  if (!req.body.password) {
-    return res.render("log-in-form", { error: "Password is required", email: req.body.email });
-  }
-
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/log-in",
-    failureMessage: true,
-  })(req, res, next);
-});
-
 // LOGOUT
 
-router.get("/log-out", (req, res, next) => {
-  req.logout((err) => {
-    if (err) {
-      return next(err);
-    }
+router.post("/log-out", (req, res) => {
 
-    req.session.destroy((err) => {
-      if (err) {
-        return next(err);
-      }
-
-      res.clearCookie("connect.sid");
-
-      res.redirect("/");
+    res.json({
+        message:
+            "Logout successful",
     });
-  });
 });
+
 
 module.exports = router;
