@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0px 100px 0px;
+    padding: 80px 0px 100px 0px;
     gap: 1vh;
 }
 
@@ -41,7 +41,7 @@
 
 .featured-tactic-section h1{
     margin-top: -45px;
-    margin-bottom: 4vh;
+    margin-bottom: 2vh;
     font-size: 9rem;
     transform: perspective(90px) rotateX(8deg) scaleX(1.1);
     transform-origin: top bottom;
@@ -52,8 +52,9 @@
 .featured-tactic-section--cards{
     display: flex;
     justify-content: center;
+    gap: 11.5vw;
     align-items: end;
-    scale: 1.05;
+    scale: 0.9;
 }
 
 .featured-tactic-section--thumbnails{
@@ -97,20 +98,9 @@
     scale: 1.05;
 }
 
-#standOut{
-    transform: rotateZ(-10deg);
-    translate: 0px 3vh;
-}
-
-#topRated{
-    transform: rotateZ(10deg);
-    translate: 0px 3vh;
-}
-
 .featured-tactic-section--thumbnails.inactiveImg{
     box-shadow: none;
     z-index: 0;
-    scale: 0.9;
     filter: grayscale(90%) contrast(0.8) brightness(1.1);
 }
 
@@ -196,7 +186,7 @@
 }
 
 .featured-tactic-section p{
-    margin: 4vh 0 0 0;
+    margin: 1vh 0 0 0;
     text-align: center;
     font-size: 1.4rem;
 }
@@ -209,7 +199,7 @@
     gap: 16vw;
     align-items: center;
     padding: 0px 4vw;   
-    margin-top: 20vh;
+    margin-top: 30vh;
 }
 
 .version-heading img{

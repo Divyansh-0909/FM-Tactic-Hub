@@ -1,4 +1,4 @@
-import { useRef, useEffect} from 'react';
+import { useRef, useEffect } from 'react';
 import './EditionFolder.css';
 import TacticPreviewList from './TacticPreviewList';
 import gsap from "gsap";
@@ -52,7 +52,9 @@ const EditionFolder = ({ prop }) => {
   }, [prop.isActive, prop.text]);
 
   return (
-    <section className={`folder-wrapper ${prop.isInactive ? 'folder-wrapper--inactive' : ''}`}>
+    <section
+      className={`folder-wrapper ${prop.isInactive ? 'folder-wrapper--inactive' : ''}`}
+    >
       <div className="folder-card" ref={folderCardRef} onClick={() => prop.onToggle()}>
         <div className="folder-card__back" ref={folderBackRef} />
 
@@ -61,7 +63,7 @@ const EditionFolder = ({ prop }) => {
         <div className="folder-card__front" ref={folderFrontRef} />
       </div>
 
-      <h3 className="folder-label" ref={labelRef} onClick={()=>prop.handleClick()}>
+      <h3 className="folder-label" ref={labelRef} onClick={() => prop.handleClick()}>
         {prop.text}
       </h3>
     </section>
