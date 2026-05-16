@@ -23,8 +23,8 @@ function TacticDashboard() {
         const yPercentValue    = isMobile ? 105 : 240;
         const yScale           = isMobile ? 0.1 : 0.4;
         const xScale           = isMobile ? 0.4 : 0.2;
-        const startPercentage  = isMobile ? 30  : 45;
-        const delay2           = isMobile ? 0.5 : 0.5;
+        const startPercentage  = isMobile ? 30  : 40;
+        const delay2           = isMobile ? 0.5 : 0;
 
         gsap.set(['.version-heading', '.folders-carousel > section:not(:first-child)'], {
             opacity: 0,
@@ -88,14 +88,14 @@ function TacticDashboard() {
             },
         });
 
-        gsap.from('.folder-card__front', {
+        gsap.from('.folders-carousel > section:first-child .folder-card__front', {
             boxShadow: 'inset 0 40px 80px #fbbf24, inset 0 -40px 80px #d97706',
             rotationX: -46,
             y: 2,
             scrollTrigger: {
                 trigger: '.folder-wrapper',
                 start: 'centre 35%',
-                end: 'top 100%%',
+                end: 'top 80%',
                 scrub: 0.3,
             },
         });
