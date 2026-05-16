@@ -16,7 +16,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    margin-top: 4vh;
 }
 
 .featured-tactic-section .mount{
@@ -41,7 +41,7 @@
 
 .featured-tactic-section h1{
     margin-top: -45px;
-    margin-bottom: 7vh;
+    margin-bottom: 3vh;
     font-size: 9rem;
     transform: perspective(90px) rotateX(8deg) scaleX(1.1);
     transform-origin: top bottom;
@@ -66,7 +66,7 @@
     transform-origin: bottom center;
     width: 25.5vw;
     gap: 10px;
-    margin: 0px -80px;
+    margin: 0px -95px;
     padding: 2vh 10vw;
     border-radius: 60px;
     border-top-right-radius: 0;
@@ -114,16 +114,21 @@
     filter: grayscale(90%) contrast(0.8) brightness(1.1);
 }
 
+.featured-tactic-section--cards--buttons{
+    display: flex;
+    margin-top: 6px;
+}
+
 .featured-tactic-section--thumbnails a{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 12vw;
+    width: 10.5vw;
     height: 5vh;
     background: linear-gradient(5deg,rgb(68, 27, 126),rgb(93, 39, 168),rgb(128, 61, 223),#d4b5ff);
     box-shadow: inset 0px 0px 10px #bf96f84d;
     border-radius: 60px;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin: 5px;
     color: white;
     font-family: "SöhneKraftig";
@@ -191,7 +196,7 @@
 }
 
 .featured-tactic-section p{
-    margin: 8vh 0 0 0;
+    margin: 4vh 0 0 0;
     text-align: center;
     font-size: 1.4rem;
 }
@@ -555,5 +560,4 @@
     }
 }
  
-
 

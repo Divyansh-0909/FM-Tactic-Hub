@@ -6,6 +6,11 @@ import EditionDetailView from './EditionDetailView';
 import clipIcon from "../../assets/Images/clip.png";
 import { HoverText } from "../HoverText";
 import { createPortal } from 'react-dom';
+import gsap from "gsap";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const folders = [
     { name: 'Football Manager 26', id: crypto.randomUUID() },
@@ -26,6 +31,19 @@ function TacticDashboard() {
     const isDragging = useRef(false);
     const startX = useRef(0);
     const scrollLeft = useRef(0);
+
+    useGSAP(()=>{
+        gsap.from(".featured-tactic-section--cards", {
+            scale: 0.5,
+            yPercent: 50,
+            scrollTrigger: {
+                trigger: ".layer-2",
+                start: "top bottom",  
+                end: "top top",      
+                scrub: 1,
+            },
+        });
+    },[])
 
     const onMouseDown = (e) => {
         isDragging.current = true;
@@ -65,20 +83,26 @@ function TacticDashboard() {
                         <div onMouseMove={()=>setSelected(topRated)} onMouseEnter={()=>setLight(true)} onMouseLeave={()=>setLight(false)} id="standOut" className={`featured-tactic-section--thumbnails ${selected === topRated ? '': 'inactiveImg'}`}>
                             <h3>Top Rated</h3>
                             <img src={`${topRated.img}`} alt="thumbnail"/>
-                            <a href={`${topRated.download}`} target="_blank">Download</a>
-                            <a href={`${`https://twitter.com/i/web/status/${topRated.threadId}`}`} target="_blank">Full Thread</a>
+                            <div className="featured-tactic-section--cards--buttons">
+                                <a href={`${topRated.download}`} target="_blank">Download</a>
+                                <a href={`${`https://twitter.com/i/web/status/${topRated.threadId}`}`} target="_blank">Full Thread</a>
+                            </div>
                         </div>
                         <div onMouseMove={()=>setSelected(recent)} onMouseEnter={()=>setLight(true)} onMouseLeave={()=>setLight(false)} id="recent" className={`featured-tactic-section--thumbnails ${selected === recent ? '': 'inactiveImg'}`}>
                             <h3>Recent</h3>
                             <img src={`${recent.img}`} alt="thumbnail"/>
-                            <a href={`${recent.download}`} target="_blank">Download</a>
-                            <a href={`${`https://twitter.com/i/web/status/${recent.threadId}`}`} target="_blank">Full Thread</a>
+                            <div className="featured-tactic-section--cards--buttons">
+                                <a href={`${recent.download}`} target="_blank">Download</a>
+                                <a href={`${`https://twitter.com/i/web/status/${recent.threadId}`}`} target="_blank">Full Thread</a>
+                            </div>
                         </div>
                         <div onMouseMove={()=>setSelected(standOut)} onMouseEnter={()=>setLight(true)} onMouseLeave={()=>setLight(false)} id="topRated" className={`featured-tactic-section--thumbnails ${selected === standOut ? '': 'inactiveImg'}`}>
                             <h3>Stand Out</h3>
                             <img src={`${standOut.img}`} alt="thumbnail"/>
-                            <a href={`${standOut.download}`} target="_blank">Download</a>
-                            <a href={`${`https://twitter.com/i/web/status/${standOut.threadId}`}`} target="_blank">Full Thread</a>
+                            <div className="featured-tactic-section--cards--buttons">
+                                <a href={`${standOut.download}`} target="_blank">Download</a>
+                                <a href={`${`https://twitter.com/i/web/status/${standOut.threadId}`}`} target="_blank">Full Thread</a>
+                            </div>
                         </div>
                     </div>
                     <p>
@@ -145,3 +169,6 @@ function TacticDashboard() {
 }
 
 export default TacticDashboard;
+
+
+
