@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { ScrollSmoother } from "gsap-trial/all";
 import { useMediaQuery } from 'react-responsive';
 
 import SpotlightSection from './SpotlightSection';
@@ -10,7 +11,7 @@ import EditionsSection from './EditionsSection';
 import EditionDetailView from './EditionDetailView';
 import './TacticDashboard.css';
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger, useGSAP, ScrollSmoother);
 
 function TacticDashboard() {
     const isMobile = useMediaQuery({ maxWidth: 580 });
@@ -20,11 +21,16 @@ function TacticDashboard() {
     useGSAP(() => {
         ScrollTrigger.refresh();
 
+        ScrollSmoother.create({ 
+            smooth: 1,
+            smoothTouch: 0.1 
+        });
+
         const yPercentValue    = isMobile ? 105 : 240;
         const yScale           = isMobile ? 0.1 : 0.4;
         const xScale           = isMobile ? 0.4 : 0.2;
-        const startPercentage  = isMobile ? 30  : 40;
-        const delay2           = isMobile ? 0.5 : 0;
+        const startPercentage  = isMobile ? 30  : 50;
+        const delay2           = isMobile ? 0.5 : 0.2;
 
         gsap.set(['.version-heading', '.folders-carousel > section:not(:first-child)'], {
             opacity: 0,
@@ -49,6 +55,7 @@ function TacticDashboard() {
                 start: 'top 100%',
                 end: 'bottom 50%',
                 scrub: 2,
+                toggleActions: 'play none none reverse',
             },
         });
 
@@ -73,7 +80,7 @@ function TacticDashboard() {
             ease: 'power2.out',
             scrollTrigger: {
                 trigger: '.version-heading',
-                start: 'bottom 45%',
+                start: 'bottom 50%',
                 toggleActions: 'play none none reverse',
             },
         });
@@ -84,7 +91,8 @@ function TacticDashboard() {
                 trigger: '.folder-wrapper',
                 start: `centre ${startPercentage}%`,
                 end: 'top 80%',
-                scrub: 0.3,
+                scrub: true,
+                toggleActions: 'play none none reverse',
             },
         });
 
@@ -98,6 +106,34 @@ function TacticDashboard() {
                 end: 'top 80%',
                 scrub: 0.3,
             },
+        });
+
+        const folderCards = gsap.utils.toArray('.folder-card');
+        
+        folderCards.forEach((card) => {
+            const front = card.querySelector('.folder-card__front');
+ 
+            card.addEventListener('mouseenter', () => {
+                gsap.to(front, {
+                    boxShadow: 'inset 0 40px 80px #fbbf24, inset 0 -40px 80px #d97706',
+                    rotateX: -46,
+                    y: 2,
+                    duration: 0.1,
+                    ease: 'power2.out',
+                    overwrite: 'auto',
+                });
+            });
+ 
+            card.addEventListener('mouseleave', () => {
+                gsap.to(front, {
+                    boxShadow: 'inset 0 40px 80px #fbbe24af, inset 0 -40px 80px #d97706b9',
+                    rotateX: 0,
+                    y: 0,
+                    duration: 0.1,
+                    ease: 'power2.out',
+                    overwrite: 'auto',
+                });
+            });
         });
 
     }, { dependencies: [], revertOnUpdate: true });

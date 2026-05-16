@@ -158,3 +158,16 @@ a:hover {
   inset: 0;
   z-index: 9999;
 }
+
+#smooth-wrapper {
+  overflow: hidden;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+#smooth-content {
+  overflow: visible;
+}

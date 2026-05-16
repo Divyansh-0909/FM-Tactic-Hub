@@ -5,8 +5,9 @@ import Hero from './components/hero/Hero';
 import gsap from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { ScrollSmoother } from "gsap-trial/all";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger, useGSAP, ScrollSmoother);
 
 const TacticDashboard = lazy(() => import('./components/tacticDashboard/TacticDashboard'));
 const Installation = lazy(() => import('./components/footer/Installation'));
@@ -46,11 +47,17 @@ function App() {
       },
     });
 
+    ScrollSmoother.create({ 
+      smooth: 1,
+      smoothTouch: 0.1 
+    });
+
+
   }, { scope: containerRef });
 
   return (
     <ErrorBoundary>
-      <div ref={containerRef} className="scroll-wrapper">
+      <div ref={containerRef} id='smooth-content' className="scroll-wrapper">
 
         <div className="scroll-item layer-1">
           <Suspense fallback={<LoadingScreen />}>
