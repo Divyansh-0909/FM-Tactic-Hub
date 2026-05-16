@@ -46,13 +46,6 @@ function App() {
         scrub: true,
       },
     });
-
-    ScrollSmoother.create({ 
-      smooth: 1,
-      smoothTouch: 0.1 
-    });
-
-
   }, { scope: containerRef });
 
   return (

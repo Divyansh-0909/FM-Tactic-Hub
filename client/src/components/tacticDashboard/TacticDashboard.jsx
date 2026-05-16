@@ -30,7 +30,7 @@ function TacticDashboard() {
         const yScale           = isMobile ? 0.1 : 0.4;
         const xScale           = isMobile ? 0.4 : 0.2;
         const startPercentage  = isMobile ? 30  : 50;
-        const delay2           = isMobile ? 0.5 : 0.2;
+        const delay2           = isMobile ? 0.5 : 0;
 
         gsap.set(['.version-heading', '.folders-carousel > section:not(:first-child)'], {
             opacity: 0,
@@ -65,13 +65,10 @@ function TacticDashboard() {
                 ease: 'power1.inOut',
             }, 0.1)
           .to('.featured-tactic-section--cards', {
+                opacity: 0,
                 yPercent: yPercentValue,
                 ease: 'power2.in',
             }, 0)
-          .to('.featured-tactic-section--cards', {
-                opacity: 0,
-                ease: 'power2.in',
-            }, 0.3);
 
         gsap.to(['.version-heading', '.folders-carousel > section:not(:first-child)'], {
             opacity: 1,
