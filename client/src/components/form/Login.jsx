@@ -50,7 +50,7 @@ function Login() {
                     FROM THE DUGOUT. <br />
                     TO YOUR GAME. <br />
                 </h1>
-                <p>Greatest tactics ever played. Now yours to download.</p>
+                <h2>Greatest tactics ever played. Now yours to download.</h2>
                 <Form
                     prop={{
                         type: "Login",

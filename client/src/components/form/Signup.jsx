@@ -51,7 +51,7 @@ function Signup() {
         <div className="signup-main">
             <div className="account-form">
                 <h1>CREATE ACCOUNT</h1>
-                <p>Join FM Tactic Hub today. Read threads. Download tactics.</p>
+                <h2>Join FM Tactic Hub today. Read threads. Download tactics.</h2>
                 <Form
                     prop={{
                         type: "Signup",

@@ -11,6 +11,7 @@ const router = Router();
 // SIGN UP
 
 router.post("/sign-up", async (req, res, next) => {
+  const pattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/;
   try {
     if (!req.body.email && !req.body.password && !req.body.username) {
       return res.json({ error: "Please fill in all fields", email: "", username: "" });
@@ -26,6 +27,10 @@ router.post("/sign-up", async (req, res, next) => {
 
     if (!req.body.password) {
       return res.json({ error: "Password is required", email: req.body.email, username: req.body.username });
+    }
+
+    if(!pattern.test(req.body.password)){
+      return res.json({ error: "Invalid password format", email: req.body.email, username: req.body.username });
     }
 
     if (!req.body.confirmPassword) {

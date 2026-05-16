@@ -267,28 +267,27 @@
     display: none;
 }
 
-.edition-detail-panel{
+.edition-detail-panel {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: fixed;        /* ← move here */
+    z-index: 9999;          /* ← move here */
+    inset: 0;               /* ← move here */
     opacity: 0;
     visibility: hidden;
     translate: 0px 800px;
     pointer-events: none;
+    transition: all 0.5s ease;   /* ← move here so close animates too */
 }
 
 .edition-detail-panel.open {
-    position: fixed;
-    z-index: 9999;
-    inset: 0;
     opacity: 1;
     visibility: visible;
     translate: 0px 0px;
-    transition: all 0.5s ease;
     pointer-events: all;
 }
-
 .edition-detail-panel-btn{
     opacity: 0.96;
     width: 65px;
@@ -561,4 +560,3 @@
     }
 }
  
-

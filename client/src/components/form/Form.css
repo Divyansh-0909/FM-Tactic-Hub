@@ -101,10 +101,22 @@ form input:hover{
 }
 
 .error-message p{
-    font-size: 17px;
+    font-size: 18px;
     color: rgb(214, 2, 2);
     margin: 0;
     padding: 0;
+}
+
+.mandatory{
+    display: flex;
+    align-items: center;
+}
+
+.mandatory p{
+    font-size: 14px;
+    font-family: "SöhneBuch";
+    font-weight: 400;
+    margin: 8px;
 }
 
 .error-message img{

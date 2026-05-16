@@ -17,14 +17,16 @@
 }
 
 .account-form h1{
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: 10px;
     line-height: 0.8;
     font-size: 80px;
     font-family: 'SohneBreitExtrafettKursiv', sans-serif;
 }
 
-.account-form p{
+.account-form h2{
+    font-family: "SöhneBuch";
+    font-weight: 400;
     margin: 5px;
     font-size: 20px;
 }

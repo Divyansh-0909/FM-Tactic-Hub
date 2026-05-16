@@ -27,8 +27,9 @@
     text-align: center;
 }
 
-.account-form p{
+.account-form h2{
+    font-family: "SöhneBuch";
+    font-weight: 400;
     margin: 5px;
-    margin-bottom: 16px;
     font-size: 20px;
 }
