@@ -1,10 +1,31 @@
 import './Installation.css';
 import clipIcon from "../../assets/Images/clip.png";
 import { HoverText } from '../HoverText';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import { ScrollSmoother } from "gsap-trial/all";
+import { useMediaQuery } from 'react-responsive';
 
 function Installation(){
+    useGSAP(()=>{
+        ScrollTrigger.refresh();
+
+        gsap.from('.folder-open', {
+            scale: 0.5,
+            yPercent: 60,
+            opacity: 0,
+            scrollTrigger: {
+                trigger: '.installation-section',
+                start: 'top bottom',
+                end: 'top top',
+                scrub: 1,
+            },
+        });
+    })
+
     return (
-        <>
+        <div id='smooth-content'>
             <div id='guide' className='installation-section'>
                 <p>
                     Get in the game. Plug it in. Dominate & Win.
@@ -75,7 +96,7 @@ function Installation(){
                 </div>
                 <h2><span>@</span>2026 ALL RIGHTS RESERVED</h2>
             </footer>
-        </>
+        </div>
     )
 }
 

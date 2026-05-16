@@ -21,7 +21,7 @@ function TacticDashboard() {
     useGSAP(() => {
         ScrollTrigger.refresh();
 
-        ScrollSmoother.create({ 
+        const smoother = ScrollSmoother.create({ 
             smooth: 1,
             smoothTouch: 0.1 
         });
@@ -131,6 +131,18 @@ function TacticDashboard() {
                     overwrite: 'auto',
                 });
             });
+        });
+
+        gsap.to(['.version-heading', '.folders-carousel > section:not(:first-child)'], {
+            opacity: 1,
+            y: 0,
+            delay: delay2,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: '.version-heading',
+                start: 'bottom 50%',
+                toggleActions: 'play none none reverse',
+            },
         });
 
     }, { dependencies: [], revertOnUpdate: true });

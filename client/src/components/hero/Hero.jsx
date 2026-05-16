@@ -1,7 +1,4 @@
 import { useRef } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import './Hero.css';
 import React, { Component } from 'react';
 import { Routes, Route } from "react-router-dom";
@@ -15,6 +12,11 @@ import bootIcon from "../../assets/Images/boot.png";
 import trophyIcon from "../../assets/Images/trophy.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollSmoother } from "gsap-trial/all";
 
 class App extends Component {
   render() {
@@ -32,7 +34,7 @@ class App extends Component {
   }
 };
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 function Hero() {
     const { user, clearAuth } = useAuth();
@@ -43,6 +45,24 @@ function Hero() {
         navigate("/");
     }
 
+    useGSAP(()=>{
+        const linkFeatured=document.querySelector(".smooth-navigation-featured");
+        const linkVersion=document.querySelector(".smooth-navigation-version");
+
+        const smoother = ScrollSmoother.create({ 
+            smooth: 1,
+            smoothTouch: 0.1 
+        });
+
+        linkFeatured.addEventListener("click",(e)=>{
+            smoother.scrollTo("#featured",true , "center center")
+        })
+
+        linkVersion.addEventListener("click",(e)=>{
+            smoother.scrollTo(".version-tactic-section",true , "center 70%")
+        })
+    })
+
     return (
         <div className='hero'>
             <a className="social" href="">theSlashMethod</a>
@@ -50,8 +70,8 @@ function Hero() {
             <header>
                 <div id="header" className="site-header">
                     <Link to="/">FM Tactic Hub</Link>
-                    <a href='#featured'>Spotlight</a>
-                    <a href='#version'>Editions</a>
+                    <a className='smooth-navigation-featured'>Spotlight</a>
+                    <a className='smooth-navigation-version' >Editions</a>
                     {user ? (<a href='/' onClick={handleLogout}>Logout</a>) : (<Link to='/log-in'>Login</Link>)}
                 </div>
             </header>
