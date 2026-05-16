@@ -1,6 +1,11 @@
 import { useRef, useEffect} from 'react';
 import './EditionFolder.css';
 import TacticPreviewList from './TacticPreviewList';
+import gsap from "gsap";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const EditionFolder = ({ prop }) => {
   const tacticRefs = useRef([]);

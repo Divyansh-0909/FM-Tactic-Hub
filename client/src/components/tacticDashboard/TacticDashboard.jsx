@@ -9,6 +9,7 @@ import { createPortal } from 'react-dom';
 import gsap from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { useMediaQuery } from 'react-responsive';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -18,7 +19,7 @@ const folders = [
 ];
 
 function TacticDashboard() {
-    const isMobile = window.matchMedia('(max-width: 580px)').matches;
+    const isMobile = useMediaQuery({ maxWidth: 580 });
     const [activeCardId, setActiveCardId] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
     const [element,setElement]=useState();
@@ -31,19 +32,101 @@ function TacticDashboard() {
     const isDragging = useRef(false);
     const startX = useRef(0);
     const scrollLeft = useRef(0);
+    
+    useGSAP(() => {
+        ScrollTrigger.refresh();
 
-    useGSAP(()=>{
+        const yPercentValue = isMobile ? 110 : 220;
+        const yScale = isMobile? 0.1: 0.4;
+        const startPercentage= isMobile? 30 : 40;
+        const delay2= isMobile? 0.5 : 0.3;
+
+        gsap.set([".version-heading", ".folders-carousel > section:not(:first-child)"], {
+            opacity: 0,
+            y: 30,
+        });
+
         gsap.from(".featured-tactic-section--cards", {
-            scale: 0.5,
-            yPercent: 50,
+            scale: 0.6,
+            yPercent: 60,
+            opacity: 0,
             scrollTrigger: {
                 trigger: ".layer-2",
-                start: "top bottom",  
-                end: "top top",      
+                start: "top bottom",
+                end: "top top",
                 scrub: 1,
             },
         });
-    },[])
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".version-heading",
+                start: "top 80%",
+                end: "bottom 20%",
+                scrub: 2,
+            }
+        });
+
+        tl.to(".featured-tactic-section--cards", {
+                scaleX: 0.3,
+                scaleY: yScale,
+                scrub: 1,
+                ease: "power1.inOut",
+            }, 0.1)
+        .to(".featured-tactic-section--cards", {
+                yPercent: yPercentValue,
+                ease: "power2.in",
+            }, 0)
+        .to(".featured-tactic-section--cards", {
+                opacity: 0,
+                ease: "power2.in",
+            }, 0.3);
+
+        gsap.from([".folder-layer--1", ".folder-layer--2", ".folder-layer--3"], {
+            opacity: 0,
+            scrollTrigger: {
+                trigger: ".folder-wrapper",
+                start: `centre ${startPercentage}%`, 
+                end: "top 80%",
+                scrub: 0.3,
+                onLeave: () => {
+                    gsap.to([".version-heading", ".folders-carousel > section:not(:first-child)"], {
+                        opacity: 1,
+                        duration: 0.5,
+                        delay: delay2,
+                        y: 0,
+                        ease: "power2.out",
+                    });
+                },
+                onLeaveBack: () => {
+                    gsap.to([".version-heading", ".folders-carousel > section:not(:first-child)"], {
+                        opacity: 0,
+                        duration: 0.3,
+                        y: 30,
+                    });
+                }
+            }
+        });
+
+        gsap.from(".folder-card__front", {
+            boxShadow: "inset 0 40px 80px #fbbf24, inset 0 -40px 80px #d97706",
+            rotationX: -46,
+            y: 2,
+            scrollTrigger: {
+                trigger: ".folder-wrapper",
+                start: "centre 35%",
+                end: "top 80%",
+                scrub: 0.3,
+                onLeave: () => {
+                    gsap.set(".folder-card__front", { clearProps: "all" });
+                },
+                onLeaveBack: () => {
+                    gsap.set(".folder-card__front", { clearProps: "all" });
+                }
+            }
+        });
+
+    }, { dependencies: [], revertOnUpdate: true });
 
     const onMouseDown = (e) => {
         isDragging.current = true;
