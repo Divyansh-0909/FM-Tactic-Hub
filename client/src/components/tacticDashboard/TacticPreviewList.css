@@ -273,6 +273,12 @@
     padding: 3.3vh 5vw 2.5vh 3.7vw;
   }
 
+  .folder-layer--1,
+  .folder-layer--2,
+  .folder-layer--3{
+    box-shadow: none !important;
+  }
+
   .folder-layer .folder-layer--version {
     width: 265px;
     height: 170px;

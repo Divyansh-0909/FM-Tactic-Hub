@@ -16,15 +16,14 @@ const EditionFolder = ({ prop }) => {
     tacticRefs.current.forEach((el, i) => {
       if (el) {
         if (prop.isActive) {
-          folderBackRef.current.style.filter = 'blur(4px)';
-          folderBackRef.current.style.opacity = 0.5;
-          folderFrontRef.current.style.filter = 'blur(4px)';
-          folderFrontRef.current.style.opacity = 0.5;
+          folderBackRef.current.style.opacity = 0.3;
+          folderFrontRef.current.style.opacity = 0.3;
           labelRef.current.textContent = 'See more';
 
           if (isMobile) {
             folderCardRef.current.style.overflow = 'visible';
             el.style.transform = `scale(1) translateY(${(i - center) * 21.5}em)`;
+            labelRef.current.style.transform = `translateY(7em)`;
           } else {
             el.style.transform = `scale(1) translateX(${(i - center) * 30}em)`;
           }
@@ -41,6 +40,7 @@ const EditionFolder = ({ prop }) => {
           el.style.transform = '';
           el.style.zIndex = 4 - i;
           el.style.boxShadow = '';
+          labelRef.current.style.transform = '';
         }
       }
     });

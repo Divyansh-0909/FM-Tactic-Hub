@@ -41,7 +41,7 @@
 
 .featured-tactic-section h1{
     margin-top: -45px;
-    margin-bottom: 3vh;
+    margin-bottom: 4vh;
     font-size: 9rem;
     transform: perspective(90px) rotateX(8deg) scaleX(1.1);
     transform-origin: top bottom;
@@ -359,7 +359,7 @@
     }
  
     .featured-tactic-section--thumbnails a {
-        width: 18vw;
+        width: 10vw;
         font-size: 1.4rem;
         height: 4.5vh;
     }
@@ -469,6 +469,7 @@
         border-radius: 32px;
         border-top-right-radius: 0px;
         gap: 1vh;
+        box-shadow: none;
     }
  
     #standOut,
@@ -483,7 +484,7 @@
     }
  
     .featured-tactic-section--thumbnails a {
-        width: 48vw;
+        width: 35vw;
         height: 5vh;
         font-size: 1.4rem;
     }
@@ -501,7 +502,7 @@
  
     .featured-tactic-section p {
         font-size: 1rem;
-        margin: 2vh 4vw 0;
+        margin: 3vh 4vw 0;
     }
  
     /* Version heading stack vertically */
