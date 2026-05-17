@@ -99,6 +99,7 @@ a:hover {
 
 .full-page-loader {
   position: fixed;
+  height: 100vh;
   inset: 0;
   background-color: black;
   display: flex;

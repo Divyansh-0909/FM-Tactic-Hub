@@ -18,6 +18,9 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap-trial/all";
 
+
+import { useMediaQuery } from 'react-responsive';
+
 class App extends Component {
   render() {
     return (
@@ -39,6 +42,8 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 function Hero() {
     const { user, clearAuth } = useAuth();
     const navigate = useNavigate();
+
+    const isMobile = useMediaQuery({ maxWidth: 580 });
 
     function handleLogout() {
         clearAuth();
@@ -69,10 +74,12 @@ function Hero() {
             <a className="username" href="">{user?.username}</a>
             <header>
                 <div id="header" className="site-header">
-                    <Link to="/">FM Tactic Hub</Link>
+                    <div className='site-header-websiteName'>
+                        <Link to="/" >FM Tactic Hub</Link>
+                    </div>
                     <a className='smooth-navigation-featured'>Spotlight</a>
                     <a className='smooth-navigation-version' >Editions</a>
-                    {user ? (<a href='/' onClick={handleLogout}>Logout</a>) : (<Link to='/log-in'>Login</Link>)}
+                    {user ? (<a href='/' onClick={handleLogout}>Logout</a>) : (<a href='/log-in'>Login</a>)}
                 </div>
             </header>
             
@@ -88,6 +95,7 @@ function Hero() {
                 </h1>
                 <img src={bootIcon} alt="boot" className='boot'/>
                 <img src={trophyIcon} alt="trophy" className='trophy'/>
+                <a className='upcoming' href='https://x.com/theSlashMethod/status/2053444951271465373?s=20' target='blank'>UPCOMING!</a>
             </div>
 
             <div className='hero-bottom'>
@@ -97,7 +105,7 @@ function Hero() {
                     Here, we break down the system<span> & </span> show you how to replicate it<span>.</span>
                 </p>
                 <a href='#featured' className='browse-button'>
-                    Scroll to explore <Icon path={mdiChevronDown} size={2} />
+                    <div className='browse-button-text'>Scroll to explore</div> <Icon path={mdiChevronDown} size={isMobile? 1 : 2} />
                 </a>
             </div>
         </div>

@@ -13,7 +13,7 @@
 }
 
 .site-header a {
-    font-size: clamp(1rem, 2.5vw, 1.7rem);
+    font-size: clamp(0.8rem, 2.5vw, 1.7rem);
     cursor: pointer;
 }
 
@@ -32,13 +32,19 @@
 /* Mobile */
 @media (max-width: 580px) {
     .site-header {
-        padding: 0.75rem 1.2rem;
+        padding: 0rem;
+        gap: 50px;
     }
 
-    .site-header h1,
-    .site-header a {
-        margin: 0 0.8rem;
-        font-size: clamp(1.45rem, 3.5vw, 1rem);
+    .site-header a{
+        display: flex;
+        justify-content: center;
+        width: 85px;
+        margin: 0;
+    }
+
+    .site-header-websiteName{
+        display: none;
     }
 }
 

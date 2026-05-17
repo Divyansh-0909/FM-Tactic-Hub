@@ -31,5 +31,12 @@
     font-family: "SöhneBuch";
     font-weight: 400;
     margin: 5px;
-    font-size: 20px;
+    font-size: 18px;
+}
+
+
+@media (max-width: 580px){
+    .account-form {
+        scale: 0.74;
+    }
 }
