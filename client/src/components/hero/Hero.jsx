@@ -51,7 +51,7 @@ function Hero() {
     }
 
     useGSAP(()=>{
-        const linkFeatured=document.querySelector(".smooth-navigation-featured");
+        const linkFeatured=document.querySelectorAll(".smooth-navigation-featured");
         const linkVersion=document.querySelector(".smooth-navigation-version");
 
         const smoother = ScrollSmoother.create({ 
@@ -59,9 +59,13 @@ function Hero() {
             smoothTouch: 0.1 
         });
 
-        linkFeatured.addEventListener("click",(e)=>{
-            smoother.scrollTo("#featured",true , "center center")
-        })
+        linkFeatured.forEach(link => {
+            link.addEventListener("click", (e) => {
+                e.preventDefault();
+
+                smoother.scrollTo("#featured", true, "center center");
+            });
+        });
 
         linkVersion.addEventListener("click",(e)=>{
             smoother.scrollTo(".version-tactic-section",true , "center 70%")
@@ -104,7 +108,7 @@ function Hero() {
                     <br />
                     Here, we break down the system<span> & </span> show you how to replicate it<span>.</span>
                 </p>
-                <a href='#featured' className='browse-button'>
+                <a className='browse-button smooth-navigation-featured'>
                     <div className='browse-button-text'>Scroll to explore</div> <Icon path={mdiChevronDown} size={isMobile? 1 : 2} />
                 </a>
             </div>
