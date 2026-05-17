@@ -106,27 +106,46 @@ header{
         }
 }
 
-.upcoming{
+.upcoming {
+    opacity: 1 !important;
     position: absolute;
-    bottom: 25px;
+    bottom: -20px;
     z-index: 1;
-    right: 300px;
+    right: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgb(0, 0, 0);
-    font-size: 2.5vw;
+    color: rgb(255, 255, 255); 
+    font-size: 28px;          
+    font-weight: 700;
     background-color: rgb(129, 61, 223);
-    width: 18vw;
-    height: 8vh;
-    border-radius: 10px;
+    width: 230px;               
+    height: 230px;
     cursor: pointer;
     transition: all 0.3s ease;
     animation: float-tag 3s ease-in-out 0.5s infinite;
+    text-decoration: none;
+    filter: drop-shadow(-20px 20px 70px black);
+
+    /* replaces border-radius */
+    clip-path: polygon(
+        50% 0%, 44.53% 18%, 35.57% 3.04%,
+        34.37% 21.79%, 21.79% 10%, 25.72% 27.64%,
+        10% 21.79%, 18.68% 37.36%, 0% 37.36%,
+        12.64% 50%, 0% 62.64%, 18.68% 62.64%,
+        10% 78.21%, 25.72% 72.36%, 21.79% 90%,
+        34.37% 78.21%, 35.57% 96.96%, 44.53% 82%,
+        50% 100%, 55.47% 82%, 64.43% 96.96%,
+        65.63% 78.21%, 78.21% 90%, 74.28% 72.36%,
+        90% 78.21%, 81.32% 62.64%, 100% 62.64%,
+        87.36% 50%, 100% 37.36%, 81.32% 37.36%,
+        90% 21.79%, 74.28% 27.64%, 78.21% 10%,
+        65.63% 21.79%, 64.43% 3.04%, 55.47% 18%
+    );
 }
 
 .upcoming:hover{
-    background-color: white;
+    color: rgb(255, 255, 255);
 }
 
 @keyframes float-tag {
@@ -281,13 +300,13 @@ header{
     }
 
     .upcoming{
-        font-size: 6vw;
+        font-size: 4.3vw;
         right: 4vw;
-        rotate: -2deg;
-        bottom: 6vh;
-        height: 5vh;
+        rotate: -3deg;
+        bottom: 1vh;
+        height: 35vw;
+        width: 35vw;
         border-radius: 5px;
-        width: 40vw;
     }
 
     .ball{
