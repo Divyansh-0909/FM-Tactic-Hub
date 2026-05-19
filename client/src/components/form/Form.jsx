@@ -66,7 +66,7 @@ function Form({ prop }) {
             </fieldset>
 
             <fieldset>
-                <label htmlFor="password" className="mandatory"> <h4> PASSWORD</h4> <p>(Needs uppercase, digit & special character)</p></label>
+                <label htmlFor="password" className="mandatory"> <h4> PASSWORD</h4> {!isLogin && (<p>(Needs uppercase, digit & special character)</p>)}</label>
                 <div className="password-wrapper">
                     <input
                         ref={passwordRef}
