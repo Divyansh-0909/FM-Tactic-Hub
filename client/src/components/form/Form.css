@@ -129,6 +129,7 @@ form .buttons{
     display: flex;
     justify-content: center;
     gap: 20px;
+    margin-top: 5px;
 }
 
 form .access-buttons{
