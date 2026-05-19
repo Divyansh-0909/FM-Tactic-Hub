@@ -84,9 +84,9 @@ function Form({ prop }) {
                         <img ref={passwordImgRef} src={eyeOpenIcon} alt="see-password" />
                     </button>
                 </div>
-                {isLogin && (
-                    <a href="/account-recovery" className="account-recovery">Forgot password?</a>
-                )}
+                {/* {isLogin && (
+                    <a href="/forgot-passowrd" className="account-recovery">Forgot password?</a>
+                )} */}
             </fieldset>
 
             {!isLogin && (

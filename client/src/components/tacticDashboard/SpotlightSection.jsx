@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { tacticsData } from '../tacticData';
+import { useAuth } from '../../context/AuthContext';
 
 const SpotlightSection = () => {
+    const { user, clearAuth } = useAuth();
     const isMobile = useMediaQuery({ maxWidth: 580 });
 
     const recent   = tacticsData[0].arr[0];
@@ -36,7 +38,7 @@ const SpotlightSection = () => {
                     <h3>Top Rated</h3>
                     <img src={topRated.img} alt="thumbnail" />
                     <div className="featured-tactic-section--cards--buttons">
-                        <a href={topRated.download} target="_blank" rel="noopener noreferrer">Download</a>
+                        <a href={user? topRated.download : "/log-in"} rel="noopener noreferrer">Download</a>
                         <a href={`https://twitter.com/i/web/status/${topRated.threadId}`} target="_blank" rel="noopener noreferrer">Full Thread</a>
                     </div>
                 </div>
@@ -51,7 +53,7 @@ const SpotlightSection = () => {
                     <h3>Recent</h3>
                     <img src={recent.img} alt="thumbnail" />
                     <div className="featured-tactic-section--cards--buttons">
-                        <a href={recent.download} target="_blank" rel="noopener noreferrer">Download</a>
+                        <a href={user? recent.download : "/log-in"} rel="noopener noreferrer">Download</a>
                         <a href={`https://twitter.com/i/web/status/${recent.threadId}`} target="_blank" rel="noopener noreferrer">Full Thread</a>
                     </div>
                 </div>
@@ -66,7 +68,7 @@ const SpotlightSection = () => {
                     <h3>Stand Out</h3>
                     <img src={standOut.img} alt="thumbnail" />
                     <div className="featured-tactic-section--cards--buttons">
-                        <a href={standOut.download} target="_blank" rel="noopener noreferrer">Download</a>
+                        <a href={user? standOut.download : "/log-in"} rel="noopener noreferrer">Download</a>
                         <a href={`https://twitter.com/i/web/status/${standOut.threadId}`} target="_blank" rel="noopener noreferrer">Full Thread</a>
                     </div>
                 </div>

@@ -5,6 +5,7 @@ import Form from "./Form";
 import { useAuth } from "../../context/AuthContext";
 import * as api from "../../lib/api";
 
+
 function Signup() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");

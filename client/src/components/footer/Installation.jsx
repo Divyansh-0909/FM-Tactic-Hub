@@ -40,7 +40,7 @@ function Installation(){
                             <h1>HOW TO INSTALL</h1>
                             <ul>
                                 <p>
-                                    <li>Download the .fmf file from the Google Drive link provided.</li>
+                                    <li>Download the .zip folder & extract it to get the .fmf files.</li>
                                     <li>Open File Explorer (Windows) or Finder (Mac).</li>
                                     <li>
                                         <u>Navigate to:</u> <br />

@@ -6,6 +6,8 @@ import Login from "./components/form/Login.jsx";
 import Signup from "./components/form/Signup.jsx";
 import OAuthCallback from "./components/form/Oauthcallback.jsx";
 import { AuthProvider } from "./context/AuthContext";
+// import ForgotPassword from "./components/form/ForgotPassword.jsx";
+// import ResetPassword from "./components/form/ResetPassword.jsx"
 
 const router = createBrowserRouter([
   {
@@ -23,7 +25,15 @@ const router = createBrowserRouter([
   {
     path: "/oauth/callback", 
     element: <OAuthCallback /> 
-  }
+  },
+  // {
+  //   path: "/forgot-passowrd", 
+  //   element: <ForgotPassword /> 
+  // },
+  // {
+  //   path: "/reset-password", 
+  //   element: <ResetPassowrd /> 
+  // },
 ]);
 
 createRoot(document.getElementById("root")).render(

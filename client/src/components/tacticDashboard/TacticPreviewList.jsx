@@ -1,8 +1,11 @@
 import downloadIcon from "../../assets/Images/download.svg";
 import threadIcon from "../../assets/Images/text-box.svg";
 import './TacticPreviewList.css';
+import { useAuth } from "../../context/AuthContext";
 
 const TacticPreviewList = ({ prop }) => {
+  const { user, clearAuth } = useAuth();
+
   return (
     <>
       {prop.arr.slice(0, prop.n).map((item, i) => (
@@ -26,7 +29,7 @@ const TacticPreviewList = ({ prop }) => {
                   </div>
                   <div className="tactic-card__actions">
                     <button id="download">
-                      <a href={item.download} target="_blank" rel="noopener noreferrer">
+                      <a href={user? item.download : "/log-in"} rel="noopener noreferrer">
                         <img src={downloadIcon} alt="Download tactic" />
                       </a>
                     </button>
