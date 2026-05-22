@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["typedSql"]
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id       String @id @default(cuid())
+  email    String @unique
+  username String @unique
+  password String?
+  createdAt DateTime @default(now())
+  federatedCredentials FederatedCredential[]
+}
+
+model FederatedCredential {
+  id       String @id @default(cuid())
+  userId   String
+  provider String
+  subject  String
+  user     User   @relation(fields: [userId], references: [id])
+
+  @@unique([provider, subject])
+}
+
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String  
+  expiresAt   DateTime  
+}

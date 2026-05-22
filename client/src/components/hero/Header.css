@@ -1,0 +1,50 @@
+/* --- SITE HEADER BAR --- */
+.site-header-wrapper {
+    width: 100%;
+}
+
+.site-header {
+    font-family: 'SöhneKraftig';
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0;
+    color: white;
+}
+
+.site-header a {
+    font-size: clamp(0.8rem, 2.5vw, 1.7rem);
+    cursor: pointer;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .site-header {
+        padding: 1rem 1.5rem;
+    }
+    .site-header h1,
+    .site-header a {
+        margin: 0 1.5rem;
+        font-size: clamp(1.2rem, 4vw, 2.2rem);
+    }
+}
+
+/* Mobile */
+@media (max-width: 580px) {
+    .site-header {
+        padding: 0rem;
+        gap: 50px;
+    }
+
+    .site-header a{
+        display: flex;
+        justify-content: center;
+        width: 85px;
+        margin: 0;
+    }
+
+    .site-header-websiteName{
+        display: none;
+    }
+}
+

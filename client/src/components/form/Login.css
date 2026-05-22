@@ -1,0 +1,42 @@
+.login-main{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 1fr;
+    height: 100vh;
+    background-color: #F6EDFF;
+    animation: fade 0.6s ease 1;
+}
+
+.account-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes fade {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.account-form h1{
+    margin-bottom: 10px;
+    font-size: 80px;
+    line-height: 0.8;
+    text-align: center;
+}
+
+.account-form h2{
+    font-family: "SöhneBuch";
+    font-weight: 400;
+    margin: 5px;
+    font-size: 18px;
+}
+
+
+@media (max-width: 580px){
+    .account-form {
+        scale: 0.74;
+    }
+}
