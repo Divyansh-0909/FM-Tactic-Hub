@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { ScrollSmoother } from "gsap-trial/all";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { useMediaQuery } from 'react-responsive';
 
 import SpotlightSection from './SpotlightSection';

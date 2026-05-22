@@ -16,7 +16,7 @@ import { useAuth } from "../../context/AuthContext";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap-trial/all";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 
 import { useMediaQuery } from 'react-responsive';

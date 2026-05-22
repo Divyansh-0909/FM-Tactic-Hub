@@ -5,7 +5,7 @@ import Hero from './components/hero/Hero';
 import gsap from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { ScrollSmoother } from "gsap-trial/all";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP, ScrollSmoother);
 
