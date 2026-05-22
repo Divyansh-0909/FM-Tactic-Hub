@@ -1,5 +1,5 @@
 [[redirects]]
   from = "/*"
-  to = "https://yourapp.vercel.app/:splat"
+  to = "https://fmtactichub.vercel.app/:splat"
   status = 301
   force = true
