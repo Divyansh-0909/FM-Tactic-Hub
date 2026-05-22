@@ -1,13 +1,5 @@
-[build]
-  command = "npm run build"
-  publish = "dist"
-
-[[headers]]
-  for = "/*.js"
-  [headers.values]
-    Content-Type = "application/javascript"
-
-[[headers]]
-  for = "/*.mjs"
-  [headers.values]
-    Content-Type = "application/javascript"
+[[redirects]]
+  from = "/*"
+  to = "https://yourapp.vercel.app/:splat"
+  status = 301
+  force = true
