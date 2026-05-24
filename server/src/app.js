@@ -50,6 +50,7 @@ app.use(passport.initialize());
 app.use("/", authRouter);
 app.use("/", googleRouter);
 
+app.get("/health", (req, res) => res.send("OK"));
 
 // ERROR HANDLER
 
