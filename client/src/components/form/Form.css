@@ -222,3 +222,40 @@ fieldset .sign-in-google img{
     opacity: 100%;
     background-image: none;
 }
+
+@media (min-width: 1025px) {
+    form {
+        width: clamp(300px, 23.44vw, 450px);
+        gap: clamp(6px, 0.5vw, 10px);
+        margin: clamp(20px, 1.67vw, 32px);
+        padding: clamp(12px, 1.04vw, 20px) clamp(12px, 1.04vw, 20px);
+    }
+
+    form label {
+        font-size: clamp(14px, 0.94vw, 18px);
+    }
+
+    form input {
+        font-size: clamp(14px, 0.94vw, 18px);
+        height: clamp(36px, 2.6vw, 50px);
+    }
+
+    fieldset button, fieldset a {
+        font-size: clamp(15px, 1.04vw, 20px);
+        width: clamp(130px, 9.9vw, 190px);
+        padding: clamp(10px, 0.73vw, 14px);
+    }
+
+    .error-message p {
+        font-size: clamp(14px, 0.94vw, 18px);
+    }
+
+    .mandatory p {
+        font-size: clamp(11px, 0.73vw, 14px);
+    }
+    
+    .close{
+        padding: 0px;
+        margin-top: 0px;
+    }
+}

@@ -35,6 +35,16 @@
 }
 
 
+@media (min-width: 1025px) {
+    .account-form h1 {
+        font-size: clamp(40px, 4.17vw, 80px);
+    }
+
+    .account-form h2 {
+        font-size: clamp(14px, 0.94vw, 18px);
+    }
+}
+
 @media (max-width: 580px){
     .account-form {
         scale: 0.74;

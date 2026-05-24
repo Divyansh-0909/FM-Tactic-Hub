@@ -6,11 +6,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 500px;
+  width: clamp(200px, 26.04vw, 500px);
   height: fit-content;
-  padding: 100px;
+  padding: clamp(56px, 5.21vw, 100px);
   padding-bottom: 0;
-  padding-top: 80px;
+  padding-top: clamp(45px, 4.17vw, 80px);
   transition: opacity 0.3s ease;
 }
 
@@ -35,8 +35,8 @@
 /* --- FOLDER CARD --- */
 .folder-card {
   position: relative;
-  width: 480px;
-  height: 320px;
+  width: clamp(200px, 25vw, 480px);
+  height: clamp(130px, 16.67vw, 320px);
   cursor: pointer;
   transform-origin: bottom;
   perspective: 3000px;
@@ -60,7 +60,7 @@
   content: '';
   bottom: 100%;
   left: 0;
-  width: 160px;
+  width: clamp(85px, 8.33vw, 160px);
   height: 32px;
   background-color: #c76c04e1;
   border-top-left-radius: 2rem;
@@ -103,7 +103,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  font-size: 3rem;
+  font-size: clamp(1.6rem, 2.5vw, 3rem);
   cursor: pointer;
   color: #000000;
   transition: color 0.3s ease;
@@ -117,9 +117,23 @@
 @media (max-width: 1024px){
   .folder-wrapper {
         scale: 1;
+        width: 500px;
+        padding: 100px;
+        padding-bottom: 0;
+        padding-top: 80px;
         height: 110vh;
         /* Allow cards to spread outside the wrapper vertically when active */
         overflow: visible;
+    }
+    .folder-card {
+        width: 480px;
+        height: 320px;
+    }
+    .folder-card__back::after {
+        width: 160px;
+    }
+    .folder-label {
+        font-size: 3rem;
     }
     .folders-carousel {
         overflow-x: auto;

@@ -67,7 +67,7 @@
     transform-origin: bottom center;
     width: 25.5vw;
     gap: 10px;
-    margin: 0px -95px;
+    margin: 0px -4.95vw;
     padding: 2vh 10vw;
     border-radius: 60px;
     border-top-right-radius: 0;
@@ -238,15 +238,15 @@
     scroll-behavior: smooth;
     anchor-name: --carousel;
     scroll-snap-type: x mandatory;
-    padding: 0 calc(50% - 250px);
+    padding: 0 calc(50% - clamp(140px, 13.02vw, 250px));
     scroll-marker-group: after;
 }
 
 .folders-carousel::scroll-marker-group {
     position: absolute;
     z-index: -1;
-    width: 620px;
-    height: 540px;
+    width: clamp(350px, 32.29vw, 620px);
+    height: clamp(300px, 28.13vw, 540px);
     display: flex;
     justify-content: center;
     align-items: last baseline;

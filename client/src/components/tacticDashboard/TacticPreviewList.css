@@ -18,7 +18,7 @@
   content: '';
   bottom: 99%;
   right: 0;
-  width: 280px;
+  width: clamp(150px, 14.58vw, 280px);
   height: 32px;
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
@@ -65,8 +65,8 @@
 
 .folder-layer--version {
   position: relative;
-  width: 465px;
-  height: 310px;
+  width: clamp(250px, 24.22vw, 465px);
+  height: clamp(160px, 16.15vw, 310px);
   inset: 8px;
   border-radius: 2rem;
   border-top-right-radius: 0;
@@ -85,7 +85,7 @@
   content: '';
   bottom: 100%;
   right: 0;
-  width: 280px;
+  width: clamp(150px, 14.58vw, 280px);
   height: 32px;
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
@@ -99,18 +99,18 @@
 /* --- TACTIC CARD CONTENT --- */
 .tactic-card {
   color: white;
-  translate: 0px -30px;
-  width: 450px;
-  height: 320px;
+  translate: 0px -1.5625vw;
+  width: clamp(240px, 23.44vw, 450px);
+  height: clamp(163px, 16.67vw, 320px);
   display: grid;
-  grid-template-columns: 200px 250px;
-  grid-template-rows: 38px 282px;
+  grid-template-columns: clamp(110px, 10.42vw, 200px) 1fr;
+  grid-template-rows: clamp(20px, 1.98vw, 38px) 1fr;
 }
 
 .tactic-card__title {
   grid-row: 1 / 2;
   grid-column: 2 / 3;
-  font-size: 1.3rem;
+  font-size: 1.05rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,13 +120,13 @@
   box-sizing: border-box;
   padding: 10px;
   padding-left: 15px;
-  width: 450px;
-  height: 298px;
+  width: clamp(240px, 23.44vw, 450px);
+  height: clamp(155px, 15.52vw, 298px);
   grid-row: 2 / 3;
   grid-column: 1 / 3;
   display: grid;
   gap: 5px;
-  grid-template-columns: 330px 130px;
+  grid-template-columns: clamp(140px, 16.93vw, 325px) 1fr;
   grid-template-rows: 1fr;
 }
 
@@ -136,7 +136,7 @@
   border-radius: 20px;
   grid-row: 1 / 2;
   grid-column: 1 / 2;
-  width: 325px;
+  width: clamp(140px, 16.93vw, 325px);
   height: auto;
 }
 
@@ -144,8 +144,8 @@
   position: absolute;
   z-index: 2;
   border-radius: 20px;
-  width: 325px;
-  height: 269px;
+  width: clamp(140px, 16.93vw, 325px);
+  height: clamp(115px, 14.01vw, 269px);
   border: 1px solid rgb(73, 73, 73);
   border-top: 2px solid rgb(73, 73, 73);
   border-left: 2px solid rgb(73, 73, 73);
@@ -156,7 +156,7 @@
 
 .tactic-card__meta {
   padding-bottom: 15px;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   grid-row: 1 / 2;
   grid-column: 2 / 3;
   display: flex;
@@ -167,7 +167,8 @@
 
 .tactic-card__meta p {
   padding-top: 5px;
-  font-size: 0.75rem;
+  padding-left: 2px;
+  font-size: 0.7rem;
   margin: 0;
 }
 
@@ -181,9 +182,9 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 12px;
+  gap: 7px;
   padding-bottom: 5px;
-  padding-left: 5px;
+  padding-left: 3px;
 }
 
 .tactic-card__actions a {
@@ -196,8 +197,8 @@
 .tactic-card__actions button {
   border: none;
   outline: none;
-  width: 35px;
-  height: 35px;
+  width: 33px;
+  height: 33px;
   background: linear-gradient(5deg,rgb(212, 212, 212));
   box-shadow: inset 0px 0px 5px 3px #ffffff;
   border-radius: 10px;
@@ -209,8 +210,78 @@
 }
 
 
+/* Desktop only — shrink the em unit used by the JS fan-out translateX */
+@media (min-width: 1025px) {
+  .folder-layer--1,
+  .folder-layer--2,
+  .folder-layer--3 {
+    font-size: 0.85vw;
+  }
+}
+
 /* Tablet */
 @media (max-width: 1024px) {
+
+  /* Restore font sizes to original for tablet and below */
+  .tactic-card__title {
+    font-size: 1.3rem;
+  }
+
+  .tactic-card__meta {
+    font-size: 0.7rem;
+  }
+
+  .tactic-card__meta p {
+    font-size: 0.75rem;
+  }
+
+  .tactic-card__actions {
+    gap: 12px;
+  }
+
+  .tactic-card__actions button {
+    width: 38px;
+    height: 38px;
+  }
+
+  /* Restore fluid-scaled base values for carousel (non-.folder-layer) context */
+  .folder-layer--3::before,
+  .folder-layer--2::before,
+  .folder-layer--1::before {
+    width: 280px;
+  }
+
+  .folder-layer--version {
+    width: 465px;
+    height: 310px;
+  }
+
+  .folder-layer--version::before {
+    width: 280px;
+  }
+
+  .tactic-card {
+    translate: 0px -30px;
+    width: 450px;
+    height: 320px;
+    grid-template-columns: 200px 250px;
+    grid-template-rows: 38px 282px;
+  }
+
+  .tactic-card__info {
+    width: 450px;
+    height: 298px;
+    grid-template-columns: 330px 130px;
+  }
+
+  .tactic-card__image {
+    width: 325px;
+  }
+
+  .tactic-card__thumbnail-overlay {
+    width: 325px;
+    height: 269px;
+  }
 
   .folder-layer .folder-layer--version {
     width: 380px;

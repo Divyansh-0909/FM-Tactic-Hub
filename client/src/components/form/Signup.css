@@ -23,3 +23,9 @@
     font-size: 80px;
     font-family: 'SohneBreitExtrafettKursiv', sans-serif;
 }
+
+@media (min-width: 1025px) {
+    .account-form h1 {
+        font-size: clamp(40px, 4.17vw, 80px);
+    }
+}
