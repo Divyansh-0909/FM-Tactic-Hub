@@ -30,7 +30,7 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: false, // set to true in production (HTTPS only)
+    secure: process.env.NODE_ENV === "production",
     maxAge: 1000 * 60 * 60 * 24, // 1 day
   }
 }));
@@ -68,5 +68,5 @@ const PORT =
     process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log("Server running on port 3000");
+  console.log(`Server running on port ${PORT}`);
 });
