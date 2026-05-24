@@ -1,20 +1,19 @@
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
-  output          = "../generated/prisma"
+  provider = "prisma-client-js"
+  previewFeatures = ["typedSql"]
+  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 model User {
-  id                   String               @id @default(cuid())
-  email                String               @unique
-  username             String               @unique
-  password             String?
-  createdAt            DateTime             @default(now())
+  id       String @id @default(cuid())
+  email    String @unique
+  username String @unique
+  password String?
+  createdAt DateTime @default(now())
   federatedCredentials FederatedCredential[]
 }
 
@@ -31,6 +30,6 @@ model FederatedCredential {
 model Session {
   id        String   @id
   sid       String   @unique
-  data      String
-  expiresAt DateTime
+  data      String  
+  expiresAt   DateTime  
 }
