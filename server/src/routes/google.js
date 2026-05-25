@@ -18,10 +18,17 @@ router.get(
 // Google redirects back here
 router.get(
   "/oauth2/redirect/google",
-  passport.authenticate("google", {
-    session: false,
-    failureRedirect: `${CLIENT_URL}/log-in?error=google_auth_failed`,
-  }),
+  (req, res, next) => {
+    passport.authenticate("google", {
+      session: false,
+    }, (err, user, info) => {
+      if (err) console.error("Google auth error:", err);
+      if (!user) console.error("Google auth failed:", info);
+      if (err || !user) return res.redirect(`${CLIENT_URL}/log-in?error=google_auth_failed`);
+      req.user = user;
+      next();
+    })(req, res, next);
+  },
   (req, res) => {
     const { id, username, email } = req.user;
 
@@ -31,8 +38,6 @@ router.get(
       { expiresIn: "1h" }
     );
 
-    // Can't send JSON in a redirect flow — pass token + user via query params
-    // so the frontend /oauth/callback route can call saveAuth() and redirect home
     const params = new URLSearchParams({
       token,
       id,
