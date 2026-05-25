@@ -100,7 +100,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/oauth2/redirect/google",
+      callbackURL: `${process.env.SERVER_URL}/oauth2/redirect/google`,
       scope: ["profile", "email"],
     },
     async (issuer, profile, done) => {
