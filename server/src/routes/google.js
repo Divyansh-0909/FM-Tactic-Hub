@@ -20,7 +20,6 @@ router.get(
   "/oauth2/redirect/google",
   (req, res, next) => {
     passport.authenticate("google", {
-      session: false,
     }, (err, user, info) => {
       if (err) console.error("Google auth error:", err);
       if (!user) console.error("Google auth failed:", info);
