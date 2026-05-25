@@ -9,10 +9,7 @@ const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173";
 // Redirect to Google
 router.get(
   "/login/google",
-  passport.authenticate("google", {
-    session: false,
-    scope: ["profile", "email"],
-  })
+  passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
 // Google redirects back here

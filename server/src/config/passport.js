@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
 const LocalStrategy = require("passport-local").Strategy;
-const GoogleStrategy = require("passport-google-oidc");
+const { Strategy: GoogleStrategy } = require("passport-google-oauth20");
 
 const prisma = require("../lib/prisma");
 
@@ -106,21 +106,22 @@ passport.deserializeUser(async (id, done) => {
 
 // GOOGLE STRATEGY
 
+const GOOGLE_PROVIDER = "https://accounts.google.com";
+
 passport.use(
   new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: `${process.env.SERVER_URL}/oauth2/redirect/google`,
-      scope: ["profile", "email"],
     },
-    async (issuer, profile, done) => {
+    async (_accessToken, _refreshToken, profile, done) => {
       try {
         // 1. Check for existing federated credential
         const cred = await prisma.federatedCredential.findUnique({
           where: {
             provider_subject: {
-              provider: issuer,
+              provider: GOOGLE_PROVIDER,
               subject: String(profile.id),
             },
           },
@@ -142,7 +143,7 @@ passport.use(
           // Link Google to their existing account
           await prisma.federatedCredential.create({
             data: {
-              provider: issuer,
+              provider: GOOGLE_PROVIDER,
               subject: String(profile.id),
               userId: existingUser.id,
             },
@@ -161,7 +162,7 @@ passport.use(
             email,
             federatedCredentials: {
               create: {
-                provider: issuer,
+                provider: GOOGLE_PROVIDER,
                 subject: String(profile.id),
               },
             },
