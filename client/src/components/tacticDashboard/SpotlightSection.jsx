@@ -4,12 +4,12 @@ import { tacticsData } from '../tacticData';
 import { useAuth } from '../../context/AuthContext';
 
 const SpotlightSection = () => {
-    const { user, clearAuth } = useAuth();
+    const { user } = useAuth();
     const isMobile = useMediaQuery({ maxWidth: 580 });
 
     const recent   = tacticsData[0].arr[0];
     const topRated = tacticsData[1].arr[3];
-    const standOut = tacticsData[0].arr[2];
+    const standOut = tacticsData[0].arr[3];
 
     const [selected, setSelected] = useState(isMobile ? topRated : recent);
     const [light, setLight] = useState(false);

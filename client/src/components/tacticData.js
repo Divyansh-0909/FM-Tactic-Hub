@@ -1,6 +1,15 @@
 export const tacticsData = [
     {name: 'Football Manager 26', arr: [
         { 
+            title: "Unai Emery's Villa", 
+            mentality: "Positive", 
+            ip: "4-2-2-2",
+            op: "4-4-2",
+            img: 'https://pbs.twimg.com/media/HJFejnda8AAZT8B?format=jpg&name=medium', 
+            download: 'https://wxvwdlyfglykdokoumvr.supabase.co/storage/v1/object/public/tactics/Unai-Emery-Aston-Villa.zip', 
+            threadId: '2058530526613700974'
+        },
+        { 
             title: "Fabregas’ Como", 
             mentality: "Positive", 
             ip: "4-2-4",
