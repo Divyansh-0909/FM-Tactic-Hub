@@ -24,14 +24,22 @@ app.use(express.json());
 
 // SESSION SETUP
 // For google strategy
+const { PrismaSessionStore } = require("@quixo3/prisma-session-store");
+
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
+  store: new PrismaSessionStore(prisma, {
+    checkPeriod: 2 * 60 * 1000, // 2 minutes
+    dbRecordIdIsSessionId: true,
+    dbRecordIdFunction: undefined,
+  }),
   cookie: {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    maxAge: 1000 * 60 * 60 * 24, // 1 day
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    maxAge: 1000 * 60 * 60 * 24,
   }
 }));
 
