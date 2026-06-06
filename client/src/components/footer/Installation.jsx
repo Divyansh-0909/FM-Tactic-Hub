@@ -8,21 +8,21 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { useMediaQuery } from 'react-responsive';
 
 function Installation(){
-    useGSAP(()=>{
-        ScrollTrigger.refresh();
+    // useGSAP(()=>{
+    //     ScrollTrigger.refresh();
 
-        gsap.from('.folder-open', {
-            scale: 0.5,
-            yPercent: 60,
-            opacity: 0,
-            scrollTrigger: {
-                trigger: '.installation-section',
-                start: 'top bottom',
-                end: 'top top',
-                scrub: 1,
-            },
-        });
-    })
+    //     gsap.from('.folder-open', {
+    //         scale: 0.5,
+    //         yPercent: 60,
+    //         opacity: 0,
+    //         scrollTrigger: {
+    //             trigger: '.installation-section',
+    //             start: 'top bottom',
+    //             end: 'top top',
+    //             scrub: 1,
+    //         },
+    //     });
+    // })
 
     return (
         <div id='smooth-content'>
